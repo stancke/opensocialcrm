@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <title>{{ template.titulo }} - {{ template.slogan }} </title>
+  <meta name="description" content="A framework for building fast, desktop caliber web applications." />
+  <meta name="viewport" content="width=960" />
+  <link rel="stylesheet" href="media/index/css/style.css" />
+  <link rel="stylesheet" href="media/index/css/modal.css" />
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu|Allan:bold|Architects+Daughter" />
+
+  <script src="media/index/js/smodernizr-1.7.min.js"></script>
+</head>
+<body id="home" class="green">
+  <script>
+    var match = document.cookie.match(/scColor=([^;]+)/);
+    document.body.className = (match && match[1]) || 'green';
+  </script>
+  <div id="wrap">
+    <header role="banner">
+      <div class="container">
+        <h1 id="logo">
+          <a href="/"><img src="media/images/logo.png" alt="SproutCore" /></a>
+
+        </h1>
+        <nav role="navigation">
+          <ul>
+            <li><a href="/relacionamentos">Relacionamentos</a></li>
+            <li><a href="/campanhas">Campanhas</a></li>
+            <li><a href="/resultados">Resultados</a></li>
+          </ul>
+        </nav>
+      </div>
+
+    </header>
+    <div id="main" role="main" class="container">
+      <p id="blurb">{{ template.descricao_index }}</p>
+<ul id="action">
+  <li><a href="#" class="button primary" onclick="_gaq.push(['_trackEvent', 'Download', 'Button']); app.gotoInstall(); return false;"><span class="download">Download v1.0</span></a></li>
+  <li><a href="https://github.com/sproutcore/sproutcore/" class="button primary"><span class="github">Veja no GitHub</span></a></li>
+</ul>
+<div id="carousel-container">
+  <div id="carousel">
+
+    <div class="panel tutorials green" data-color="green">
+      <h2>New Tutorial to Help You Get Up and Running!</h2>
+      <img class="video" src="media/images/tutorial.png" width="390" height="247" />
+      <p>You've heard all about SproutCore and now it's time to see for yourself. It's easier than ever to get started with our new tutorial. In it you'll learn:</p>
+      <ul>
+        <li>How to install SproutCore on your machine</li>
+        <li>How to build your first application</li>
+
+        <li>How to add new interactive elements</li>
+        <li>...and much more!</li>
+      </ul>
+      <a href="http://guides.sproutcore.com/getting_started.html" class="button primary"><span>Get Started Now!</span></a>
+    </div>
+    <div class="panel guides blue" data-color="blue">
+      <div>
+
+        <h2>The New SproutCore Guides Are Live!</h2>
+        <p>The community-generated Guides are designed to help you get up, running, and building, in no time at all. By developers, for developers.</p>
+      </div>
+      <a href="http://guides.sproutcore.com" class="button primary"><span>Visit SproutCore Guides</span></a>
+    </div>
+    <div class="panel wwdc pink" data-color="pink">
+      <h2>2011 SproutCore WWDC Bash</h2>
+
+      <a href="http://www.petracross.com/recent/2011-sproutcore-wwdc-bash/" target="_blank" class="button primary"><span>View The Album</span></a>
+      <div>
+        <h3>Sponsored By</h3>
+        <ul>
+          <li><a href="http://www.strobecorp.com" target="_blank"><img src="media/images/carousel/wwdc/strobe.png" alt="Strobe" /></a></li>
+          <li><a href="http://mobile.ebay.com" target="_blank"><img src="media/images/carousel/wwdc/ebay.png" alt="eBay Mobile" /></a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="panel dispatches purple" data-color="purple">
+      <h2>Dispatches From The Edge</h2>
+      <p>A series of articles covering the cutting edge of SproutCore.</p>
+      <a href="http://blog.sproutcore.com/tag/dispatch/" class="button primary"><span>Take Me To The Articles!</span></a>
+    </div>
+    <button name="previous" class="previous">&nbsp;</button>
+
+    <div class="tray">
+      <a class="panel0 active" href="#"></a>
+      <a class="panel1" href="#"></a>
+      <a class="panel2" href="#"></a>
+      <a class="panel3" href="#"></a>
+    </div>
+    <button name="next" class="next">&nbsp;</button>
+  </div>
+</div>
+<section id="features">
+  <h1>Tenha uma experiência verdadeiramente rica !</h1>
+  <ul>
+    <li class="html5">
+      <h2>O poder do HTML5</h2>
+      <p>Utilizada ultima especificação do HTML.</p>
+    </li>
+
+    <li class="mvc">
+      <h2>Arquitetura Robusta</h2>
+      <p>Utilizando beckend do Django Framework.</p>
+    </li>
+    <li class="speed">
+      <h2>Incrivelmente Rápida</h2>
+      <p>Não espere mais a boa vontade<br>dos servidores.</p>
+
+    </li>
+    <li class="device">
+      <h2>Accessivel onde quizer</h2>
+      <p>PC, Smartfones, Celulares, enfim, se restrições.</p>
+    </li>
+    <li class="scale">
+      <h2>Escalável</h2>
+      <p>Quer escalar? o banco NoSQL dá conta do recado</p>
+    </li>
+    <li class="theme">
+      <h2>Customizável</h2>
+      <p>Altamente customizável, pode alterar qualquer tema</p>
+    </li>
+  </ul>
+
+</section>
+    </div>
+    <div id="modals">
+      
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <div class="col">
+        <a href="index.html">SocialCRM</a>
+        <p id="license">
+          Evandro Klimpel Balmant
+          <br />
+          Wilian Fernando Stancke
+          <br /><br />
+          SocialCRM esta sob licensa GPL.
+        </p>
+      </div>
+      <nav class="col">
+      	<br/><br/>
+        <a href="http://www.w3.org/html/logo/"><img src="media/images/html5_tech.png" alt="HTML5 Powered" /></a>
+      </nav>
+
+      <div class="col">
+        <h1>Get in Touch, Stay Informed</h1>
+        <ul class="social">
+          <li><a href="http://twitter.com/sproutcore"><img src="media/images/twitter.png" alt="Twitter" /></a></li>
+          <li><a href="http://www.facebook.com/sproutcore"><img src="media/images/facebook.png" alt="Facebook" /></a></li>
+          <li><a href="http://groups.google.com/group/sproutcore"><img src="media/images/google.png" alt="Google Groups" /></a></li>
+		  <li><a href="http://groups.google.com/group/sproutcore">Subscribe To Mailing List</a></li>
+        </ul>
+      </div>
+      <a href="#wrap" class="top">Topo</a>
+    </div>
+  </footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+  <script>window.jQuery || document.write("<script src='/js/libs/jquery-1.5.1.min.js'>\x3C/script>")</script>
+
+  <script>
+    jQuery(document).ready(function() {
+      setTimeout(function() {
+        jQuery("#get-involved").addClass('visible');
+      },
+      1);
+    });
+  </script>
+  <script src="media/js/libs/jquery_bbq.js"></script>
+  <script src="media/js/libs/jquery_cookie.js"></script>
+  <script src="media/js/script.js"></script>
+  <script src="media/js/modals.js"></script>
+  <script src="media/js/calendar.js"></script>
+  <script src="media/js/core_members.js"></script>
+  <script src="media/js/tab_slider.js"></script>
+  <script src="medias/js/meetup_map.js"></script>
+</body>
+</html>
