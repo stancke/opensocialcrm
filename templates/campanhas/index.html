@@ -31,18 +31,11 @@
 
             <thead>
                 <tr>
-                    
-                        <th class=" action-checkbox-column">
-                            
-                            <input type="checkbox" id="action-toggle" />
-                            
-                        </th>
-                    
+                    	
                         <th class=" sortable">
                             <a href="?ot=asc&amp;o=1">
                             Redes sociais
                             </a>
-
                         </th>
                     
                         <th class=" sortable">
@@ -55,15 +48,24 @@
                             <a href="?ot=asc&amp;o=3">
                             Descrição
                             </a>
-
                         </th>
-                    
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=1">
+                            Data de Criação
+                            </a>
+                        </th>
                 </tr>
             </thead>
             <tbody>
-                
-                    <tr class="row1"><td class="action-checkbox"><input type="checkbox" class="action-select" value="4e447348e28a363bb3000000" name="_selected_action" /></td><th><a href="4e447348e28a363bb3000000/">Twitter</a></th><td>askaska</td><td>kjkds@ssd.com</td></tr>
-                
+                {% for campanha in campanhas %}
+                    <tr class="row1">
+
+                    		<td>{{ campanha.redes_sociais }}</td>
+                    		<td>{{ campanha.titulo }}</td>
+                    		<td>{{ campanha.descricao}}</td>
+                    		<td>{{ campanha.criada_em }}</td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
 
@@ -74,28 +76,12 @@
             <!-- PAGINATION BOTTOM -->
             
 
-<div class="module pagination"><ul class="pagination"><li class="results"><span>1 total</span></li></ul><br clear="all" /></div>
+<div class="module pagination"><ul class="pagination"><li class="results"><span>{{ total }} total</span></li></ul><br clear="all" /></div>
         </div><br clear="all" />
         <!-- SUBMIT ROW -->
         
             <div id="submit" class="module footer">
-                
-<div class="changelist-actions">
-
-    <select name="action">
-<option value="" selected="selected">---------</option>
-<option value="delete_selected">Excluir campanha selecionada</option>
-</select><input type="hidden" class="select-across" value="0" name="select_across" />
-    
-        <script type="text/javascript">var _actions_icnt="1";</script>
-        <ul>
-            <li class="action-counter"><span class="action-counter">1 de 1 selecionado</span></li>
-            
-        </ul>
-    
-</div>
-
-                
+               
             </div>
         
     </form>

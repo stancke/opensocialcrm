@@ -8,7 +8,7 @@
             
     <div class="container-flexible">
         <div class="form-container">
-            <form enctype="multipart/form-data" action="" method="post" id="redessociais_form">
+            <form enctype="multipart/form-data" action="/campanhas/cadastrar_nova/" method="post" id="redessociais_form">
             	<div style='display:none'>
             		<input type='hidden' name='csrfmiddlewaretoken' value='f0e73daffbc1a8935a641fbb0ee7d5a0' />
             	</div> 
@@ -20,10 +20,10 @@
                     				<label for="id_rede_social" class="required">Redes sociais:</label>
                     			</div>
                     			<div class="column span-flexible">
-                    					<input type="checkbox" value="T">Twitter <br/>
-                    					<input type="checkbox" value="F">Facebook <br/>
-                    					<input type="checkbox" value="L">LinkedIn <br/>
-                    					<input type="checkbox" value="G"/>Google+
+                    					<input type="checkbox" name="redes_sociais" value="Twitter">Twitter <br/>
+                    					<input type="checkbox" name="redes_sociais" value="Facebook">Facebook <br/>
+                    					<input type="checkbox" name="redes_sociais" value="LinkedIn">LinkedIn <br/>
+                    					<input type="checkbox" name="redes_sociais" value="Google+"/>Google+
                     			</div>
                     		</div>
                     	</div>
@@ -32,7 +32,7 @@
                     			<label for="id_titulo" class="required">Titulo:</label>
                     		</div>
                     		<div class="column span-flexible">
-                    			<input id="id_titulo" type="text" class="vTextField" name="usuario" maxlength="25" />
+                    			<input id="id_titulo" type="text" class="vTextField" name="titulo" maxlength="25" />
                     		</div>
                     	</div>
                     </div>
