@@ -1,0 +1,93 @@
+{% include "cabecalho.html" %}
+    <div id="breadcrumbs">
+             <a href="../../">Home</a> &rsaquo;
+             <a href="../">Campanhas</a> &rsaquo;
+             Nova Campanha
+        </div>
+            <h1>Lançar campanha</h1>
+            
+    <div class="container-flexible">
+        <div class="form-container">
+            <form enctype="multipart/form-data" action="/campanhas/cadastrar_nova/" method="post" id="redessociais_form">
+            	<div style='display:none'>
+            		<input type='hidden' name='csrfmiddlewaretoken' value='f0e73daffbc1a8935a641fbb0ee7d5a0' />
+            	</div> 
+                <div>    
+                    <fieldset class="module ">
+                    	<div class="row cells-1 rede_social ">
+                    		<div>
+                    			<div class="column span-4">
+                    				<label for="id_rede_social" class="required">Redes sociais:</label>
+                    			</div>
+                    			<div class="column span-flexible">
+                    					<input type="checkbox" name="redes_sociais" value="Twitter">Twitter <br/>
+                    					<input type="checkbox" name="redes_sociais" value="Facebook">Facebook <br/>
+                    					<input type="checkbox" name="redes_sociais" value="LinkedIn">LinkedIn <br/>
+                    					<input type="checkbox" name="redes_sociais" value="Google+"/>Google+
+                    			</div>
+                    		</div>
+                    	</div>
+                    	<div class="row cells-1 usuario "><div>
+                    		<div class="column span-4">
+                    			<label for="id_titulo" class="required">Titulo:</label>
+                    		</div>
+                    		<div class="column span-flexible">
+                    			<input id="id_titulo" type="text" class="vTextField" name="titulo" maxlength="25" />
+                    		</div>
+                    	</div>
+                    </div>
+                    <div class="row cells-1 senha ">
+                    	<div>
+                    		<div class="column span-4">
+                    			<label for="id_descricao" class="required">Descricao:</label>
+                    		</div>
+                    		<div class="column span-flexible">
+                    			<textarea id="id_descricao" type="text" class="vTextArea" name="descricao" maxlength="20" ></textarea>
+                    		</div>
+                    	</div>
+                    </div>
+                 </fieldset>
+                    
+<div class="module footer">
+    <ul class="submit-row">
+        
+        
+        <li class="submit-button-container"><input type="submit" value="Lançar campanha" class="default" name="_save" /></li>
+        <li class="submit-button-container"><input type="submit" value="Lançar e adicionar outra" name="_addanother"  /></li>
+    </ul><br clear="all" />
+</div>
+
+ <script type="text/javascript">
+                                (function($){
+                                    $(function(){
+                                        try {
+                                            // focus on first form-field
+                                            $("#id_rede_social, #id_rede_social_0")
+                                            .eq(0).focus();
+                                        } catch(e) {}
+                                    });
+                                }(django.jQuery));
+                            </script>
+                        
+                    
+                    
+                    <!-- JS for prepopulated fields -->
+                    <script type="text/javascript">
+    (function( $ ) {
+        
+    })(django.jQuery);
+</script>
+
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+
+            <br class="clear" />
+        </div>
+        <!-- FOOTER -->
+        <div id="footer"></div>
+    </div>
+</body>
+</html>

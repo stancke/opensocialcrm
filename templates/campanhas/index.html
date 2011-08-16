@@ -1,0 +1,99 @@
+{% include "cabecalho.html" %}
+                <div id="breadcrumbs">
+             <a href="../../../">Home</a> &rsaquo;
+             Campanhas
+        </div>
+
+        <div id="content" class="content-flexible">
+            
+            
+    <h1>Campanhas</h1>
+
+            
+    
+        <ul class="tools">
+            <li>
+                <a href="nova/" class="add-handler focus">
+                    Lançar nova campanha
+                </a>
+            </li>
+
+        </ul>
+    
+
+            
+    
+    <form id="changelist-form" action="" method="post"><div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='f0e73daffbc1a8935a641fbb0ee7d5a0' /></div>
+        <div id="changelist" class="container-full" style="">
+
+    <div class="module changelist-results">
+        <table cellspacing="0">
+
+            <thead>
+                <tr>
+                    	
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=1">
+                            Redes sociais
+                            </a>
+                        </th>
+                    
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=2">
+                            Título
+                            </a>
+                        </th>
+                    
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=3">
+                            Descrição
+                            </a>
+                        </th>
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=1">
+                            Data de Criação
+                            </a>
+                        </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for campanha in campanhas %}
+                    <tr class="row1">
+                    		<td>
+                    		{% for campanha in campanha.redes_sociais %}
+                    			{{ campanha }}
+                    		{% endfor %}
+                    		</td>
+                    		<td>{{ campanha.titulo }}</td>
+                    		<td>{{ campanha.descricao}}</td>
+                    		<td>{{ campanha.criada_em }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+
+            
+            <!-- PAGINATION BOTTOM -->
+            
+
+<div class="module pagination"><ul class="pagination"><li class="results"><span>{{ total }} total</span></li></ul><br clear="all" /></div>
+        </div><br clear="all" />
+        <!-- SUBMIT ROW -->
+        
+            <div id="submit" class="module footer">
+               
+            </div>
+        
+    </form>
+
+            <br class="clear" />
+        </div>
+        <!-- FOOTER -->
+        <div id="footer"></div>
+    </div>
+
+</body>
+</html>

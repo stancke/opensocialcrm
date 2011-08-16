@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pr-br" xml:lang="pr-br" >
+
+<head>
+    <title>Add redes sociais | Django site admin</title>
+    
+        <meta name="robots" content="NONE,NOARCHIVE" />
+    
+    <!-- STYLESHEETS -->
+    
+    
+        <link href="/static/grappelli/css/base.css" rel="stylesheet" type="text/css" />
+        
+        <link href="/static/grappelli/jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link href="/static/grappelli/css/jquery-ui-grappelli-extensions.css" rel="stylesheet" type="text/css"  />
+
+    
+
+    <!-- EXTRASTYLES -->
+    
+    <!-- JAVASCRIPTS -->
+    
+    
+        <script type="text/javascript">
+            // GLOBALS
+            var grappelli = {},
+                // TODO: klemens: drop ADMIN_URL
+                ADMIN_URL = "/admin/",
+                MODEL_URL_ARRAY = {'4e434088e28a3608af000000': {pk: '4e434088e28a3608af000000', app: 'auth', model: 'permission'},'4e434088e28a3608af000001': {pk: '4e434088e28a3608af000001', app: 'auth', model: 'group'},'4e434088e28a3608af000002': {pk: '4e434088e28a3608af000002', app: 'auth', model: 'user'},'4e434088e28a3608af000003': {pk: '4e434088e28a3608af000003', app: 'auth', model: 'message'},'4e434095e28a3608af000011': {pk: '4e434095e28a3608af000011', app: 'contenttypes', model: 'contenttype'},'4e434095e28a3608af000015': {pk: '4e434095e28a3608af000015', app: 'sessions', model: 'session'},'4e434095e28a3608af000019': {pk: '4e434095e28a3608af000019', app: 'sites', model: 'site'},'4e434095e28a3608af00001e': {pk: '4e434095e28a3608af00001e', app: 'admin', model: 'logentry'},'4e434095e28a3608af000022': {pk: '4e434095e28a3608af000022', app: 'redes', model: 'redessociais'},'4e44612ce28a36106c000000': {pk: '4e44612ce28a36106c000000', app: 'cms', model: 'configuracoes'}},
+                DATE_FORMAT = "%Y-%m-%d",
+                TIME_FORMAT = "%H:%M:%S",
+                DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S";
+        </script>
+        
+        <!-- NOTE klemens: put this in admin/includes_grappelli/header_js.html -->
+        
+        <!-- jQuery, jQuery-UI -->
+        <script src="/static/grappelli/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
+        <script src="/static/grappelli/jquery/ui/js/jquery-ui-1.8.5.custom.min.js" type="text/javascript"></script>
+
+        <!-- Grappelli Main JS -->
+        <script src="/static/grappelli/js/grappelli/grappelli.js" type="text/javascript"></script>
+        <!-- Grappelli jQuery Plugins, Widgets -->
+        <script src="/static/grappelli/js/grappelli/jquery.grp_collapsible.js"type="text/javascript" ></script>
+        <script src="/static/grappelli/js/grappelli/jquery.grp_collapsible_group.js" type="text/javascript"></script>
+        <script src="/static/grappelli/js/grappelli/jquery.grp_timepicker.js" type="text/javascript"></script>
+        <script src="/static/grappelli/js/grappelli/jquery.grp_related_fk.js" type="text/javascript"></script>
+
+        <script src="/static/grappelli/js/grappelli/jquery.grp_related_m2m.js" type="text/javascript"></script>
+        <script src="/static/grappelli/js/grappelli/jquery.grp_related_generic.js" type="text/javascript"></script>
+        
+    
+    
+    <script type="text/javascript" src="/admin/jsi18n/"></script>
+    <script src="/static/grappelli/js/grappelli/jquery.grp_inline.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8">
+        (function($) {
+            $(document).ready(function() {
+                grappelli.initDateAndTimePicker();
+                $("div.container-flexible div.group").grp_collapsible_group();
+                $("div#content .collapse").grp_collapsible({
+                    on_init: function(elem, options) {
+                        // open collapse (and all collapse parents) in case of errors
+                        if (elem.find("ul.errorlist").length > 0) {
+                            elem.removeClass("closed")
+                                .addClass("open");
+                            elem.parents(".collapse")
+                                .removeClass("closed")
+                                .addClass("open");
+                        }
+                    }
+                });
+                var related_lookup_fields_fk = [];
+                var related_lookup_fields_m2m = [];
+                var related_lookup_fields_generic = [];
+                $.each(related_lookup_fields_fk, function() {
+                    $("#id_" + this).grp_related_fk({lookup_url:"/grappelli/lookup/related/"});
+                });
+                $.each(related_lookup_fields_m2m, function() {
+                    $("#id_" + this).grp_related_m2m({lookup_url:"/grappelli/lookup/m2m/"});
+                });
+                $.each(related_lookup_fields_generic, function() {
+                    var content_type = "#id_" + this[0],
+                        object_id = "#id_" + this[1];
+                    $(object_id).grp_related_generic({content_type:content_type, object_id:object_id, lookup_url:"/grappelli/lookup/related/"});
+                });
+            });
+        })(django.jQuery);
+    </script>
+    <script type="text/javascript" src="/static/grappelli/js/core.js"></script>
+
+<script type="text/javascript" src="/static/grappelli/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/grappelli/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/grappelli/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/grappelli/js/actions.min.js"></script>
+
+    <!-- EXTRAHEAD -->
+    
+                            <script type="text/javascript">
+                                (function($){
+                                    $(function(){
+                                        try {
+                                            // focus on first form-field
+                                            $("#id_rede_social, #id_rede_social_0")
+                                            .eq(0).focus();
+                                        } catch(e) {}
+                                    });
+                                }(django.jQuery));
+                            </script>
+                        
+</head>
+<body class="redes-redessociais change-form">
+
+    <div id="container">
+        <!-- HEADER -->
+        
+            
+
+<div id="header">
+    <div class="branding">&nbsp;</div>
+    <!-- Title -->
+    <div class="admin-title">SocialCRM</div>
+    
+        <ul id="user-tools">
+            <!-- Username -->
+
+            <li class="user-options-container collapse closed">
+                <a href="javascript://" class="user-options-handler collapse-handler">Wilian</a>
+                <ul class="user-options">
+                    <!-- Change Password -->
+                    
+                    
+                        <li><a href="/admin/password_change/">
+                    
+                    Change password</a></li>
+                    <!-- Logout -->
+                    
+                    
+                        <li><a href="/admin/logout/">
+
+                    
+                    Log out</a></li>
+                </ul>
+            </li>
+            <!-- Userlinks -->
+            
+                <!-- JS tests -->
+                
+                
+                <!-- Documentation -->
+                
+                
+            
+        </ul>
+    
+    
+    
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    (function($) {
+        $(document).ready(function() {
+            $("div#header .collapse").grp_collapsible();
+        });
+    })(django.jQuery);
+</script>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <title>{{ template.titulo }} - {{ template.slogan }} </title>
+  <meta name="description" content="A framework for building fast, desktop caliber web applications." />
+  <meta name="viewport" content="width=960" />
+  <link rel="stylesheet" href="media/index/css/style.css" />
+  <link rel="stylesheet" href="media/index/css/modal.css" />
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ubuntu|Allan:bold|Architects+Daughter" />
+
+  <script src="media/index/js/smodernizr-1.7.min.js"></script>
+</head>
+<body id="home" class="green">
+  <script>
+    var match = document.cookie.match(/scColor=([^;]+)/);
+    document.body.className = (match && match[1]) || 'green';
+  </script>
+  <div id="wrap">
+    <header role="banner">
+      <div class="container">
+        <h1 id="logo">
+          <a href="/">OpenSocialCRM</a>
+        </h1>
+        <nav role="navigation">
+          <ul>
+            <li><a href="/relacionamentos">Relacionamentos</a></li>
+            <li><a href="/campanhas">Campanhas</a></li>
+            <li><a href="/resultados">Resultados</a></li>
+          </ul>
+        </nav>
+      </div>
+
+    </header>
+    <div id="main" role="main" class="container">
+      <p id="blurb">{{ template.descricao_index }}</p>
+<ul id="action">
+  <li><a href="#" class="button primary" onclick="_gaq.push(['_trackEvent', 'Download', 'Button']); app.gotoInstall(); return false;"><span class="download">Download v1.0</span></a></li>
+  <li><a href="https://github.com/wstancke/opensocialcrm" class="button primary"><span class="github">Veja no GitHub</span></a></li>
+</ul>
+<div id="carousel-container">
+  <div id="carousel">
+
+    <div class="panel tutorials green" data-color="green">
+      <h2>Gerencie suas campanhas nas redes sociais de forma eficiente e livre!</h2>
+      <img class="video" src="media/images/graficos.jpg" />
+      <p>O SocialCRM é uma interface integrada de recursos onde você pode ver: </p>
+      <ul>
+        <li>Resultados por período</li>
+        <li>Resultados por tipo de rede social</li>
+        <li>Análise de palavras chave</li>
+        <li>...e muito mais!</li>
+      </ul>
+    </div>
+    <button name="previous" class="previous">&nbsp;</button>
+
+    <div class="tray">
+      <a class="panel0 active" href="#"></a>
+      <a class="panel1" href="#"></a>
+      <a class="panel2" href="#"></a>
+      <a class="panel3" href="#"></a>
+    </div>
+    <button name="next" class="next">&nbsp;</button>
+  </div>
+</div>
+<section id="features">
+  <h1>Tenha uma experiência verdadeiramente rica !</h1>
+  <ul>
+    <li class="html5">
+      <h2>O poder do HTML5</h2>
+      <p>Utilizada ultima especificação do HTML.</p>
+    </li>
+
+    <li class="mvc">
+      <h2>Arquitetura Robusta</h2>
+      <p>Utilizando beckend do Django Framework.</p>
+    </li>
+    <li class="speed">
+      <h2>Incrivelmente Rápida</h2>
+      <p>Não espere mais a boa vontade<br>dos servidores.</p>
+
+    </li>
+    <li class="device">
+      <h2>Accessivel onde quizer</h2>
+      <p>PC, Smartfones, Celulares, enfim, se restrições.</p>
+    </li>
+    <li class="scale">
+      <h2>Escalável</h2>
+      <p>Quer escalar? o banco NoSQL dá conta do recado</p>
+    </li>
+    <li class="theme">
+      <h2>Customizável</h2>
+      <p>Altamente customizável, pode alterar qualquer tema</p>
+    </li>
+  </ul>
+
+</section>
+    </div>
+    <div id="modals">
+      
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <div class="col">
+        <a href="index.html">OpenSocialCRM</a>
+        <p id="license">
+          Evandro Klimpel Balmant
+          <br />
+          Wilian Fernando Stancke
+          <br /><br />
+          OpenSocialCRM esta sob licensa GPL.
+        </p>
+      </div>
+      <nav class="col">
+      	<br/><br/>
+        <a href="http://www.w3.org/html/logo/"><img src="media/images/html5_tech.png" alt="HTML5 Powered" /></a>
+      </nav>
+
+      <div class="col">
+
+      </div>
+      <a href="#wrap" class="top">Topo</a>
+    </div>
+  </footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+  <script>window.jQuery || document.write("<script src='/js/libs/jquery-1.5.1.min.js'>\x3C/script>")</script>
+
+  <script>
+    jQuery(document).ready(function() {
+      setTimeout(function() {
+        jQuery("#get-involved").addClass('visible');
+      },
+      1);
+    });
+  </script>
+  <script src="media/js/libs/jquery_bbq.js"></script>
+  <script src="media/js/script.js"></script>
+  <script src="media/js/modals.js"></script>
+  <script src="media/js/tab_slider.js"></script>
+  <script src="medias/js/meetup_map.js"></script>
+</body>
+</html>
