@@ -79,7 +79,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'socialcrm.urls'
+ROOT_URLCONF = 'opensocialcrm.urls'
 
 ROOT_PATH = os.path.dirname(__file__)
 

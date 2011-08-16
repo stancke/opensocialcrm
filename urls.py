@@ -7,13 +7,13 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
-     url(r'^campanhas/$', 'socialcrm.campanhas.views.index'),
-     url(r'^campanhas/nova/$', 'socialcrm.campanhas.views.nova'),
-     url(r'^campanhas/cadastrar_nova/$', 'socialcrm.campanhas.views.cadastrarNova'),
+     url(r'^campanhas/$', 'opensocialcrm.campanhas.views.index'),
+     url(r'^campanhas/nova/$', 'opensocialcrm.campanhas.views.nova'),
+     url(r'^campanhas/cadastrar_nova/$', 'opensocialcrm.campanhas.views.cadastrarNova'),
      #url(r'^resultados/', 'crm.resultados.views.index'),
      #url(r'^relacionamentos/', 'crm.relacionamentos.views.index'),
-     url(r'^$', 'socialcrm.index.views.index'),
-     url(r'^erro_autenticacao/$', 'socialcrm.index.views.erroAutenticacao'),
+     url(r'^$', 'opensocialcrm.index.views.index'),
+     url(r'^erro_autenticacao/$', 'opensocialcrm.index.views.erroAutenticacao'),
      (r'^grappelli/', include('grappelli.urls')),
      (r'^media/(.*)$', 'django.views.static.serve', {'document_root': os.path.join(settings.PROJECT_PATH, 'media')}),
      (r'^static/(.*)$', 'django.views.static.serve', {'document_root': os.path.join(settings.PROJECT_PATH, 'static')}),
