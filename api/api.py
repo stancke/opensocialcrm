@@ -2,30 +2,46 @@ import tweepy
 
 class Twitter(object):
     
-    CONSUMER_KEY = ""
-    CONSUMER_SECRET = ""
-    ACCESS_KEY = ""
-    ACCESS_SECRET = ""
-    
-    def __init__(self): 
+    def __init__(self, twitter): 
           
-        self.CONSUMER_KEY = 'e3gEGIOAml47NHEsgQyQvA'
-        self.CONSUMER_SECRET = 'zeQAWpvF32GbvV4LbD3Mw8qYmiEtMUvW3h4fBXI9scY'
-        self.ACCESS_KEY = '355529640-HHgSk0NqXUZO0UcXKgNUAPpoC0vTqZRKHh5zM9np'
-        self.ACCESS_SECRET = 'HnWLmGp5gtp9CCL8HjiAIZfe9LLKKToRRZQYzRjwu0'
+        self.twitter = twitter
+
     
     def enviaTweet(self, descricao):
 
-        auth = tweepy.OAuthHandler(self.CONSUMER_KEY, self.CONSUMER_SECRET)
-        auth.set_access_token(self.ACCESS_KEY, self.ACCESS_SECRET)
-        api = tweepy.API(auth)
-        api.update_status(descricao)
+        for config in self.twitter:
+            
+            auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
+            auth.set_access_token(config.access_key, config.access_secret)
+            api = tweepy.API(auth)
+            api.update_status(descricao)
         
+    def getRetweets(self):
+        
+        api = tweepy.API(self.auth)
+        return api.retweets_of_me()
+    
+    def getBusca(self, termo):
+        
+        for config in self.twitter:
+            auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
+            auth.set_access_token(config.access_key, config.access_secret)
+            api = tweepy.API(auth)
+        
+        return api.search(termo)
         
 class Facebook(object):
     
-    def __init__(self):
-        print "sas"
+    FACEBOOK_API_KEY = ''
+    FACEBOOK_APP_ID = '205578726165733'
+    FACEBOOK_APP_SECRET = '75f2b8ef906d1a3cc99beec92c65430c'
+    
+    #def __init__(self, request):
+
+        
+    #def enviaMensagem(self, mensagem):
+        
+
         
 class Linkedin(object):
     

@@ -1,0 +1,95 @@
+{% include "cabecalho.html" %}
+
+<script type="text/javascript" src="/media/js/jQuery/plugins/jqplot/jquery.jqplot.js"></script>
+<script type="text/javascript" src="/media/js/jQuery/plugins/jqplot/plugins/jqplot.pieRenderer.js"></script>
+<script type="text/javascript" src="/media/resultados/js/script.js"></script>
+<link href="/media/js/jQuery/plugins/jqplot/jquery.jqplot.css" rel="stylesheet" type="text/css" />
+
+
+                <div id="breadcrumbs">
+             <a href="../../../">Home</a> &rsaquo;
+             Resultados
+        </div>
+
+        <div id="content" class="content-flexible">
+            
+            
+    <h1>Resultados da Campanha</h1>
+            
+    
+    <form id="changelist-form" action="" method="post"><div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='f0e73daffbc1a8935a641fbb0ee7d5a0' /></div>
+        <div id="changelist" class="container-full" style="">
+
+    <div class="module changelist-results">
+        <table cellspacing="0">
+
+            <thead>
+                <tr>
+                    	
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=1">
+                            Redes sociais
+                            </a>
+                        </th>
+                    
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=2">
+                            Título
+                            </a>
+                        </th>
+                    
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=3">
+                            Descrição
+                            </a>
+                        </th>
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=1">
+                            Data de Criação
+                            </a>
+                        </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for campanha in campanhas %}
+                    <tr class="row1">
+                    		<td>
+                    		{% for campanha in campanha.redes_sociais %}
+                    			{{ campanha }}
+                    		{% endfor %}
+                    		</td>
+                    		<td>{{ campanha.titulo }}</td>
+                    		<td>{{ campanha.descricao}}</td>
+                    		<td>{{ campanha.criada_em }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+<div id="grafico">
+	
+</div>
+
+            
+            <!-- PAGINATION BOTTOM -->
+            
+
+<br clear="all" />
+        <!-- SUBMIT ROW -->
+        
+            <div id="submit" class="module footer">
+               
+            </div>
+        
+    </form>
+
+            <br class="clear" />
+        </div>
+        <!-- FOOTER -->
+        <div id="footer"></div>
+    </div>
+
+</body>
+</html>

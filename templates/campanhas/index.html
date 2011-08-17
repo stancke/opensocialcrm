@@ -54,6 +54,11 @@
                             Data de Criação
                             </a>
                         </th>
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=1">
+                            Resultados
+                            </a>
+                        </th>
                 </tr>
             </thead>
             <tbody>
@@ -67,6 +72,7 @@
                     		<td>{{ campanha.titulo }}</td>
                     		<td>{{ campanha.descricao}}</td>
                     		<td>{{ campanha.criada_em }}</td>
+                    		<td><a href="/resultados/{{ campanha.url }}">Ver</a></td>
                     </tr>
                 {% endfor %}
             </tbody>

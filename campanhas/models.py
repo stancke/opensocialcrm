@@ -7,3 +7,4 @@ class Campanhas(models.Model):
     redes_sociais = ListField()
     titulo = models.CharField(max_length=25)
     descricao = models.TextField(max_length=120)
+    url = models.CharField(max_length=25)
