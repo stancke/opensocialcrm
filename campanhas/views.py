@@ -1,14 +1,14 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from campanhas.models import Campanhas
+from campanhas.models import Campanha
 from redes_sociais.models import Twitter as Config_twitter
 from api.api import Twitter, Facebook
 
 def index(request):
 
     if request.user.is_authenticated():
-        campanhas = Campanhas.objects.all()
-        total = Campanhas.objects.count()
+        campanhas = Campanha.objects.all()
+        total = Campanha.objects.count()
         aux = 0
         
         return render_to_response('campanhas/index.html', {"campanhas" :campanhas, "total":total})
@@ -51,7 +51,7 @@ def cadastrarNova(request):
                         a = Facebook()
                         a.enviaMensagem(desc)
                     
-                p = Campanhas(redes_sociais= arrayRedes, titulo=tit, descricao=desc, url=url)
+                p = Campanha(redes_sociais= arrayRedes, titulo=tit, descricao=desc, url=url)
                 p.save()
         
         return HttpResponseRedirect("/campanhas/")

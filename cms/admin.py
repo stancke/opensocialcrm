@@ -1,9 +1,9 @@
 
-from cms.models import Configuracoes
+from cms.models import Conteudo
 from django.contrib import admin
 
-class ConfiguracoesAdmin(admin.ModelAdmin):
+class ConteudoAdmin(admin.ModelAdmin):
     list_display = ('titulo','slogan', 'descricao_index')
 
-admin.site.register(Configuracoes,ConfiguracoesAdmin)
+admin.site.register(Conteudo,ConteudoAdmin)
 

@@ -1,4 +1,5 @@
 import tweepy
+import facebook
 
 class Twitter(object):
     
@@ -36,10 +37,20 @@ class Facebook(object):
     FACEBOOK_APP_ID = '205578726165733'
     FACEBOOK_APP_SECRET = '75f2b8ef906d1a3cc99beec92c65430c'
     
-    #def __init__(self, request):
-
+    def __init__(self, request): 
         
-    #def enviaMensagem(self, mensagem):
+        cookie = facebook.get_user_from_cookie(
+            request.COOKIES, self.FACEBOOK_APP_ID, self.FACEBOOK_APP_SECRET)
+                    
+        self.oauth_access_token = cookie["access_token"]
+    
+    
+    def postaMensagem(self):
+        
+        graph = facebook.GraphAPI(oauth_access_token)
+        profile = graph.get_object("me")
+        friends = graph.get_connections("me", "friends")
+        graph.put_object("me", "feed", message="I am writing on my wall!")
         
 
         

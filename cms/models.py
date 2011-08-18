@@ -1,6 +1,6 @@
 from django.db import models
 
-class Configuracoes(models.Model):
+class Conteudo(models.Model):
    
     titulo = models.CharField(max_length=20)
     slogan = models.CharField(max_length=25)

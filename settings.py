@@ -26,7 +26,7 @@ DATABASES = {
 
 TIME_ZONE = 'America/Chicago'
 
-LANGUAGE_CODE = 'pr-br'
+LANGUAGE_CODE = 'pt-br'
 
 USE_I18N = True
 USE_L10N = True
@@ -42,12 +42,8 @@ STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
-
 #ADMIN_MEDIA_PREFIX = '/static/admin/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
-FACEBOOK_API_KEY = ''
-FACEBOOK_APP_ID = ''
-FACEBOOK_APP_SECRET = ''
 
 STATICFILES_DIRS = (
     
@@ -65,7 +61,7 @@ SECRET_KEY = 'j--i+z1z6*h5^vf87h#71mqs!6mqrhckx!cnat)^6$#z$cx$^q'
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.auth",
     "django.core.context_processors.request",
-    'django_facebook.context_processors.facebook',
+
 )
 
 TEMPLATE_LOADERS = (
@@ -94,17 +90,16 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    #'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'grappelli',
     'django.contrib.admin',
     'django_mongodb_engine',
-    'django_facebook',
     'djangotoolbox',
     'redes_sociais',
     'cms',
     'campanhas',
+    'crm',
 )
 
 LOGGING = {
