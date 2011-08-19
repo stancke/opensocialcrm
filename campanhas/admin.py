@@ -5,14 +5,14 @@ from api.api import Twitter, Facebook
 
 def publicar(modeladmin, request, queryset):
     
-    
+    '''
     for rede in redes:
         if rede == 'Twitter':
             configs = Config_twitter.objects.all()
             a = Twitter(configs)
             a.enviaTweet(desc)
-    
-    queryset.update(status='P')
+    '''
+    queryset.update(status=True)
 
 
 class CampanhaAdmin(admin.ModelAdmin):

@@ -22,5 +22,6 @@ class Relacionamento(models.Model):
     contato = models.CharField(max_length=1, choices= REDES)    
     data = models.DateTimeField()
     mensagem = models.TextField(max_length=150)
+    enviar = models.BooleanField()
 
 

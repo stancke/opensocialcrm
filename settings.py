@@ -9,7 +9,7 @@ ADMINS = (
 
 SITE_ID=u'4e434095e28a3608af00001d'
 
-GRAPPELLI_ADMIN_TITLE = 'SocialCRM'
+GRAPPELLI_ADMIN_TITLE = 'OpenSocialCRM'
 
 MANAGERS = ADMINS
 
@@ -24,7 +24,7 @@ DATABASES = {
     }
 }
 
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'America/Sao_Paulo'
 
 LANGUAGE_CODE = 'pt-br'
 
@@ -76,8 +76,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.locale.LocaleMiddleware'
 )
 
+LANGUAGE_CODE = 'pt-br'
 ROOT_URLCONF = 'opensocialcrm.urls'
 
 ROOT_PATH = os.path.dirname(__file__)
@@ -97,7 +99,6 @@ INSTALLED_APPS = (
     'django_mongodb_engine',
     'djangotoolbox',
     'redes_sociais',
-    'cms',
     'campanhas',
     'crm',
 )

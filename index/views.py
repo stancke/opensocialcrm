@@ -1,23 +1,20 @@
+# -*- coding: utf-8 -*- 
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
-from cms.models import Conteudo
 
 def index(request):
-    configs = Configuracoes.objects.all()
-    template ={}
-    for config in configs:
         
-            template = {"titulo" : config.titulo,
-                      "slogan" : config.slogan,
-                      "descricao_index" : config.descricao_index, 
-                      "usuario_logado" : request.user.username
-                      }
+    template = {"titulo" : 'OpenSocialCRM',
+               "slogan" : 'Gestão social open-source',
+               "descricao_index" : 'OpenSocialCRM é uma ferramenta livre para gerenciamento de campanhas de marketing em redes sociais', 
+               "usuario_logado" : request.user.username
+              }
             
     return render_to_response('index/index.html', {'template': template})
 
 def erroAutenticacao(request):
 
-    configs = Configuracoes.objects.all()
+    configs = Conteudo.objects.all()
     template ={}
     for config in configs:
             template = {"titulo" : config.titulo,
