@@ -6,6 +6,21 @@ Desenvolvido por:
 FAQ
 ========================
 
+P: Por que compartilhar o projeto do site de divulgação de trabalhos freelance em um repositório de aplicativos open-source?
+
+R: O site está sendo desenvolvido utilizando somente ferramentas e tecnologias open-source (Python, Django, NetBeans IDE, etc...)
+nada mais justo que compilar estas tecnologias em um site, e disponibiliza-lo para consulta para a comunidade,
+principalmente para quem esta iniciando o estudo nestas tecnologias.
+
+-\-
+
+P: Será somente um site de divulgação de trabalho freelance?
+
+R: Não, além disso a pretensão é divulgar trabalhos de pesquisa e desenvolvimento de novas metodologias e ferramentas de desenvolvimento
+juntamente com a divulgação de trabalho freelance.
+
+-\-
+
 P: Posso copiar o sistema inteiro, mudar as informações e torná-lo meu e colocar no meu domínio?
 
 R: Depende! o projeto esta sendo desenvolvido sob licensa GPL (GNU Public License) desde que sua intenção não fira a licensa GPL, tudo bem!
