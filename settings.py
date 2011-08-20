@@ -26,7 +26,10 @@ DATABASES = {
 
 TIME_ZONE = 'America/Sao_Paulo'
 
+# Language code for this installation. All choices can be found here:
+# http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'pt-br'
+
 
 USE_I18N = True
 USE_L10N = True
