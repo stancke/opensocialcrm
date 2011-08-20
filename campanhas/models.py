@@ -1,20 +1,15 @@
 # -*- coding: utf-8 -*- 
 from django.db import models
 from djangotoolbox.fields import ListField
-
+    
 class Campanha(models.Model):
     
    
     criada_em = models.DateTimeField(auto_now_add=True, null=True)
-    
-    REDES = (
-        ('T', 'Twitter'),
-        ('F', 'Facebook'),
-        ('L', 'Linkedin'),
-    )
-    
-    redes_sociais = models.CharField(max_length=3, choices=REDES)
+    enviado_em = models.DateTimeField(null=True)
+    twitter = models.BooleanField()
+    facebook = models.BooleanField()
+    linkedin = models.BooleanField()
     titulo = models.CharField(max_length=25)
     descricao = models.TextField(max_length=120)
-    url = models.CharField(max_length=25)
     status = models.BooleanField()

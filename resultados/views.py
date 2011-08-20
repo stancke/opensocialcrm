@@ -9,10 +9,13 @@ def index(request,url):
     if request.user.is_authenticated():
         
         if request.method == 'GET':
-            camp = Campanha.objects.filter(url=url)
+            try:
+                camp = Campanha.objects.filter(id=url)
+                configs = Config_twitter.objects.all()
+                t = Twitter(configs)
+            except:
+                camp = ''
             
-            configs = Config_twitter.objects.all()
-            t = Twitter(configs)
             #t.getBusca("carroformiga")
             #f = Facebook(request)
         #return HttpResponse(t.getBusca("partiu"))

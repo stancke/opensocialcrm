@@ -1,11 +1,10 @@
-{% include "cabecalho.html" %}
+{% extends "admin/base_site.html" %}
 
-<script type="text/javascript" src="/media/js/jQuery/plugins/jqplot/jquery.jqplot.js"></script>
-<script type="text/javascript" src="/media/js/jQuery/plugins/jqplot/plugins/jqplot.pieRenderer.js"></script>
-<script type="text/javascript" src="/media/resultados/js/script.js"></script>
-<link href="/media/js/jQuery/plugins/jqplot/jquery.jqplot.css" rel="stylesheet" type="text/css" />
+{% block title %}Resultados da Campanha{% endblock %}
 
-
+{% block content %}
+<div id="content-main">
+  
                 <div id="breadcrumbs">
              <a href="../../../">Home</a> &rsaquo;
              Resultados
@@ -70,14 +69,9 @@
 
 <div id="grafico">
 	
-</div>
-
-            
-            <!-- PAGINATION BOTTOM -->
-            
+</div>            
 
 <br clear="all" />
-        <!-- SUBMIT ROW -->
         
             <div id="submit" class="module footer">
                
@@ -87,9 +81,10 @@
 
             <br class="clear" />
         </div>
-        <!-- FOOTER -->
+
         <div id="footer"></div>
     </div>
 
-</body>
-</html>
+
+</div>
+{% endblock %}

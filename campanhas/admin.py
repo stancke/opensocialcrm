@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*- 
 from campanhas.models import Campanha
 from django.contrib import admin
 from redes_sociais.models import Twitter as Config_twitter
 from api.api import Twitter, Facebook
+import datetime
 
 def publicar(modeladmin, request, queryset):
     
@@ -12,17 +14,16 @@ def publicar(modeladmin, request, queryset):
             a = Twitter(configs)
             a.enviaTweet(desc)
     '''
-    queryset.update(status=True)
-
+    queryset.update(status=True, enviado_em=datetime.datetime.now())
 
 class CampanhaAdmin(admin.ModelAdmin):
     
-    list_display = ('redes_sociais','titulo','descricao','criada_em', 'status')
+    list_display = ('titulo','descricao','twitter','facebook', 'linkedin','criada_em','enviado_em', 'status')
     search_fields = ['titulo', 'descricao']
     
     fieldsets = (
         (None, {
-            'fields': ('redes_sociais','titulo', 'descricao')
+            'fields': ('twitter','facebook', 'linkedin','titulo', 'descricao')
         }),
     )
 
