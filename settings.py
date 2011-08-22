@@ -11,6 +11,7 @@ SITE_ID=u'4e434095e28a3608af00001d'
 
 GRAPPELLI_ADMIN_TITLE = 'OpenSocialCRM'
 
+
 MANAGERS = ADMINS
 
 DATABASES = {
@@ -30,7 +31,6 @@ TIME_ZONE = 'America/Sao_Paulo'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'pt-br'
 
-
 USE_I18N = True
 USE_L10N = True
 
@@ -48,9 +48,6 @@ STATIC_URL = '/static/'
 #ADMIN_MEDIA_PREFIX = '/static/admin/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
 
-STATICFILES_DIRS = (
-    
-)
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -64,7 +61,6 @@ SECRET_KEY = 'j--i+z1z6*h5^vf87h#71mqs!6mqrhckx!cnat)^6$#z$cx$^q'
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.auth",
     "django.core.context_processors.request",
-
 )
 
 TEMPLATE_LOADERS = (
@@ -84,6 +80,7 @@ MIDDLEWARE_CLASSES = (
 
 LANGUAGE_CODE = 'pt-br'
 ROOT_URLCONF = 'opensocialcrm.urls'
+
 
 ROOT_PATH = os.path.dirname(__file__)
 
