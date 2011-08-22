@@ -3,18 +3,29 @@ from campanhas.models import Campanha
 from django.contrib import admin
 from redes_sociais.models import Twitter as Config_twitter
 from api.api import Twitter, Facebook
+from django.http import HttpResponse
 import datetime
 
-def publicar(modeladmin, request, queryset):
+def publicar(self, request, queryset):
+    string = request.REQUEST
+    camp = Campanha.objects.get(id=string.get('_selected_action'))
+
+    if camp.twitter == True:
+
+        configs = Config_twitter.objects.all()
+        a = Twitter(configs)
+        try:
+            a.enviaTweet(camp.descricao)
+            queryset.update(status=True, enviado_em=datetime.datetime.now())
+            titulo = camp.titulo
+            mensagem = 'publicada com sucesso!'
+        except:
+            titulo = camp.titulo
+            mensagem = 'obteve falha ao publicar!'
+ 
+        self.message_user(request, "Campanha " + titulo + " " + mensagem )
+            
     
-    '''
-    for rede in redes:
-        if rede == 'Twitter':
-            configs = Config_twitter.objects.all()
-            a = Twitter(configs)
-            a.enviaTweet(desc)
-    '''
-    queryset.update(status=True, enviado_em=datetime.datetime.now())
 
 class CampanhaAdmin(admin.ModelAdmin):
     
