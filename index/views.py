@@ -11,14 +11,3 @@ def index(request):
               }
             
     return render_to_response('index/index.html', {'template': template})
-
-def erroAutenticacao(request):
-
-    configs = Conteudo.objects.all()
-    template ={}
-    for config in configs:
-            template = {"titulo" : config.titulo,
-                      "slogan" : config.slogan,
-                      "descricao_index" : config.descricao_index }
-            
-    return render_to_response('erros/autenticacao.html', {'template': template})

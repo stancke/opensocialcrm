@@ -77,10 +77,12 @@ body {
   transition: background-color 1s ease-in-out;
 }
 
+
 #logo a{
 	color: #FFFFFF;
 	font-size: 24px;
 }
+
 html.mobile #wrap {
   -webkit-transition: none;
   -moz-transition: none;
@@ -95,6 +97,7 @@ html.mobile #wrap {
 }
 
 .green #wrap {
+
   background-color: #EDEDEE;
 }
 
@@ -304,8 +307,10 @@ html.mobile .button.primary {
 }
 
 .green .button.primary {
+
   border-color: #343434;
   background-color: #EDEDEE;
+
 }
 
 .pink .button.primary {
@@ -1469,6 +1474,7 @@ html.js #carousel > button {
 
 #carousel .panel.tutorials h2 {
   color: #343434;
+
   margin-bottom: 1em;
   text-align: center;
 }

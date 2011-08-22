@@ -7,6 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
+
      (r'^resultados/(?P<url>\w+)/$', 'opensocialcrm.resultados.views.index'),
      url(r'^$', 'opensocialcrm.index.views.index'),
      url(r'^erro_autenticacao/$', 'opensocialcrm.index.views.erroAutenticacao'),
@@ -15,5 +16,6 @@ urlpatterns = patterns('',
      (r'^static/(.*)$', 'django.views.static.serve', {'document_root': os.path.join(settings.PROJECT_PATH, 'static')}),
      url(r'^admin/', include(admin.site.urls)),
      (r'^i18n/', include('django.conf.urls.i18n')),
+
 )
 
