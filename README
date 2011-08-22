@@ -16,7 +16,7 @@ Instruções de Construção
 
 Após efetuar o checkout do projeto digite:
 
-$ cd stancke.com.br
+$ cd opensocialcrm
 $ python manage.py runserver
 
 $ Validating models...
