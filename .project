@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-<<<<<<< HEAD
 	<name>opensocialcrm</name>
-=======
-	<name>socialcrm</name>
->>>>>>> origin/master
 	<comment></comment>
 	<projects>
 	</projects>
@@ -17,5 +13,6 @@
 	</buildSpec>
 	<natures>
 		<nature>org.python.pydev.pythonNature</nature>
+		<nature>org.python.pydev.django.djangoNature</nature>
 	</natures>
 </projectDescription>

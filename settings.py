@@ -11,7 +11,6 @@ SITE_ID=u'4e434095e28a3608af00001d'
 
 GRAPPELLI_ADMIN_TITLE = 'OpenSocialCRM'
 
-
 MANAGERS = ADMINS
 
 DATABASES = {
@@ -78,9 +77,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware'
 )
 
-LANGUAGE_CODE = 'pt-br'
 ROOT_URLCONF = 'opensocialcrm.urls'
-
 
 ROOT_PATH = os.path.dirname(__file__)
 
