@@ -1,9 +1,11 @@
+# OpenSocialCRM
+
 Projeto de TCC desenvolvido para o curso de Análise e Desenvolvimento de Sistemas da Universidade Tuiuti do Paraná.
 Desenvolvido por:
 		Evandro Balmant
 		Wilian Stancke
 
-FAQ
+## FAQ
 ========================
 
 P: Posso copiar o sistema inteiro, mudar as informações e torná-lo meu e colocar no meu domínio?
@@ -11,7 +13,7 @@ P: Posso copiar o sistema inteiro, mudar as informações e torná-lo meu e colo
 R: Depende! o projeto esta sendo desenvolvido sob licensa GPL (GNU Public License) desde que sua intenção não fira a licensa GPL, tudo bem!
 
 
-Instruções de Construção
+## Instruções de Construção
 ========================
 
 Após efetuar o checkout do projeto digite:
