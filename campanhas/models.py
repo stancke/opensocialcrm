@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*- 
 from django.db import models
+from djangotoolbox.fields import ListField
     
 class Campanha(models.Model):
     
