@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*- 
 from django.db import models
-from djangotoolbox.fields import ListField
     
 class Campanha(models.Model):
     
@@ -13,3 +12,6 @@ class Campanha(models.Model):
     titulo = models.CharField(max_length=25)
     descricao = models.TextField(max_length=120)
     status = models.BooleanField()
+    
+    def __unicode__(self):
+        return self.titulo

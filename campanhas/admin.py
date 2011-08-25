@@ -23,9 +23,13 @@ def publicar(self, request, queryset):
             titulo = camp.titulo
             mensagem = 'obteve falha ao publicar!'
  
-        self.message_user(request, "Campanha " + titulo + " " + mensagem )
+    if camp.facebook == True:
+        
+        f = Facebook()
+        f.postaMensagem()
+        
+    self.message_user(request, "Campanha " + titulo + " " + mensagem )
             
-    
 
 class CampanhaAdmin(admin.ModelAdmin):
     
@@ -41,4 +45,3 @@ class CampanhaAdmin(admin.ModelAdmin):
     actions = [publicar]
     
 admin.site.register(Campanha, CampanhaAdmin)
-

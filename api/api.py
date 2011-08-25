@@ -47,10 +47,8 @@ class Facebook(object):
     
     def postaMensagem(self):
         
-        graph = facebook.GraphAPI(oauth_access_token)
-        profile = graph.get_object("me")
-        friends = graph.get_connections("me", "friends")
-        graph.put_object("me", "feed", message="I am writing on my wall!")
+        graph = facebook.GraphAPI(self.oauth_access_token)
+        graph.put_wall_post("Testando")
         
 
         

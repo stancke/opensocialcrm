@@ -23,5 +23,8 @@ class Relacionamento(models.Model):
     data = models.DateTimeField()
     mensagem = models.TextField(max_length=150)
     enviar = models.BooleanField()
+    
+    def __unicode__(self):
+        return self.lead.nome
 
 
