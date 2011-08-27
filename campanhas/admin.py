@@ -9,7 +9,8 @@ import datetime
 def publicar(self, request, queryset):
     string = request.REQUEST
     camp = Campanha.objects.get(id=string.get('_selected_action'))
-
+    titulo = ''
+    mensagem = ''
     if camp.twitter == True:
 
         configs = Config_twitter.objects.all()

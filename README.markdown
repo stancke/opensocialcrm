@@ -6,7 +6,6 @@ Desenvolvido por:
 		Wilian Stancke
 
 ## FAQ
-========================
 
 P: Posso copiar o sistema inteiro, mudar as informações e torná-lo meu e colocar no meu domínio?
 
@@ -14,7 +13,6 @@ R: Depende! o projeto esta sendo desenvolvido sob licensa GPL (GNU Public Licens
 
 
 ## Instruções de Construção
-========================
 
 Após efetuar o checkout do projeto digite:
 '
@@ -32,4 +30,3 @@ Quit the server with CONTROL-C.
 Após ver algo parecido com isto, entre no seu browser, digite: localhost:8000 e pronto, já está rodando o
 projeto em máquina local para testes.
 
-========================

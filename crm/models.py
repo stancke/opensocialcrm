@@ -4,11 +4,14 @@ class Lead(models.Model):
    
     
     nome = models.CharField(max_length=20)
-    telefone = models.CharField(max_length=20)
+    telefone = models.PositiveIntegerField(max_length=20)
     e_mail = models.EmailField(max_length=25)
     twitter = models.CharField(max_length=20)
     facebook = models.CharField(max_length=25)
     linkedin = models.CharField(max_length=25)
+    
+    def __unicode__(self):
+        return self.nome
  
 class Relacionamento(models.Model):
     
