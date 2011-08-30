@@ -16,6 +16,15 @@ class Twitter(object):
             auth.set_access_token(config.access_key, config.access_secret)
             api = tweepy.API(auth)
             api.update_status(descricao)
+            
+    def enviaMensagemDireta(self, usuario, texto):
+
+        for config in self.twitter:
+            
+            auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
+            auth.set_access_token(config.access_key, config.access_secret)
+            api = tweepy.API(auth)
+            api.send_direct_message(usuario, texto)
         
     def getRetweets(self):
         

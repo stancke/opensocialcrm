@@ -1,5 +1,8 @@
 from crm.models import Lead, Relacionamento
+from api.api import Twitter
 from django.contrib import admin
+from redes_sociais.models import Twitter as Config_twitter
+from django.http import HttpResponse
 
 class RelacionamentoInline(admin.StackedInline):
     model = Relacionamento
@@ -12,9 +15,30 @@ class LeadAdmin(admin.ModelAdmin):
         RelacionamentoInline,
     ]
     
-def enviar_mesagem(self, request, queryset):
+def enviar_mensagem(self, request, queryset):
 
-    queryset.update(enviar=True, )
+    string = request.REQUEST
+    rel = Relacionamento.objects.get(id=string.get('_selected_action'))
+    lead = Lead.objects.filter(id = rel.lead.id)
+    
+    enviado = True
+        
+    try:
+        
+        if rel.contato == 'T':
+
+            configs = Config_twitter.objects.all()
+            t = Twitter(configs)
+            t.enviaMensagemDireta(lead[0].twitter, rel.mensagem)
+        
+    except:
+        enviado = False
+        
+    if enviado == True:
+        queryset.update(enviar=True, )
+    else:
+        queryset.update(enviar=False, )
+    
     
 class RelacionamentoAdmin(admin.ModelAdmin):
     list_display = ('lead','contato','data', 'enviar')
@@ -24,7 +48,7 @@ class RelacionamentoAdmin(admin.ModelAdmin):
         }),
     )
     search_fields = ['lead']
-    actions = [enviar_mesagem]
+    actions = [enviar_mensagem]
 
 admin.site.register(Lead,LeadAdmin)
 admin.site.register(Relacionamento, RelacionamentoAdmin)

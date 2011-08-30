@@ -31,3 +31,4 @@ class Relacionamento(models.Model):
         return self.lead.nome
 
 
+
