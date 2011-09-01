@@ -3,6 +3,7 @@ from campanhas.models import Campanha
 from django.contrib import admin
 from redes_sociais.models import Twitter as Config_twitter
 from api.api import Twitter, Facebook
+from django.http import HttpResponse
 import datetime
 
 def publicar(self, request, queryset):

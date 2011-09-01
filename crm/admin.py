@@ -23,16 +23,17 @@ def enviar_mensagem(self, request, queryset):
     
     enviado = True
         
-    try:
+    #try:
         
-        if rel.contato == 'T':
+    if rel.contato == 'T':
 
-            configs = Config_twitter.objects.all()
-            t = Twitter(configs)
-            t.enviaMensagemDireta(lead[0].twitter, rel.mensagem)
+        configs = Config_twitter.objects.all()
+        t = Twitter(configs)
+        #return HttpResponse(lead[0].twitter)
+        t.enviaMensagemDireta('wstancke', rel.mensagem)
         
-    except:
-        enviado = False
+    #except:
+    #    enviado = False
         
     if enviado == True:
         queryset.update(enviar=True, )

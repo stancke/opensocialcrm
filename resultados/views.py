@@ -11,14 +11,18 @@ def index(request,url):
         if request.method == 'GET':
             try:
                 camp = Campanha.objects.filter(id=url)
-                configs = Config_twitter.objects.all()
-                t = Twitter(configs)
             except:
                 camp = ''
             
-            #t.getBusca("carroformiga")
-            #f = Facebook(request)
-        #return HttpResponse(t.getBusca("partiu"))
+        configs = Config_twitter.objects.all()
+        t = Twitter(configs)
+                
+        r = t.getBusca("partiu")
+        coisa = 0
+        for aux in r:
+            coisa = coisa + 1
+            return HttpResponse(aux.text)
+        return HttpResponse(coisa)
         return render_to_response('resultados/index.html', {"campanhas": camp})
     else:
         return HttpResponseRedirect("/erro_autenticacao/")

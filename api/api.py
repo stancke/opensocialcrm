@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*- 
 import tweepy
 import facebook
+from django.http import HttpResponse
 
 class Twitter(object):
     
@@ -24,12 +26,25 @@ class Twitter(object):
             auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
             auth.set_access_token(config.access_key, config.access_secret)
             api = tweepy.API(auth)
-            api.send_direct_message(usuario, texto)
+            coisa = u"wstancke"
+            api.send_direct_message(user= coisa, text=coisa)
+            #api.send_direct_message(user='wstancke', text='testando')
+            #api.send_direct_message(user= unicode('@wstancke'), text= unicode('ds'))
+            
+            #coisa = api.direct_messages(); 
         
     def getRetweets(self):
         
-        api = tweepy.API(self.auth)
-        return api.retweets_of_me()
+        retweets = []
+        
+        for config in self.twitter:
+            
+            auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
+            auth.set_access_token(config.access_key, config.access_secret)
+            api = tweepy.API(auth)
+            retweets.push(api.retweets_of_me())
+        
+        return retweets
     
     def getBusca(self, termo):
         
@@ -37,8 +52,8 @@ class Twitter(object):
             auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
             auth.set_access_token(config.access_key, config.access_secret)
             api = tweepy.API(auth)
-        
-        return api.search(termo)
+
+        return api.search(termo, rpp=25, lang='pt')
         
 class Facebook(object):
     
