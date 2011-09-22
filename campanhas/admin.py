@@ -5,10 +5,17 @@ from redes_sociais.models import Twitter as Config_twitter
 from api.api import Twitter, Facebook
 from django.http import HttpResponse
 import datetime
+from api.encutador import encurtador
 
 def publicar(self, request, queryset):
     string = request.REQUEST
+    
+    
     camp = Campanha.objects.get(id=string.get('_selected_action'))
+    e = encurtador()
+    camp.url_reduzida = e.encurtaUrl(camp.url)
+    camp.save()
+    
     titulo = ''
     mensagem = ''
     if camp.twitter == True:
@@ -16,7 +23,7 @@ def publicar(self, request, queryset):
         configs = Config_twitter.objects.all()
         a = Twitter(configs)
         try:
-            a.enviaTweet(camp.descricao)
+            a.enviaTweet(camp.descricao + " " + camp.url_reduzida)
             queryset.update(status=True, enviado_em=datetime.datetime.now())
             titulo = camp.titulo
             mensagem = 'publicada com sucesso!'
@@ -39,7 +46,7 @@ class CampanhaAdmin(admin.ModelAdmin):
     
     fieldsets = (
         (None, {
-            'fields': ('twitter','facebook', 'linkedin','titulo', 'descricao')
+            'fields': ('twitter','facebook', 'linkedin','titulo', 'descricao', 'url')
         }),
     )
 
