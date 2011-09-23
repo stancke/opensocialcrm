@@ -2,25 +2,78 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from campanhas.models import Campanha
 from redes_sociais.models import Twitter as Config_twitter
-from api.api import Twitter, Facebook
-from logilab.common.compat import json
+from api.api import Twitter
+from api.google import Google
 
-def index(request,url):
+def index(request):
 
-    a = {"coisas":"algo", "cass": "sas"}
-    
-    return HttpResponse('{"coi": "sasas"}')
+    camp = Campanha.objects.filter(status=True)
 
     if request.user.is_authenticated():
+        return render_to_response('resultados/index.html', {"campanhas": camp})
+    else:
+        return HttpResponseRedirect("/erro_autenticacao/")
+
+def get_resultados(request):
+    
+    result = None
+    if request.user.is_authenticated():
         
-        if request.method == 'GET':
-            try:
-                camp = Campanha.objects.filter(id=url)
-            except:
-                camp = ''
+        if request.method == 'POST':
             
-        configs = Config_twitter.objects.all()
-        t = Twitter(configs)
+            string = request.REQUEST
+            id_campanha = string.get('campanha')
+            #try:
+            camp = Campanha.objects.get(pk=id_campanha)
+            
+            result = Google().analisar_dados(camp.url_reduzida)
+                
+            #except:
+            #    camp = ''
+        #analytics = result['analytics']
+        
+        dados_totais = {'total': result['analytics']['allTime']['shortUrlClicks'],
+                 'locais' : result['analytics']['allTime']['referrers'],
+                 'paises': result['analytics']['allTime']['countries'],
+                 'browsers': result['analytics']['allTime']['browsers'],
+                 'plataformas': result['analytics']['allTime']['platforms']
+                }
+        
+        dados_dia = {'total': result['analytics']['day']['shortUrlClicks'],
+                 'locais' : result['analytics']['day']['referrers'],
+                 'paises': result['analytics']['day']['countries'],
+                 'browsers': result['analytics']['day']['browsers'],
+                 'plataformas': result['analytics']['day']['platforms']
+                }
+        
+        dados_mes = {'total': result['analytics']['month']['shortUrlClicks'],
+                 'locais' : result['analytics']['month']['referrers'],
+                 'paises': result['analytics']['month']['countries'],
+                 'browsers': result['analytics']['month']['browsers'],
+                 'plataformas': result['analytics']['month']['platforms']
+                }
+        
+        dados_horas = {'total': result['analytics']['twoHours']['shortUrlClicks'],
+                 'locais' : result['analytics']['twoHours']['referrers'],
+                 'paises': result['analytics']['twoHours']['countries'],
+                 'browsers': result['analytics']['twoHours']['browsers'],
+                 'plataformas': result['analytics']['twoHours']['platforms']
+                }
+        
+        
+        
+        
+        
+        #return HttpResponse(dados)
+        #todos = result['analytics']['allTime']
+        #mes = result['analytics']['month']
+        
+        #dados = {'todos' : todos}
+        
+        #return HttpResponse({dados})
+            
+        #configs = Config_twitter.objects.all()
+        #t = Twitter(configs)
         '''        
         r = t.getBusca("partiu")
         coisa = 0
@@ -29,6 +82,12 @@ def index(request,url):
             return HttpResponse(aux.text)
         return HttpResponse(coisa)'''
         
-        return render_to_response('resultados/index.html', {"campanhas": camp})
+        return render_to_response('resultados/resultados.html', {"campanha": camp, 
+                                                                 "dados": dados_totais,
+                                                                 "dados_dia": dados_dia,
+                                                                 "dados_mes": dados_mes,
+                                                                 "dados_horas":dados_horas
+                                                                 }
+                                  )
     else:
         return HttpResponseRedirect("/erro_autenticacao/")

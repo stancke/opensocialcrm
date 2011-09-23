@@ -1,16 +1,26 @@
 var chart;
 var chart2;
 			$(document).ready(function() {
+				$(function() {
+					$( "#tabs" ).tabs();
+				});
 				
+				dados = []
+				$('.locais').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+  				
 				chart = new Highcharts.Chart({
 					chart: {
-						renderTo: 'div_container',
+						renderTo: 'div_locais',
 						plotBackgroundColor: null,
 						plotBorderWidth: null,
 						plotShadow: false
 					},
 					title: {
-						text: 'Citações da campanha por rede social'
+						text: 'Origem dos Visitantes'
 					},
 					tooltip: {
 						formatter: function() {
@@ -34,14 +44,731 @@ var chart2;
 				    series: [{
 						type: 'pie',
 						name: 'Browser share',
-						data: [
-							['Twitter',   25.0],
-							['LinkedIn',    8.5],
-							['Facebook',     6.2]
-						]
+						data:  dados 
+					    
 					}]
 				});
 				
+				///////////////
+				///////////////
+				////////////////
+				dados = []
+				$('.browsers').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+  				
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'div_browsers',
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: 'Visitas por Browser'
+					},
+					tooltip: {
+						formatter: function() {
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+						}
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								color: '#000000',
+								connectorColor: '#000000',
+								formatter: function() {
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+								}
+							}
+						}
+					},
+				    series: [{
+						type: 'pie',
+						name: 'Browser share',
+						data:  dados 
+					    
+					}]
+				});
+				
+				
+				///////////////////
+				////////////////////
+				////////////////////
+				
+				dados = []
+				$('.plataformas').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+  				
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'div_plataformas',
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: 'Visitas por Plataforma'
+					},
+					tooltip: {
+						formatter: function() {
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+						}
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								color: '#000000',
+								connectorColor: '#000000',
+								formatter: function() {
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+								}
+							}
+						}
+					},
+				    series: [{
+						type: 'pie',
+						name: 'Browser share',
+						data:  dados 
+					    
+					}]
+				});
+				
+				///////////////////
+				////////////////////
+				////////////////////
+				
+				dados = []
+				$('.paises').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+  				
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'div_paises',
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: 'Visitas por País'
+					},
+					tooltip: {
+						formatter: function() {
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+						}
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								color: '#000000',
+								connectorColor: '#000000',
+								formatter: function() {
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+								}
+							}
+						}
+					},
+				    series: [{
+						type: 'pie',
+						name: 'Browser share',
+						data:  dados 
+					    
+					}]
+				});
+				
+				
+				////////////////////////////////////////////////////////////////////////
+				
+				dados = []
+				$('.locais_dia').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+  				
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'div_locais_dia',
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: 'Origem dos Visitantes'
+					},
+					tooltip: {
+						formatter: function() {
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+						}
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								color: '#000000',
+								connectorColor: '#000000',
+								formatter: function() {
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+								}
+							}
+						}
+					},
+				    series: [{
+						type: 'pie',
+						name: 'Browser share',
+						data:  dados 
+					    
+					}]
+				});
+				
+				///////////////
+				///////////////
+				////////////////
+				dados = []
+				$('.browsers_dia').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+  				
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'div_browsers_dia',
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: 'Visitas por Browser'
+					},
+					tooltip: {
+						formatter: function() {
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+						}
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								color: '#000000',
+								connectorColor: '#000000',
+								formatter: function() {
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+								}
+							}
+						}
+					},
+				    series: [{
+						type: 'pie',
+						name: 'Browser share',
+						data:  dados 
+					    
+					}]
+				});
+				
+				
+				///////////////////
+				////////////////////
+				////////////////////
+				
+				dados = []
+				$('.plataformas_dia').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+  				
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'div_plataformas_dia',
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: 'Visitas por Plataforma'
+					},
+					tooltip: {
+						formatter: function() {
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+						}
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								color: '#000000',
+								connectorColor: '#000000',
+								formatter: function() {
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+								}
+							}
+						}
+					},
+				    series: [{
+						type: 'pie',
+						name: 'Browser share',
+						data:  dados 
+					    
+					}]
+				});
+				
+				///////////////////
+				////////////////////
+				////////////////////
+				
+				dados = []
+				$('.paises_dia').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+  				
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'div_paises_dia',
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: 'Visitas por País'
+					},
+					tooltip: {
+						formatter: function() {
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+						}
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								color: '#000000',
+								connectorColor: '#000000',
+								formatter: function() {
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+								}
+							}
+						}
+					},
+				    series: [{
+						type: 'pie',
+						name: 'Browser share',
+						data:  dados 
+					    
+					}]
+				});
+				
+				
+				
+				////////////////////////////////////////////////////////////////////////////////////
+				
+				dados = []
+				$('.locais_mes').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+  				
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'div_locais_mes',
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: 'Origem dos Visitantes'
+					},
+					tooltip: {
+						formatter: function() {
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+						}
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								color: '#000000',
+								connectorColor: '#000000',
+								formatter: function() {
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+								}
+							}
+						}
+					},
+				    series: [{
+						type: 'pie',
+						name: 'Browser share',
+						data:  dados 
+					    
+					}]
+				});
+				
+				///////////////
+				///////////////
+				////////////////
+				dados = []
+				$('.browsers_mes').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+  				
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'div_browsers_mes',
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: 'Visitas por Browser'
+					},
+					tooltip: {
+						formatter: function() {
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+						}
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								color: '#000000',
+								connectorColor: '#000000',
+								formatter: function() {
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+								}
+							}
+						}
+					},
+				    series: [{
+						type: 'pie',
+						name: 'Browser share',
+						data:  dados 
+					    
+					}]
+				});
+				
+				
+				///////////////////
+				////////////////////
+				////////////////////
+				
+				dados = []
+				$('.plataformas_mes').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+  				
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'div_plataformas_mes',
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: 'Visitas por Plataforma'
+					},
+					tooltip: {
+						formatter: function() {
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+						}
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								color: '#000000',
+								connectorColor: '#000000',
+								formatter: function() {
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+								}
+							}
+						}
+					},
+				    series: [{
+						type: 'pie',
+						name: 'Browser share',
+						data:  dados 
+					    
+					}]
+				});
+				
+				///////////////////
+				////////////////////
+				////////////////////
+				
+				dados = []
+				$('.paises_mes').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+  				
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'div_paises_mes',
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: 'Visitas por País'
+					},
+					tooltip: {
+						formatter: function() {
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+						}
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								color: '#000000',
+								connectorColor: '#000000',
+								formatter: function() {
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+								}
+							}
+						}
+					},
+				    series: [{
+						type: 'pie',
+						name: 'Browser share',
+						data:  dados 
+					    
+					}]
+				});
+				
+				
+				///////////////////////////////////////////////////////////////////////////////////////////
+				
+				
+				dados = []
+				$('.locais_horas').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+  				
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'div_locais_horas',
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: 'Origem dos Visitantes'
+					},
+					tooltip: {
+						formatter: function() {
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+						}
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								color: '#000000',
+								connectorColor: '#000000',
+								formatter: function() {
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+								}
+							}
+						}
+					},
+				    series: [{
+						type: 'pie',
+						name: 'Browser share',
+						data:  dados 
+					    
+					}]
+				});
+				
+				///////////////
+				///////////////
+				////////////////
+				dados = []
+				$('.browsers_horas').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+  				
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'div_browsers_horas',
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: 'Visitas por Browser'
+					},
+					tooltip: {
+						formatter: function() {
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+						}
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								color: '#000000',
+								connectorColor: '#000000',
+								formatter: function() {
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+								}
+							}
+						}
+					},
+				    series: [{
+						type: 'pie',
+						name: 'Browser share',
+						data:  dados 
+					    
+					}]
+				});
+				
+				
+				///////////////////
+				////////////////////
+				////////////////////
+				
+				dados = []
+				$('.plataformas_horas').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'div_plataformas_horas',
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: 'Visitas por Plataforma'
+					},
+					tooltip: {
+						formatter: function() {
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+						}
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								color: '#000000',
+								connectorColor: '#000000',
+								formatter: function() {
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+								}
+							}
+						}
+					},
+				    series: [{
+						type: 'pie',
+						name: 'Browser share',
+						data:  dados 
+					    
+					}]
+				});
+				
+				///////////////////
+				////////////////////
+				////////////////////
+				
+				dados = []
+				$('.paises_horas').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+  				
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'div_paises_horas',
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
+					},
+					title: {
+						text: 'Visitas por País'
+					},
+					tooltip: {
+						formatter: function() {
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+						}
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								color: '#000000',
+								connectorColor: '#000000',
+								formatter: function() {
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+								}
+							}
+						}
+					},
+				    series: [{
+						type: 'pie',
+						name: 'Browser share',
+						data:  dados 
+					    
+					}]
+				});
+				
+				/*
 				////////////////////
 				///////////////////
 				/////////////////////
@@ -116,6 +843,13 @@ var chart2;
 				/////////////////////
 				////////////////////
 				
+				dados = []
+				$('.paises').each(function(index) {
+    				var valor = $(this).val();
+    				var qtd = parseInt($(this).attr('count'));
+    				dados.push([valor, qtd]);
+  				});
+  				
 				chart = new Highcharts.Chart({
 					chart: {
 						renderTo: 'div_container3',
@@ -124,7 +858,7 @@ var chart2;
 						plotShadow: false
 					},
 					title: {
-						text: 'Aceitação da campanha por sexo'
+						text: 'Clicks por País'
 					},
 					tooltip: {
 						formatter: function() {
@@ -148,10 +882,7 @@ var chart2;
 				    series: [{
 						type: 'pie',
 						name: 'Browser share',
-						data: [
-							['Homem',   70],
-							['Mulher',    30]
-						]
+						data: dados
 					}]
 				});
 				
@@ -210,5 +941,5 @@ var chart2;
 							connectorColor: '#000000'
 						}
 					}]
-				});
-			})
+				});*/
+			});

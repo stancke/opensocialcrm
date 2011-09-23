@@ -12,7 +12,7 @@ class Campanha(models.Model):
     titulo = models.CharField(max_length=25)
     descricao = models.TextField(max_length=120)
     url = models.URLField(max_length=100)
-    url_reduzida = models.URLField(max_length=100)
+    url_reduzida = models.URLField(verify_exists=False,max_length=100)
     status = models.BooleanField()
     
     def __unicode__(self):

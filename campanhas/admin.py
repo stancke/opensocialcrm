@@ -5,15 +5,14 @@ from redes_sociais.models import Twitter as Config_twitter
 from api.api import Twitter, Facebook
 from django.http import HttpResponse
 import datetime
-from api.encutador import encurtador
+from api.google import Google
 
 def publicar(self, request, queryset):
     string = request.REQUEST
     
     
     camp = Campanha.objects.get(id=string.get('_selected_action'))
-    e = encurtador()
-    camp.url_reduzida = e.encurtaUrl(camp.url)
+    camp.url_reduzida = Google().encurtaUrl(camp.url)
     camp.save()
     
     titulo = ''

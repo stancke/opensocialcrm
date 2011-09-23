@@ -18,99 +18,32 @@
     <h1>Resultados da Campanha</h1>
             
     
-    <form id="changelist-form" action="" method="post"><div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='f0e73daffbc1a8935a641fbb0ee7d5a0' /></div>
-        <div id="changelist" class="container-full" style="">
-
-    <div class="module changelist-results">
-        <table cellspacing="0">
-               <thead>
-
-                <tr>
+ <form enctype="multipart/form-data" action="/resultados/get_resultados/" method="post" id="relacionamento_form">{% csrf_token %}
+ 	
+                <div>
+                        <fieldset class="module ">
+                        	<div class="row cells-1 lead ">
+                        		<div>
+                        			<div class="column span-4">
+                        				<label for="id_lead" class="required">Campanha:</label>
+                        			</div>
+                        			<div class="column span-flexible">
+                        				<select name="campanha" id="id_campanha">
+                        					<option value="" selected="selected">---------</option>
+                        					{% for campanha in campanhas %}
+                							<option value="{{ campanha.id }}" selected="selected">{{ campanha.titulo }}</option>
+               				 				{% endfor %}
+                        				</select>
+                        				<input type="submit" value="Buscar"/>
+                        			</div>
+                        		</div>
+   
+                        	</div>
+                        	</fieldset>
+                        				
                     
-                        <th class=" action-checkbox-column">
-                            
-                            <input type="checkbox" id="action-toggle" />
-                            
-                        </th>
                     
-                        <th class=" sortable">
-                            <a href="?ot=asc&amp;o=1">
-                            Titulo
-                            </a>
-                        </th>
-
                     
-                        <th class=" sortable">
-                            <a href="?ot=asc&amp;o=2">
-                            Descricao
-                            </a>
-                        </th>
-                    
-                        <th class=" sortable">
-                            <a href="?ot=asc&amp;o=3">
-                            Twitter
-                            </a>
-                        </th>
-
-                    
-                        <th class=" sortable">
-                            <a href="?ot=asc&amp;o=4">
-                            Facebook
-                            </a>
-                        </th>
-                    
-                        <th class=" sortable">
-                            <a href="?ot=asc&amp;o=5">
-                            Linkedin
-                            </a>
-                        </th>
-
-                    
-                        <th class=" sortable">
-                            <a href="?ot=asc&amp;o=6">
-                            Criada em
-                            </a>
-                        </th>
-                    
-                        <th class=" sortable">
-                            <a href="?ot=asc&amp;o=7">
-                            Enviado em
-                            </a>
-                        </th>
-
-                    
-                        <th class=" sortable">
-                            <a href="?ot=asc&amp;o=8">
-                            Status
-                            </a>
-                        </th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-            	
-            	
-                {% for campanha in campanhas %}
-                
-                <tr class="row1"><td class="action-checkbox"><input type="checkbox" class="action-select" value="{{ campanha.id }}" name="_selected_action" /></td><th><a href="{{ campanha.titulo }}/">{{ campanha.titulo }}</a></th><td>{{ campanha.descricao }}<td><img src="/static/grappelli/img/admin/icon-no.gif" alt="False" /></td><td><img src="/static/grappelli/img/admin/icon-no.gif" alt="False" /></td><td><img src="/static/grappelli/img/admin/icon-no.gif" alt="False" /></td><td class="nowrap">Aug. 19, 2011, 9:43 p.m.</td><td class="nowrap">Aug. 19, 2011, 9:52 p.m.</td><td><img src="/static/grappelli/img/admin/icon-yes.gif" alt="True" /></td></tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-    </div>
-
-
-<div id="div_container" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
-<div id="div_container2" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
-<div id="div_container3" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
-<div id="div_container4" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
-<br clear="all" />
-        
-            <div id="submit" class="module footer">
-               
-            </div>
-        
-    </form>
 
             <br class="clear" />
         </div>

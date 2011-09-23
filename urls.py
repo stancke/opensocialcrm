@@ -7,7 +7,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
-     (r'^resultados/(?P<url>\w+)/$', 'opensocialcrm.resultados.views.index'),
+     (r'^resultados/get_resultados/$', 'opensocialcrm.resultados.views.get_resultados'),
+     (r'^resultados/$', 'opensocialcrm.resultados.views.index'),
      url(r'^$', 'opensocialcrm.index.views.index'),
      (r'^grappelli/', include('grappelli.urls')),
      (r'^media/(.*)$', 'django.views.static.serve', {'document_root': os.path.join(settings.PROJECT_PATH, 'media')}),
