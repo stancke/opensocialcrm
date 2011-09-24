@@ -1,0 +1,142 @@
+{% extends "admin/base_site.html" %}
+
+{% block title %}Resultados da Campanha{% endblock %}
+
+{% block content %}
+<script src="/static/grappelli/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript" src="/media/js/jquery.twitter.js"></script>
+<script language="javascript" type="text/javascript" src="/media/dashboard/js/script.js"></script>
+<link href="/static/grappelli/jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8">
+<script src="/static/grappelli/jquery/ui/js/jquery-ui-1.8.5.custom.min.js" type="text/javascript"></script>
+<style>
+	.column { width: 400px; padding-bottom: 100px; }
+	.portlet { margin: 0 1em 1em 0; height: 250px; }
+	.portlet-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+	.portlet-header .ui-icon { float: right; }
+	.portlet-content { padding: 0.4em; }
+	.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
+	.ui-sortable-placeholder * { visibility: hidden; }
+</style>
+<div id="content-main">
+	<div id="breadcrumbs">
+	 <a href="../../../">Home</a> &rsaquo;
+	 Dashboard
+	</div>
+    <div id="content" class="content-flexible">        
+    <h1>Resultados da Campanha</h1>
+	 <form enctype="multipart/form-data" action="/sistema/resultados/" method="post" id="relacionamento_form">{% csrf_token %}
+                <div>
+                        <fieldset class="module ">
+                        	<div class="row cells-1 lead ">
+                        		<div>
+                        			
+                        			<div class="span-flexible">
+                        				<label for="id_campanha" class="required">Campanha:</label>
+                        				<br/>
+                        				<select name="campanha" id="id_campanha">
+                        					<option value="" selected="selected">---------</option>
+                        					{% for campanha in campanhas %}
+                							<option value="{{ campanha.id }}" selected="selected">{{ campanha.titulo }}</option>
+               				 				{% endfor %}
+                        				</select>
+                        				<br/><br/>
+                        				<button>Buscar</button>
+                        			</div>
+                        		</div>
+                        	</div>
+                        	</fieldset>
+            <br class="clear" />
+        </div>
+	</form>
+	<h1>Buscar leads</h1>
+	 <form enctype="multipart/form-data" action="/sistema/leads/" method="post" id="relacionamento_form">{% csrf_token %}
+                <div>
+                        <fieldset class="module ">
+                        	<div class="row cells-1 lead ">
+                        		<div>
+                        			
+                        			<div class="span-flexible">
+                        				<label for="id_campanha" class="required">Critérios:</label>
+                        				<br/>
+                        				<input type="checkbox" name="criterios"/> <strong>Menções</strong>
+         				                <input type="checkbox" name="criterios"/> <strong>Retweets</strong>
+										<br/><br/>
+                        				<button>Buscar</button>
+                        			</div>
+                        		</div>
+                        	</div>
+                        	</fieldset>
+            <br class="clear" />
+        </div>
+	</form>
+	<form action="/sistema/painel/" method="get" id="relacionamento_form">{% csrf_token %}
+	<h1>Painel de Controle: <button>Acessar</button></h1>
+	</form>
+	<h1>Dashboard</h1>
+        <br class="clear" />
+		<div class="column">
+		<div class="portlet">
+			<div class="portlet-header">Últimos tweets meus</div>
+			<div class="portlet-content">
+				<div id="twitter" class="tweet" style="margin: 10px 10px;">
+				</div>
+   			</div>
+		</div>
+	
+	</div>
+	
+	<div class="column"">
+	
+		<div class="portlet">
+			<div class="portlet-header">Últimos retweets</div>
+			<div class="portlet-content">
+   			</div>
+		</div>
+		
+		<div class="portlet">
+			<div class="portlet-header">Últimos relacionamentos</div>
+			<div class="portlet-content">
+				<table>
+				{% for relacionamento in relacionamentos %}
+					<tr>
+						<td><strong>Lead:</strong> {{ relacionamento.lead}}</td>
+						<td><strong>Contato:</strong> {{ relacionamento.contato}}</td>
+						<td><strong>Enviado:</strong> {{ relacionamento.enviado}}</td>
+					</tr>
+				{% endfor %}
+				</table>
+			</div>
+		</div>
+	
+	</div>
+	
+	<div class="column">
+		
+		<div class="portlet">
+			<div class="portlet-header">Últimas menções sobre mim</div>
+			<div class="portlet-content">
+   			</div>
+		</div>
+		
+		<div class="portlet">
+			<div class="portlet-header">Últimos leads</div>
+			
+			<div class="portlet-content">
+				<table>
+				{% for lead in leads %}
+					<tr>
+						<td><strong>Nome:</strong> {{ lead.nome}}</td>
+						<td><strong>Email:</strong> {{ lead.e_mail}}</td>
+						<td><strong>Telefone:</strong> {{ lead.telefone}}</td>
+					</tr>
+				{% endfor %}
+				</table>	
+			</div>
+		</div>
+	</div>
+        <div id="footer"></div>
+    </div>
+
+
+</div>
+{% endblock %}

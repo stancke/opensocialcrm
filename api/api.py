@@ -8,7 +8,6 @@ class Twitter(object):
     def __init__(self, twitter): 
           
         self.twitter = twitter
-
     
     def enviaTweet(self, descricao):
 
@@ -19,6 +18,15 @@ class Twitter(object):
             api = tweepy.API(auth)
             api.update_status(descricao)
             
+    def criarAmigo(self, usuario):
+
+        for config in self.twitter:
+            
+            auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
+            auth.set_access_token(config.access_key, config.access_secret)
+            api = tweepy.API(auth)
+            api.create_friendship(usuario)
+            
     def enviaMensagemDireta(self, usuario, texto):
 
         for config in self.twitter:
@@ -26,13 +34,8 @@ class Twitter(object):
             auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
             auth.set_access_token(config.access_key, config.access_secret)
             api = tweepy.API(auth)
-            coisa = u"wstancke"
-            api.send_direct_message(user= coisa, text=coisa)
-            #api.send_direct_message(user='wstancke', text='testando')
-            #api.send_direct_message(user= unicode('@wstancke'), text= unicode('ds'))
-            
-            #coisa = api.direct_messages(); 
-        
+            api.send_direct_message(user=usuario, text=texto)
+
     def getRetweets(self):
         
         retweets = []
@@ -42,9 +45,9 @@ class Twitter(object):
             auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
             auth.set_access_token(config.access_key, config.access_secret)
             api = tweepy.API(auth)
-            retweets.push(api.retweets_of_me())
+            #retweets.push(api.retweets_of_me())
         
-        return retweets
+            return api.retweets_of_me()
     
     def getBusca(self, termo):
         
@@ -54,6 +57,16 @@ class Twitter(object):
             api = tweepy.API(auth)
 
         return api.search(termo, rpp=25, lang='pt')
+    
+    def getMencoes(self):
+        
+        for config in self.twitter:
+            auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
+            auth.set_access_token(config.access_key, config.access_secret)
+            api = tweepy.API(auth)
+        
+        return api.mentions()
+    
         
 class Facebook(object):
     

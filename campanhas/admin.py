@@ -9,8 +9,6 @@ from api.google import Google
 
 def publicar(self, request, queryset):
     string = request.REQUEST
-    
-    
     camp = Campanha.objects.get(id=string.get('_selected_action'))
     camp.url_reduzida = Google().encurtaUrl(camp.url)
     camp.save()
@@ -38,7 +36,7 @@ def publicar(self, request, queryset):
     self.message_user(request, "Campanha " + titulo + " " + mensagem )
             
 
-class CampanhaAdmin(admin.ModelAdmin):
+class CampanhaAdmin(admin.ModelAdmin):    
     
     list_display = ('titulo','descricao','twitter','facebook', 'linkedin','criada_em','enviado_em', 'status')
     search_fields = ['titulo', 'descricao']

@@ -19,33 +19,33 @@ def enviar_mensagem(self, request, queryset):
 
     string = request.REQUEST
     rel = Relacionamento.objects.get(id=string.get('_selected_action'))
-    lead = Lead.objects.filter(id = rel.lead.id)
-    
+    lead = Lead.objects.get(pk = rel.lead.id)
     enviado = True
-        
-    #try:
-        
-    if rel.contato == 'T':
-
-        configs = Config_twitter.objects.all()
-        t = Twitter(configs)
-        #return HttpResponse(lead[0].twitter)
-        t.enviaMensagemDireta('wstancke', rel.mensagem)
-        
-    #except:
-    #    enviado = False
+    try:
+    
+        if rel.contato == 'T':
+    
+            configs = Config_twitter.objects.all()
+            t = Twitter(configs)
+            t.criarAmigo(lead.twitter)
+            t.enviaTweet(lead.twitter + ":" + rel.mensagem)
+            #t.enviaMensagemDireta('wstancke', rel.mensagem)
+    except:
+        enviado = False
         
     if enviado == True:
-        queryset.update(enviar=True, )
+        queryset.update(enviado=True, )
     else:
-        queryset.update(enviar=False, )
+        queryset.update(enviado=False, )
     
     
 class RelacionamentoAdmin(admin.ModelAdmin):
-    list_display = ('lead','contato','data', 'enviar')
+
+    
+    list_display = ('lead','contato','data_de_relacionamento', 'enviado')
     fieldsets = (
         (None, {
-            'fields': ('lead','contato','data', 'mensagem','enviar')
+            'fields': ('lead','contato','mensagem')
         }),
     )
     search_fields = ['lead']

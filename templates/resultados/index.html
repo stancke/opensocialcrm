@@ -6,6 +6,8 @@
 <script src="/static/grappelli/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript" src="/media/js/highcharts/highcharts.js"></script>
 <script language="javascript" type="text/javascript" src="/media/resultados/js/script.js"></script>
+<link href="/static/grappelli/jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8">
+<script src="/static/grappelli/jquery/ui/js/jquery-ui-1.8.5.custom.min.js" type="text/javascript"></script>
 <div id="content-main">
                 <div id="breadcrumbs">
              <a href="../../../">Home</a> &rsaquo;
@@ -18,32 +20,236 @@
     <h1>Resultados da Campanha</h1>
             
     
- <form enctype="multipart/form-data" action="/resultados/get_resultados/" method="post" id="relacionamento_form">{% csrf_token %}
- 	
-                <div>
-                        <fieldset class="module ">
-                        	<div class="row cells-1 lead ">
-                        		<div>
-                        			<div class="column span-4">
-                        				<label for="id_lead" class="required">Campanha:</label>
-                        			</div>
-                        			<div class="column span-flexible">
-                        				<select name="campanha" id="id_campanha">
-                        					<option value="" selected="selected">---------</option>
-                        					{% for campanha in campanhas %}
-                							<option value="{{ campanha.id }}" selected="selected">{{ campanha.titulo }}</option>
-               				 				{% endfor %}
-                        				</select>
-                        				<input type="submit" value="Buscar"/>
-                        			</div>
-                        		</div>
-   
-                        	</div>
-                        	</fieldset>
-                        				
+    <form id="changelist-form" action="" method="post"><div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='f0e73daffbc1a8935a641fbb0ee7d5a0' /></div>
+        <div id="changelist" class="container-full" style="">
+
+    <div class="module changelist-results">
+        <table cellspacing="0">
+               <thead>
+
+                <tr>
                     
+                        <th class=" action-checkbox-column">
+                            
+                            <input type="checkbox" id="action-toggle" />
+                            
+                        </th>
                     
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=1">
+                            Titulo
+                            </a>
+                        </th>
+
                     
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=2">
+                            Descricao
+                            </a>
+                        </th>
+                    
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=3">
+                            Twitter
+                            </a>
+                        </th>
+
+                    
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=4">
+                            Facebook
+                            </a>
+                        </th>
+                    
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=5">
+                            Linkedin
+                            </a>
+                        </th>
+
+                    
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=6">
+                            Criada em
+                            </a>
+                        </th>
+                    
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=7">
+                            Enviado em
+                            </a>
+                        </th>
+                        
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=7">
+                            Url
+                            </a>
+                        </th>
+
+                    
+                        <th class=" sortable">
+                            <a href="?ot=asc&amp;o=8">
+                            Status
+                            </a>
+                        </th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+            
+                
+                <tr class="row1"><td class="action-checkbox"><input type="checkbox" class="action-select" value="{{ campanha.id }}" name="_selected_action" /></td><th><a href="{{ campanha.titulo }}/">{{ campanha.titulo }}</a></th><td>{{ campanha.descricao }}<td><img src="/static/grappelli/img/admin/icon-no.gif" alt="False" /></td><td><img src="/static/grappelli/img/admin/icon-no.gif" alt="False" /></td><td><img src="/static/grappelli/img/admin/icon-no.gif" alt="False" /></td><td class="nowrap">Aug. 19, 2011, 9:43 p.m.</td><td class="nowrap">Aug. 19, 2011, 9:52 p.m.</td><td class="nowrap">{{campanha.url}}</td><td><img src="/static/grappelli/img/admin/icon-yes.gif" alt="True" /></td></tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">Total</a></li>
+		<li><a href="#tabs-2">Este Mês</a></li>
+		<li><a href="#tabs-3">Hoje</a></li>
+		<li><a href="#tabs-4">Últimas 2 horas</a></li>
+	</ul>
+	<div id="tabs-1">
+		
+		{% if dados %}
+
+			<div id="div_locais" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_paises" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_browsers" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_plataformas" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+			<input type="hidden" id="total" value="{{ dados.total}}" />
+	
+			{% for local in dados.locais %}
+			<input type="hidden" class="locais" count="{{ local.count}}" value="{{ local.id}}" />
+			{% endfor %}
+			
+			{% for browser in dados.browsers %}
+			<input type="hidden" class="browsers" count="{{ browser.count}}" value="{{ browser.id}}" />
+			{% endfor %}
+			
+			{% for pais in dados.paises %}
+			<input type="hidden" class="paises" count="{{ pais.count}}" value="{{ pais.id}}" />
+			{% endfor %}
+			
+			{% for plataforma in dados.plataformas %}
+			<input type="hidden" class="plataformas" count="{{ plataforma.count}}" value="{{ plataforma.id}}" />
+			{% endfor %}
+		
+		{% else %}
+		
+		<h1 style="margin: 10px 10px;">Não possui nenhum dado</h1>
+		
+		{% endif %}
+	</div>
+	<div id="tabs-2">
+
+	
+		
+			<div id="div_locais_mes" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_paises_mes" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_browsers_mes" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_plataformas_mes" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+			
+			<input type="hidden" id="total_mes" value="{{ dados_dia.total}}" />
+			
+			{% for local in dados_mes.locais %}
+			<input type="hidden" class="locais_mes" count="{{ local.count}}" value="{{ local.id}}" />
+			{% endfor %}
+			
+			{% for browser in dados_mes.browsers %}
+			<input type="hidden" class="browsers_mes" count="{{ browser.count}}" value="{{ browser.id}}" />
+			{% endfor %}
+			
+			{% for pais in dados_mes.paises %}
+			<input type="hidden" class="paises_mes" count="{{ pais.count}}" value="{{ pais.id}}" />
+			{% endfor %}
+			
+			{% for plataforma in dados_mes.plataformas %}
+			<input type="hidden" class="plataformas_mes" count="{{ plataforma.count}}" value="{{ plataforma.id}}" />
+			{% endfor %}
+		
+	</div>
+	<div id="tabs-3">
+		
+		{% if dados_dia %}
+			<div id="div_locais_dia" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_paises_dia" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_browsers_dia" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_plataformas_dia" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+	
+			<input type="hidden" id="total" value="{{ dados_dia.total}}" />
+	
+			{% for local in dados_dia.locais %}
+			<input type="hidden" class="locais_dia" count="{{ local.count}}" value="{{ local.id}}" />
+			{% endfor %}
+			
+			{% for browser in dados_dia.browsers %}
+			<input type="hidden" class="browsers_dia" count="{{ browser.count}}" value="{{ browser.id}}" />
+			{% endfor %}
+			
+			{% for pais in dados_dia.paises %}
+			<input type="hidden" class="paises_dia" count="{{ pais.count}}" value="{{ pais.id}}" />
+			{% endfor %}
+			
+			{% for plataforma in dados_dia.plataformas %}
+			<input type="hidden" class="plataformas_dia" count="{{ plataforma.count}}" value="{{ plataforma.id}}" />
+			{% endfor %}
+		{% else %}
+			<h1 style="margin: 10px 10px;">Não possui dados de hoje </h1>
+		{% endif %}
+	</div>
+	
+	<div id="tabs-4">
+		
+		{% if dados_horas %}
+		
+			<div id="div_locais_horas" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_paises_horas" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_browsers_horas" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_plataformas_horas" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+	
+			<input type="hidden" id="total_horas" value="{{ dados_dia.total}}" />
+	
+			{% for local in dados_horas.locais %}
+			<input type="hidden" class="locais_horas" count="{{ local.count}}" value="{{ local.id}}" />
+			{% endfor %}
+			
+			{% for browser in dados_horas.browsers %}
+			<input type="hidden" class="browsers_horas" count="{{ browser.count}}" value="{{ browser.id}}" />
+			{% endfor %}
+			
+			{% for pais in dados_horas.paises %}
+			<input type="hidden" class="paises_horas" count="{{ pais.count}}" value="{{ pais.id}}" />
+			{% endfor %}
+			
+			{% for plataforma in dados_horas.plataformas %}
+			<input type="hidden" class="plataformas_horas" count="{{ plataforma.count}}" value="{{ plataforma.id}}" />
+			{% endfor %}
+		
+		{% else %}
+			<h1 style="margin: 10px 10px;">Não possui dados nas últimas 2 horas</h1>
+		{% endif %}
+	</div>
+</div>
+
+
+
+<!--
+<div id="div_container3" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
+<div id="div_container4" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div> -->
+		
+
+
+<br clear="all" />
+        
+            <div id="submit" class="module footer">
+               
+            </div>
+        
+    </form>
 
             <br class="clear" />
         </div>

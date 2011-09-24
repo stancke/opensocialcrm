@@ -7,59 +7,53 @@ from api.google import Google
 
 def index(request):
 
-    camp = Campanha.objects.filter(status=True)
-
-    if request.user.is_authenticated():
-        return render_to_response('resultados/index.html', {"campanhas": camp})
-    else:
-        return HttpResponseRedirect("/erro_autenticacao/")
-
-def get_resultados(request):
-    
     result = None
+    dados_totais = None
+    dados_dia = None
+    dados_mes = None
+    dados_horas  = None
     if request.user.is_authenticated():
         
         if request.method == 'POST':
             
             string = request.REQUEST
             id_campanha = string.get('campanha')
-            #try:
             camp = Campanha.objects.get(pk=id_campanha)
             
             result = Google().analisar_dados(camp.url_reduzida)
-                
-            #except:
-            #    camp = ''
-        #analytics = result['analytics']
-        
-        dados_totais = {'total': result['analytics']['allTime']['shortUrlClicks'],
-                 'locais' : result['analytics']['allTime']['referrers'],
-                 'paises': result['analytics']['allTime']['countries'],
-                 'browsers': result['analytics']['allTime']['browsers'],
-                 'plataformas': result['analytics']['allTime']['platforms']
-                }
-        
-        dados_dia = {'total': result['analytics']['day']['shortUrlClicks'],
-                 'locais' : result['analytics']['day']['referrers'],
-                 'paises': result['analytics']['day']['countries'],
-                 'browsers': result['analytics']['day']['browsers'],
-                 'plataformas': result['analytics']['day']['platforms']
-                }
-        
-        dados_mes = {'total': result['analytics']['month']['shortUrlClicks'],
-                 'locais' : result['analytics']['month']['referrers'],
-                 'paises': result['analytics']['month']['countries'],
-                 'browsers': result['analytics']['month']['browsers'],
-                 'plataformas': result['analytics']['month']['platforms']
-                }
-        
-        dados_horas = {'total': result['analytics']['twoHours']['shortUrlClicks'],
-                 'locais' : result['analytics']['twoHours']['referrers'],
-                 'paises': result['analytics']['twoHours']['countries'],
-                 'browsers': result['analytics']['twoHours']['browsers'],
-                 'plataformas': result['analytics']['twoHours']['platforms']
-                }
-        
+
+        try:
+            dados_totais = {'total': result['analytics']['allTime']['shortUrlClicks'],
+                     'locais' : result['analytics']['allTime']['referrers'],
+                     'paises': result['analytics']['allTime']['countries'],
+                     'browsers': result['analytics']['allTime']['browsers'],
+                     'plataformas': result['analytics']['allTime']['platforms']
+                    }
+            
+            dados_dia = {'total': result['analytics']['day']['shortUrlClicks'],
+                     'locais' : result['analytics']['day']['referrers'],
+                     'paises': result['analytics']['day']['countries'],
+                     'browsers': result['analytics']['day']['browsers'],
+                     'plataformas': result['analytics']['day']['platforms']
+                    }
+            
+            dados_mes = {'total': result['analytics']['month']['shortUrlClicks'],
+                     'locais' : result['analytics']['month']['referrers'],
+                     'paises': result['analytics']['month']['countries'],
+                     'browsers': result['analytics']['month']['browsers'],
+                     'plataformas': result['analytics']['month']['platforms']
+                    }
+            
+            dados_horas = {'total': result['analytics']['twoHours']['shortUrlClicks'],
+                     'locais' : result['analytics']['twoHours']['referrers'],
+                     'paises': result['analytics']['twoHours']['countries'],
+                     'browsers': result['analytics']['twoHours']['browsers'],
+                     'plataformas': result['analytics']['twoHours']['platforms']
+                    }
+            
+            
+        except:
+            erro = ''
         
         
         
@@ -91,3 +85,5 @@ def get_resultados(request):
                                   )
     else:
         return HttpResponseRedirect("/erro_autenticacao/")
+    
+    
