@@ -3,11 +3,14 @@ import tweepy
 import facebook
 from django.http import HttpResponse
 
+
 class Twitter(object):
     
     def __init__(self, twitter): 
           
         self.twitter = twitter
+        
+        
     
     def enviaTweet(self, descricao):
 
@@ -36,18 +39,14 @@ class Twitter(object):
             api = tweepy.API(auth)
             api.send_direct_message(user=usuario, text=texto)
 
-    def getRetweets(self):
-        
-        retweets = []
+    def getRetweets(self, limite = None):
         
         for config in self.twitter:
             
             auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
             auth.set_access_token(config.access_key, config.access_secret)
             api = tweepy.API(auth)
-            #retweets.push(api.retweets_of_me())
-        
-            return api.retweets_of_me()
+            return tweepy.Cursor(api.retweets_of_me).items(limite)
     
     def getBusca(self, termo):
         
@@ -58,15 +57,24 @@ class Twitter(object):
 
         return api.search(termo, rpp=25, lang='pt')
     
-    def getMencoes(self):
+    def getMencoes(self, limite = None):
         
         for config in self.twitter:
             auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
             auth.set_access_token(config.access_key, config.access_secret)
             api = tweepy.API(auth)
+            
+            return tweepy.Cursor(api.mentions).items(limite)
+          
+    def getHomeTimeline(self, limite = None):
         
-        return api.mentions()
-    
+        for config in self.twitter:
+            auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
+            auth.set_access_token(config.access_key, config.access_secret)
+            api = tweepy.API(auth)
+            
+            return tweepy.Cursor(api.user_timeline).items(limite)
+        
         
 class Facebook(object):
     

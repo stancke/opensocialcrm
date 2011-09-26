@@ -76,7 +76,7 @@ def index(request):
             return HttpResponse(aux.text)
         return HttpResponse(coisa)'''
         
-        return render_to_response('resultados/resultados.html', {"campanha": camp, 
+        return render_to_response('resultados/index.html', {"campanha": camp, 
                                                                  "dados": dados_totais,
                                                                  "dados_dia": dados_dia,
                                                                  "dados_mes": dados_mes,

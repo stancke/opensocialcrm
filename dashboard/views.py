@@ -14,15 +14,20 @@ def index(request):
     
     configs = Config_twitter.objects.all()
     a = Twitter(configs)
-    #mencoes = a.getMencoes()
-    #ret = a.getRetweets()
-    #HttpResponse(ret)
+    timeline = a.getHomeTimeline(limite=3)
+    mencoes = a.getMencoes(limite=3)
+    ret = a.getRetweets(limite=3)
+    #return HttpResponse(mencoes)
+    #return HttpResponse(ret)
     
     if request.user.is_authenticated():
         return render_to_response('dashboard/index.html', {
                                                             'leads' : leads,
                                                             'relacionamentos' : relacionamentos,
-                                                            'campanhas': camp
+                                                            'timeline': timeline,
+                                                            'campanhas': camp,
+                                                            'mencoes': mencoes,
+                                                            'retweets': ret
                                                            }
                                   )
     else:

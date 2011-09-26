@@ -7,8 +7,20 @@ from api.api import Twitter
 def index(request):
 
     camp = Campanha.objects.filter(status=True)
+    
+    configs = Config_twitter.objects.all()
+    a = Twitter(configs)
+    mencoes = a.getMencoes()
+    retweets = a.getRetweets()
+    
+    #return HttpResponse(mencoes)
+    #return HttpResponse({mencoes})
 
     if request.user.is_authenticated():
-        return render_to_response('crm/index.html')
+        return render_to_response('crm/index.html', {
+                                                     'mencoes':mencoes,
+                                                     'retweets':retweets
+                                                     }
+                                  )
     else:
         return HttpResponseRedirect("/erro_autenticacao/")

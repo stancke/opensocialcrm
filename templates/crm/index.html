@@ -13,10 +13,6 @@
              <a href="../../../">Home</a> &rsaquo;
              Resultados
         </div>
-
-        <div id="content" class="content-flexible">
-            
-            
     <h1>Prospecção de Leads</h1>
 
 <div id="tabs">
@@ -29,10 +25,48 @@
 	
 	</div>
 	<div id="tabs-2">
-		
+		<table>
+			<th></th>
+			<th>Nome</th>
+			<th>Menção</th>
+			<th>Qtd de Seguidores</th>
+			<th>Qtd de Amigos</th>
+			<th>Qtd de Tweets</th>
+			<th>Adicionar Lead</th>
+		{% for mencao in mencoes %}
+				<tr>
+					<td><img src="{{ mencao.author.profile_image_url}}" /></td>
+					<td><strong>{{ mencao.user.screen_name }}:</strong></td>
+					<td>{{ mencao.text }}</td>
+					<td>{{ mencao.user.followers_count }}</td>
+					<td>{{ mencao.user.friends_count }}</td>
+					<td>{{ mencao.user.statuses_count }}</td>
+					<td><img src="/media/images/icons/user_add.png" style="cursor: pointer;" /></td>
+				</tr>
+		{% endfor %}
+		</table>
 	</div>
 	<div id="tabs-3">
-		
+		<table>
+			<th></th>
+			<th>Nome</th>
+			<th>Retweet</th>
+			<th>Qtd de Seguidores</th>
+			<th>Qtd de Amigos</th>
+			<th>Qtd de Tweets</th>
+			<th>Adicionar Lead</th>
+		{% for retweet in retweets %}
+			<tr>
+				<td><img src="{{ mencao.user.profile_image_url}}" /></td>
+				<td><strong>{{ retweet.user.screen_name }}:</strong></td>
+				<td>{{ retweet.text }}</td>
+				<td>{{ retweet.user.followers_count }}</td>
+				<td>{{ retweet.user.friends_count }}</td>
+				<td>{{ retweet.user.statuses_count }}</td>
+				<td align="center"><img src="/media/images/icons/user_add.png" style="cursor: pointer;" /></td>
+			</tr>
+		{% endfor %}
+		</table>
 	</div>
 </div>
 

@@ -78,8 +78,15 @@
 		<div class="portlet">
 			<div class="portlet-header">Últimos tweets meus</div>
 			<div class="portlet-content">
-				<div id="twitter" class="tweet" style="margin: 10px 10px;">
-				</div>
+				<table>
+				{% for line in timeline %}
+					<tr>
+						<td><img src="{{ line.user.profile_image_url}}" /></td>
+						<td><strong>{{ line.user.screen_name }}:</strong></td>
+						<td>{{ line.text}}</td>
+					</tr>
+				{% endfor %}
+				</table>	
    			</div>
 		</div>
 	
@@ -90,6 +97,15 @@
 		<div class="portlet">
 			<div class="portlet-header">Últimos retweets</div>
 			<div class="portlet-content">
+				<table>
+				{% for ret in retweets %}
+					<tr>
+						<td><img src="{{ ret.user.profile_image_url}}" /></td>
+						<td><strong>{{ ret.user.screen_name }}:</strong></td>
+						<td>{{ ret.text}}</td>
+					</tr>
+				{% endfor %}
+				</table>	
    			</div>
 		</div>
 		
@@ -115,6 +131,17 @@
 		<div class="portlet">
 			<div class="portlet-header">Últimas menções sobre mim</div>
 			<div class="portlet-content">
+				<table>
+				<table>
+				{% for mencao in mencoes %}
+					<tr>
+						<td><img src="{{ mencao.user.profile_image_url}}" /></td>
+						<td><strong>{{ mencao.user.screen_name }}:</strong></td>
+						<td>{{ mencao.text}}</td>
+					</tr>
+				{% endfor %}
+				</table>	
+				</table>	
    			</div>
 		</div>
 		
