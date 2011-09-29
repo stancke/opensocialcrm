@@ -11,6 +11,9 @@ def index(request):
     camp = Campanha.objects.filter(status=True)
     relacionamentos = Relacionamento.objects.all()[:5]
     leads = Lead.objects.all()[:5]
+    timeline = None
+    mencoes = None
+    ret = None
     
     configs = Config_twitter.objects.all()
     a = Twitter(configs)

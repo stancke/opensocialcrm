@@ -2,15 +2,17 @@ from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
 import os
 from django.contrib import admin
-from resultados.views import index
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
 
      (r'^sistema/$', 'opensocialcrm.dashboard.views.index'),
-     (r'^sistema/resultados/$', 'opensocialcrm.resultados.views.index'),
      (r'^sistema/leads/$', 'opensocialcrm.crm.views.index'),
+     (r'^sistema/leads/prospeccao/$', 'opensocialcrm.crm.views.prospeccao'),
+     (r'^sistema/leads/adicionar/$', 'opensocialcrm.crm.views.adicionar_lead'),
+     (r'^sistema/campanhas/$', 'opensocialcrm.campanhas.views.index'),
+     (r'^sistema/campanhas/resultados/$', 'opensocialcrm.campanhas.views.resultados'),
      url(r'^$', 'opensocialcrm.index.views.index'),
      (r'^grappelli/', include('grappelli.urls')),
      (r'^media/(.*)$', 'django.views.static.serve', {'document_root': os.path.join(settings.PROJECT_PATH, 'media')}),

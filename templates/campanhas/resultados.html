@@ -5,12 +5,17 @@
 {% block content %}
 <script src="/static/grappelli/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript" src="/media/js/highcharts/highcharts.js"></script>
-<script language="javascript" type="text/javascript" src="/media/resultados/js/script.js"></script>
+<script language="javascript" type="text/javascript" src="/media/campanhas/js/resultados.js"></script>
 <link href="/static/grappelli/jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8">
 <script src="/static/grappelli/jquery/ui/js/jquery-ui-1.8.5.custom.min.js" type="text/javascript"></script>
+
+{% include "default/header.html" %}
+
 <div id="content-main">
                 <div id="breadcrumbs">
-             <a href="../../../">Home</a> &rsaquo;
+             <a href="../../../">Início</a> &rsaquo;
+             <a href="../../">Dashboard</a> &rsaquo;
+             <a href="../">Campanhas</a> &rsaquo;
              Resultados
         </div>
 
@@ -114,7 +119,7 @@
 	</ul>
 	<div id="tabs-1">
 		
-		{% if dados %}
+		{% if result.analytics.allTime %}
 
 			<div id="div_locais" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
 			<div id="div_paises" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
@@ -122,19 +127,19 @@
 			<div id="div_plataformas" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
 			<input type="hidden" id="total" value="{{ dados.total}}" />
 	
-			{% for local in dados.locais %}
+			{% for local in result.analytics.allTime.referrers %}
 			<input type="hidden" class="locais" count="{{ local.count}}" value="{{ local.id}}" />
 			{% endfor %}
 			
-			{% for browser in dados.browsers %}
+			{% for browser in result.analytics.allTime.browsers %}
 			<input type="hidden" class="browsers" count="{{ browser.count}}" value="{{ browser.id}}" />
 			{% endfor %}
 			
-			{% for pais in dados.paises %}
+			{% for pais in result.analytics.allTime.countries %}
 			<input type="hidden" class="paises" count="{{ pais.count}}" value="{{ pais.id}}" />
 			{% endfor %}
 			
-			{% for plataforma in dados.plataformas %}
+			{% for plataforma in result.analytics.allTime.platforms %}
 			<input type="hidden" class="plataformas" count="{{ plataforma.count}}" value="{{ plataforma.id}}" />
 			{% endfor %}
 		
@@ -145,56 +150,54 @@
 		{% endif %}
 	</div>
 	<div id="tabs-2">
-
-	
 		
 			<div id="div_locais_mes" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
 			<div id="div_paises_mes" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
 			<div id="div_browsers_mes" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
 			<div id="div_plataformas_mes" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
 			
-			<input type="hidden" id="total_mes" value="{{ dados_dia.total}}" />
+			<input type="hidden" id="total_mes" value="{{ result.analytics.month.shortUrlClicks}}" />
 			
-			{% for local in dados_mes.locais %}
+			{% for local in result.analytics.month.referrers %}
 			<input type="hidden" class="locais_mes" count="{{ local.count}}" value="{{ local.id}}" />
 			{% endfor %}
 			
-			{% for browser in dados_mes.browsers %}
+			{% for browser in result.analytics.month.browsers %}
 			<input type="hidden" class="browsers_mes" count="{{ browser.count}}" value="{{ browser.id}}" />
 			{% endfor %}
 			
-			{% for pais in dados_mes.paises %}
+			{% for pais in result.analytics.month.countries %}
 			<input type="hidden" class="paises_mes" count="{{ pais.count}}" value="{{ pais.id}}" />
 			{% endfor %}
 			
-			{% for plataforma in dados_mes.plataformas %}
+			{% for plataforma in result.analytics.month.platforms %}
 			<input type="hidden" class="plataformas_mes" count="{{ plataforma.count}}" value="{{ plataforma.id}}" />
 			{% endfor %}
 		
 	</div>
 	<div id="tabs-3">
 		
-		{% if dados_dia %}
+		{% if result.analytics.day %}
 			<div id="div_locais_dia" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
 			<div id="div_paises_dia" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
 			<div id="div_browsers_dia" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
 			<div id="div_plataformas_dia" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
 	
-			<input type="hidden" id="total" value="{{ dados_dia.total}}" />
+			<input type="hidden" id="total" value="{{ result.analytics.day.shortUrlClicks}}" />
 	
-			{% for local in dados_dia.locais %}
+			{% for local in result.analytics.day.referrers %}
 			<input type="hidden" class="locais_dia" count="{{ local.count}}" value="{{ local.id}}" />
 			{% endfor %}
 			
-			{% for browser in dados_dia.browsers %}
+			{% for browser in result.analytics.day.browsers %}
 			<input type="hidden" class="browsers_dia" count="{{ browser.count}}" value="{{ browser.id}}" />
 			{% endfor %}
 			
-			{% for pais in dados_dia.paises %}
+			{% for pais in result.analytics.day.countries %}
 			<input type="hidden" class="paises_dia" count="{{ pais.count}}" value="{{ pais.id}}" />
 			{% endfor %}
 			
-			{% for plataforma in dados_dia.plataformas %}
+			{% for plataforma in result.analytics.day.platforms %}
 			<input type="hidden" class="plataformas_dia" count="{{ plataforma.count}}" value="{{ plataforma.id}}" />
 			{% endfor %}
 		{% else %}
@@ -204,28 +207,28 @@
 	
 	<div id="tabs-4">
 		
-		{% if dados_horas %}
+		{% if result.analytics.twoHours %}
 		
 			<div id="div_locais_horas" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
 			<div id="div_paises_horas" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
 			<div id="div_browsers_horas" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
 			<div id="div_plataformas_horas" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
 	
-			<input type="hidden" id="total_horas" value="{{ dados_dia.total}}" />
+			<input type="hidden" id="total_horas" value="{{ result.analytics.twoHours.shortUrlClicks}}" />
 	
-			{% for local in dados_horas.locais %}
+			{% for local in result.analytics.twoHours.referrers %}
 			<input type="hidden" class="locais_horas" count="{{ local.count}}" value="{{ local.id}}" />
 			{% endfor %}
 			
-			{% for browser in dados_horas.browsers %}
+			{% for browser in result.analytics.twoHours.browsers %}
 			<input type="hidden" class="browsers_horas" count="{{ browser.count}}" value="{{ browser.id}}" />
 			{% endfor %}
 			
-			{% for pais in dados_horas.paises %}
+			{% for pais in result.analytics.twoHours.countries %}
 			<input type="hidden" class="paises_horas" count="{{ pais.count}}" value="{{ pais.id}}" />
 			{% endfor %}
 			
-			{% for plataforma in dados_horas.plataformas %}
+			{% for plataforma in result.analytics.twoHours.platforms %}
 			<input type="hidden" class="plataformas_horas" count="{{ plataforma.count}}" value="{{ plataforma.id}}" />
 			{% endfor %}
 		

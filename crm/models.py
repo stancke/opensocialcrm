@@ -4,7 +4,7 @@ class Lead(models.Model):
    
     nome = models.CharField(max_length=20)
     telefone = models.PositiveIntegerField(max_length=20, null=True, blank=True)
-    e_mail = models.EmailField(max_length=25)
+    e_mail = models.EmailField(max_length=25, blank=True)
     twitter = models.CharField(max_length=20, blank=True)
     facebook = models.CharField(max_length=25, blank=True)
     linkedin = models.CharField(max_length=25, blank=True)

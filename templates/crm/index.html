@@ -1,92 +1,69 @@
 {% extends "admin/base_site.html" %}
 
-{% block title %}Resultados da Campanha{% endblock %}
+{% block title %}Prospecção de Leads - OpenSocialCRM{% endblock %}
 
 {% block content %}
 <script src="/static/grappelli/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript" src="/media/js/highcharts/highcharts.js"></script>
-<script language="javascript" type="text/javascript" src="/media/crm/js/script.js"></script>
+<script language="javascript" type="text/javascript" src="/media/campanhas/js/scripts.js"></script>
 <link href="/static/grappelli/jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8">
 <script src="/static/grappelli/jquery/ui/js/jquery-ui-1.8.5.custom.min.js" type="text/javascript"></script>
 <div id="content-main">
                 <div id="breadcrumbs">
-             <a href="../../../">Home</a> &rsaquo;
-             Resultados
+             <a href="../../">Início</a> &rsaquo;
+             <a href="../">Dashboard</a> &rsaquo;
+             Leads
         </div>
     <h1>Prospecção de Leads</h1>
+{% include "default/header.html" %}
 
-<div id="tabs">
-	<ul>
-		<li><a href="#tabs-1">Todos</a></li>
-		<li><a href="#tabs-2">Menções</a></li>
-		<li><a href="#tabs-3">Retwees</a></li>
+<div class="module changelist-filters">
+            <!-- PAGINATION TOP -->
+            
+<form action="/sistema/leads/prospeccao/">
+<div class="module pagination">
+	<ul class="pagination">
+		<li class="results">
+			<span><input type="checkbox" name="twitter" /> Twitter</span>
+		</li>
+		<li class="results">
+			<span><input type="checkbox" name="facebook"/> Facebook</span>
+		</li>
+		<li class="results">
+			<span><input type="checkbox" name="linkedin"/> LinkedIn</span>
+		</li>
 	</ul>
-	<div id="tabs-1">
-	
-	</div>
-	<div id="tabs-2">
-		<table>
-			<th></th>
-			<th>Nome</th>
-			<th>Menção</th>
-			<th>Qtd de Seguidores</th>
-			<th>Qtd de Amigos</th>
-			<th>Qtd de Tweets</th>
-			<th>Adicionar Lead</th>
-		{% for mencao in mencoes %}
-				<tr>
-					<td><img src="{{ mencao.author.profile_image_url}}" /></td>
-					<td><strong>{{ mencao.user.screen_name }}:</strong></td>
-					<td>{{ mencao.text }}</td>
-					<td>{{ mencao.user.followers_count }}</td>
-					<td>{{ mencao.user.friends_count }}</td>
-					<td>{{ mencao.user.statuses_count }}</td>
-					<td><img src="/media/images/icons/user_add.png" style="cursor: pointer;" /></td>
-				</tr>
-		{% endfor %}
-		</table>
-	</div>
-	<div id="tabs-3">
-		<table>
-			<th></th>
-			<th>Nome</th>
-			<th>Retweet</th>
-			<th>Qtd de Seguidores</th>
-			<th>Qtd de Amigos</th>
-			<th>Qtd de Tweets</th>
-			<th>Adicionar Lead</th>
-		{% for retweet in retweets %}
-			<tr>
-				<td><img src="{{ mencao.user.profile_image_url}}" /></td>
-				<td><strong>{{ retweet.user.screen_name }}:</strong></td>
-				<td>{{ retweet.text }}</td>
-				<td>{{ retweet.user.followers_count }}</td>
-				<td>{{ retweet.user.friends_count }}</td>
-				<td>{{ retweet.user.statuses_count }}</td>
-				<td align="center"><img src="/media/images/icons/user_add.png" style="cursor: pointer;" /></td>
-			</tr>
-		{% endfor %}
-		</table>
-	</div>
-</div>
+	<br clear="all" /></div>
+            
+                <!-- FILTERS -->
+                
+                <!-- SEARCH -->
+                
+                    <div id="search" class="module search span-6">
+                        
 
-		
-
-
-<br clear="all" />
+    <button style="float: right" type="submit" class="search"></button>
+    <!-- Search Form -->
+   
+                    </div>
+                
+            
+            <br clear="all" />
+        </div>
+        <!-- DATE HIERARCHY -->
+</form>
         
-            <div id="submit" class="module footer">
-               
+    
+    <form id="changelist-form" action="/sistema/campanhas/resultados/" method="post"><div style='display:none'></div>
+    	<input type="hidden" name="campanha" id="campanha" value="" />
+        <div id="changelist" class="container-full" style="">
+
+        </div><br clear="all" />
+        <!-- SUBMIT ROW -->
             </div>
-        
     </form>
 
             <br class="clear" />
         </div>
-
-        <div id="footer"></div>
-    </div>
-
-
 </div>
 {% endblock %}

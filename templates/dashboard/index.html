@@ -1,6 +1,6 @@
 {% extends "admin/base_site.html" %}
 
-{% block title %}Resultados da Campanha{% endblock %}
+{% block title %}Dashboard - OpenSocialCRM{% endblock %}
 
 {% block content %}
 <script src="/static/grappelli/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
@@ -10,83 +10,64 @@
 <script src="/static/grappelli/jquery/ui/js/jquery-ui-1.8.5.custom.min.js" type="text/javascript"></script>
 <style>
 	.column { width: 400px; padding-bottom: 100px; }
-	.portlet { margin: 0 1em 1em 0; height: 250px; }
+	.portlet { margin: 0 1em 1em 0; overflow: hidden }
 	.portlet-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
 	.portlet-header .ui-icon { float: right; }
 	.portlet-content { padding: 0.4em; }
 	.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
 	.ui-sortable-placeholder * { visibility: hidden; }
 </style>
+{% include "default/header.html" %}
 <div id="content-main">
 	<div id="breadcrumbs">
-	 <a href="../../../">Home</a> &rsaquo;
-	 Dashboard
-	</div>
+             <a href="../../">Início</a> &rsaquo;
+             Dashboard
+        </div>
     <div id="content" class="content-flexible">        
-    <h1>Resultados da Campanha</h1>
-	 <form enctype="multipart/form-data" action="/sistema/resultados/" method="post" id="relacionamento_form">{% csrf_token %}
-                <div>
-                        <fieldset class="module ">
-                        	<div class="row cells-1 lead ">
-                        		<div>
-                        			
-                        			<div class="span-flexible">
-                        				<label for="id_campanha" class="required">Campanha:</label>
-                        				<br/>
-                        				<select name="campanha" id="id_campanha">
-                        					<option value="" selected="selected">---------</option>
-                        					{% for campanha in campanhas %}
-                							<option value="{{ campanha.id }}" selected="selected">{{ campanha.titulo }}</option>
-               				 				{% endfor %}
-                        				</select>
-                        				<br/><br/>
-                        				<button>Buscar</button>
-                        			</div>
-                        		</div>
-                        	</div>
-                        	</fieldset>
-            <br class="clear" />
-        </div>
-	</form>
-	<h1>Buscar leads</h1>
-	 <form enctype="multipart/form-data" action="/sistema/leads/" method="post" id="relacionamento_form">{% csrf_token %}
-                <div>
-                        <fieldset class="module ">
-                        	<div class="row cells-1 lead ">
-                        		<div>
-                        			
-                        			<div class="span-flexible">
-                        				<label for="id_campanha" class="required">Critérios:</label>
-                        				<br/>
-                        				<input type="checkbox" name="criterios"/> <strong>Menções</strong>
-         				                <input type="checkbox" name="criterios"/> <strong>Retweets</strong>
-										<br/><br/>
-                        				<button>Buscar</button>
-                        			</div>
-                        		</div>
-                        	</div>
-                        	</fieldset>
-            <br class="clear" />
-        </div>
-	</form>
-	<form action="/sistema/painel/" method="get" id="relacionamento_form">{% csrf_token %}
-	<h1>Painel de Controle: <button>Acessar</button></h1>
-	</form>
+	
 	<h1>Dashboard</h1>
         <br class="clear" />
 		<div class="column">
 		<div class="portlet">
 			<div class="portlet-header">Últimos tweets meus</div>
 			<div class="portlet-content">
-				<table>
-				{% for line in timeline %}
-					<tr>
-						<td><img src="{{ line.user.profile_image_url}}" /></td>
-						<td><strong>{{ line.user.screen_name }}:</strong></td>
-						<td>{{ line.text}}</td>
-					</tr>
-				{% endfor %}
-				</table>	
+				
+				<div class="module changelist-results">
+        <table cellspacing="0">
+            <thead>
+
+                <tr>
+                        <th class=" sortable">
+                            
+                        </th>
+
+                        <th class=" sortable">
+                            Twitter
+                        </th>
+                    
+                        <th class=" sortable">
+                            Texto
+                        </th>
+                </tr>
+            </thead>
+            <tbody>
+            	{% for line in timeline %}
+                   <tr class="row1">
+                    <td>
+                    	<img src="{{ line.user.profile_image_url}}" />
+                    </td>
+                    <td>
+                    	{{ line.user.screen_name }}
+                    </td>
+                    <td>
+                    	{{ line.text}}
+                    </td>
+                  
+                   </tr>
+               {% endfor %}
+            </tbody>
+        </table>
+    </div>
    			</div>
 		</div>
 	
@@ -97,21 +78,52 @@
 		<div class="portlet">
 			<div class="portlet-header">Últimos retweets</div>
 			<div class="portlet-content">
-				<table>
-				{% for ret in retweets %}
-					<tr>
-						<td><img src="{{ ret.user.profile_image_url}}" /></td>
-						<td><strong>{{ ret.user.screen_name }}:</strong></td>
-						<td>{{ ret.text}}</td>
-					</tr>
-				{% endfor %}
-				</table>	
+				
+								<div class="module changelist-results">
+        <table cellspacing="0">
+            <thead>
+
+                <tr>
+                        <th class=" sortable">
+                            
+                        </th>
+
+                        <th class=" sortable">
+                            Twitter
+                        </th>
+                    
+                        <th class=" sortable">
+                            Texto
+                        </th>
+                </tr>
+            </thead>
+            <tbody>
+            	{% for ret in retweets %}
+                   <tr class="row1">
+                    <td>
+                    	<img src="{{ ret.user.profile_image_url}}" />
+                    </td>
+                    <td>
+                    	{{ ret.user.screen_name }}
+                    </td>
+                    <td>
+                    	{{ ret.text}}
+                    </td>
+                  
+                   </tr>
+               {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+				
    			</div>
 		</div>
 		
 		<div class="portlet">
 			<div class="portlet-header">Últimos relacionamentos</div>
 			<div class="portlet-content">
+				
 				<table>
 				{% for relacionamento in relacionamentos %}
 					<tr>
@@ -131,18 +143,45 @@
 		<div class="portlet">
 			<div class="portlet-header">Últimas menções sobre mim</div>
 			<div class="portlet-content">
-				<table>
-				<table>
-				{% for mencao in mencoes %}
-					<tr>
-						<td><img src="{{ mencao.user.profile_image_url}}" /></td>
-						<td><strong>{{ mencao.user.screen_name }}:</strong></td>
-						<td>{{ mencao.text}}</td>
-					</tr>
-				{% endfor %}
-				</table>	
-				</table>	
+				
+												<div class="module changelist-results">
+        <table cellspacing="0">
+            <thead>
+
+                <tr>
+                        <th class=" sortable">
+                            
+                        </th>
+
+                        <th class=" sortable">
+                            Twitter
+                        </th>
+                    
+                        <th class=" sortable">
+                            Texto
+                        </th>
+                </tr>
+            </thead>
+            <tbody>
+            	{% for mencao in mencoes %}
+                   <tr class="row1">
+                    <td>
+                    	<img src="{{ mencao.user.profile_image_url}}" />
+                    </td>
+                    <td>
+                    	{{ mencao.user.screen_name }}
+                    </td>
+                    <td>
+                    	{{ mencao.text}}
+                    </td>
+                  
+                   </tr>
+               {% endfor %}
+            </tbody>
+        </table>
+				
    			</div>
+		</div>
 		</div>
 		
 		<div class="portlet">
