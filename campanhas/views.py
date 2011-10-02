@@ -5,96 +5,56 @@ from campanhas.models import Campanha
 from redes_sociais.models import Twitter as Config_twitter
 from api.api import Twitter
 from api.google import Google
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def index(request):
 
     camp = Campanha.objects.filter(status=True)
+    qtd = Campanha.objects.filter(status=True).count()
     
-    if request.user.is_authenticated():
-        return render_to_response('campanhas/index.html', {
+    return render_to_response('campanhas/index.html', {
                                                             'campanhas': camp,
+							    'qtd':qtd,
 							}
 				 )
-    else:
-        return HttpResponseRedirect("/erro_autenticacao/")
-    
     
 
+@login_required
 def resultados(request):
 
-    if request.user.is_authenticated():
+    if request.method == 'POST':
+            
+        string = request.REQUEST
+        id_campanha = string.get('campanha')
+        camp = Campanha.objects.get(pk=id_campanha)
+            
+        result = Google().analisar_dados(camp.url_reduzida)
+        aux = 0
+        quantidade_twitter = 0
         
-        if request.method == 'POST':
-            
-            string = request.REQUEST
-            id_campanha = string.get('campanha')
-            camp = Campanha.objects.get(pk=id_campanha)
-            
-            result = Google().analisar_dados(camp.url_reduzida)
+        for re in result['analytics']['allTime']['referrers']:
+          
+            if (re['id'] == 'twitter.com') or (re['id'] == 't.co'):
+                quantidade_twitter += int(re['count'])
+                result['analytics']['allTime']['referrers'][aux]['count'] = 0
 
-            return render_to_response('campanhas/resultados.html', {"campanha": camp, 
-                                                                    "result": result
-                                                                 }
-                                  )
-        
-        #try:
-        dados_totais = {'total': result['analytics']['allTime']['shortUrlClicks'],
-                 'locais' : result['analytics']['allTime']['referrers'],
-                 'paises': result['analytics']['allTime']['countries'],
-                 'browsers': result['analytics']['allTime']['browsers'],
-                 'plataformas': result['analytics']['allTime']['platforms']
-                }
-        return HttpResponse(result['analytics']['allTime']['platforms'])
-        '''
-        dados_dia = {'total': result['analytics']['day']['shortUrlClicks'],
-                 'locais' : result['analytics']['day']['referrers'],
-                 'paises': result['analytics']['day']['countries'],
-                 'browsers': result['analytics']['day']['browsers'],
-                 'plataformas': result['analytics']['day']['platforms']
-                }
-        
-        dados_mes = {'total': result['analytics']['month']['shortUrlClicks'],
-                 'locais' : result['analytics']['month']['referrers'],
-                 'paises': result['analytics']['month']['countries'],
-                 'browsers': result['analytics']['month']['browsers'],
-                 'plataformas': result['analytics']['month']['platforms']
-                }
-        
-        dados_horas = {'total': result['analytics']['twoHours']['shortUrlClicks'],
-                 'locais' : result['analytics']['twoHours']['referrers'],
-                 'paises': result['analytics']['twoHours']['countries'],
-                 'browsers': result['analytics']['twoHours']['browsers'],
-                 'plataformas': result['analytics']['twoHours']['platforms']
-                }
-           ''' 
+            elif re['id'] == 'Unknown/empty':
             
-       # except:
-       #     erro = ''
-        
-        return HttpResponse(dados_totais.paises)
-        #todos = result['analytics']['allTime']
-        #mes = result['analytics']['month']
-        
-        #dados = {'todos' : todos}
-        
-        #return HttpResponse({dados})
+                result['analytics']['allTime']['referrers'][aux]['id'] = 'Acesso Direto'
+                
+            elif re['id'] == 'www.facebook.com':
             
-        #configs = Config_twitter.objects.all()
-        #t = Twitter(configs)
-        '''        
-        r = t.getBusca("partiu")
-        coisa = 0
-        for aux in r:
-            coisa = coisa + 1
-            return HttpResponse(aux.text)
-        return HttpResponse(coisa)'''
+                result['analytics']['allTime']['referrers'][aux]['id'] = 'Facebook'
+
+            aux = aux + 1
         
+        objeto = {"count" : quantidade_twitter, "id": "Twitter"}
+        
+        result['analytics']['allTime']['referrers'].append(objeto)    
+
         return render_to_response('campanhas/resultados.html', {"campanha": camp, 
-                                                                 "dados": dados_totais,
-                                                                 "dados_dia": dados_dia,
-                                                                 "dados_mes": dados_mes,
-                                                                 "dados_horas":dados_horas
-                                                                 }
+                                                                "result": result
+                                                               }
                                   )
-    else:
-        return HttpResponseRedirect("/erro_autenticacao/")
+                                                                 

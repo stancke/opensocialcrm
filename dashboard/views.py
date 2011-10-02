@@ -6,6 +6,7 @@ from campanhas.models import Campanha
 from api.api import Twitter
 from redes_sociais.models import Twitter as Config_twitter
 
+@login_required
 def index(request):
 
     camp = Campanha.objects.filter(status=True)
@@ -20,11 +21,8 @@ def index(request):
     timeline = a.getHomeTimeline(limite=3)
     mencoes = a.getMencoes(limite=3)
     ret = a.getRetweets(limite=3)
-    #return HttpResponse(mencoes)
-    #return HttpResponse(ret)
     
-    if request.user.is_authenticated():
-        return render_to_response('dashboard/index.html', {
+    return render_to_response('dashboard/index.html', {
                                                             'leads' : leads,
                                                             'relacionamentos' : relacionamentos,
                                                             'timeline': timeline,
@@ -33,5 +31,3 @@ def index(request):
                                                             'retweets': ret
                                                            }
                                   )
-    else:
-        return HttpResponseRedirect("/erro_autenticacao/")

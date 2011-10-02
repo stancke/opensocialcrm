@@ -123,16 +123,66 @@
 		<div class="portlet">
 			<div class="portlet-header">Últimos relacionamentos</div>
 			<div class="portlet-content">
-				
-				<table>
-				{% for relacionamento in relacionamentos %}
-					<tr>
-						<td><strong>Lead:</strong> {{ relacionamento.lead}}</td>
-						<td><strong>Contato:</strong> {{ relacionamento.contato}}</td>
-						<td><strong>Enviado:</strong> {{ relacionamento.enviado}}</td>
-					</tr>
-				{% endfor %}
-				</table>
+				<div class="module changelist-results">
+        <table cellspacing="0">
+            <thead>
+
+                <tr>
+                        <th class=" sortable">
+                            Lead
+                        </th>
+
+                        <th class=" sortable">
+                            Contato
+                        </th>
+                    	<th class=" sortable">
+                            Mensagem
+                        </th>
+                    
+                        <th class=" sortable">
+                            Enviado
+                        </th>
+                </tr>
+            </thead>
+            <tbody>
+            	{% for relacionamento in relacionamentos %}
+                   <tr class="row1">
+                    <td>
+                    	{{ relacionamento.lead}}
+                    </td>
+                    <td style="text-align: center!important">
+                    	{% if relacionamento.contato == 'T' %}
+                    	Twitter
+                    	{% endif %}
+                    	{% if relacionamento.contato == 'F' %}
+                    	Facebook
+                    	{% endif %}
+                    	{% if relacionamento.contato == 'L' %}
+                    	Linkedin
+                    	{% endif %}
+                    </td>
+                    <td >
+                    	{{ relacionamento.mensagem }}
+                    
+                    </td>
+                    
+                    <td style="text-align: center!important">
+                    	
+                    	{% if relacionamento.enviado %}
+                    		<img src="/media/images/icons/accept.png" />
+                    	{% else %}
+                    		<img src="/media/images/icons/delete.png" />
+                    	{% endif %}
+                    	
+                    	
+                    </td>
+                  
+                   </tr>
+               {% endfor %}
+            </tbody>
+        </table>
+    </div>
+		
 			</div>
 		</div>
 	
@@ -188,16 +238,65 @@
 			<div class="portlet-header">Últimos leads</div>
 			
 			<div class="portlet-content">
-				<table>
-				{% for lead in leads %}
-					<tr>
-						<td><strong>Nome:</strong> {{ lead.nome}}</td>
-						<td><strong>Email:</strong> {{ lead.e_mail}}</td>
-						<td><strong>Telefone:</strong> {{ lead.telefone}}</td>
-					</tr>
-				{% endfor %}
-				</table>	
-			</div>
+				<div class="module changelist-results">
+        <table cellspacing="0">
+            <thead>
+
+                <tr>
+                        <th class=" sortable">
+                            Nome
+                        </th>
+
+                        <th class=" sortable">
+                            Email
+                        </th>
+                        
+                        <th class=" sortable">
+                            Twitter
+                        </th>
+                        
+                        <th class=" sortable">
+                            Facebook
+                        </th>
+                        
+                        <th class=" sortable">
+                            Linkedin
+                        </th>
+                    
+                        <th class=" sortable">
+                            Telefone
+                        </th>
+                </tr>
+            </thead>
+            <tbody>
+            	{% for lead in leads %}
+                   <tr class="row1">
+                    <td>
+                    	{{ lead.nome}}
+                    </td>
+                    <td>
+                    	{{ lead.e_mail }}
+                    </td>
+                     <td>
+                    	{{ lead.twitter}}
+                    </td>
+                     <td>
+                    	{{ lead.facebook}}
+                    </td>
+                     <td>
+                    	{{ lead.linkedin}}
+                    </td>
+                    <td>
+                    	{{ lead.telefone}}
+                    </td>
+                  
+                   </tr>
+               {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+	</div>
 		</div>
 	</div>
         <div id="footer"></div>

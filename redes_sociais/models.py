@@ -15,8 +15,6 @@ class Facebook(models.Model):
     usuario = models.CharField(max_length = 20)
     facebook_app_id = models.CharField(max_length = 100)
     facebook_app_secret = models.CharField(max_length = 100)
-    access_token= models.CharField(max_length = 100)
-
 
 class Linkedin(models.Model):
     

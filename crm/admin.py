@@ -28,7 +28,7 @@ def enviar_mensagem(self, request, queryset):
             configs = Config_twitter.objects.all()
             t = Twitter(configs)
             t.criarAmigo(lead.twitter)
-            t.enviaTweet(lead.twitter + ":" + rel.mensagem)
+            t.enviaTweet("@"+lead.twitter + ": " + rel.mensagem)
             #t.enviaMensagemDireta('wstancke', rel.mensagem)
     except:
         enviado = False

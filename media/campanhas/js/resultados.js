@@ -9,7 +9,10 @@ var chart2;
 				$('.locais').each(function(index) {
     				var valor = $(this).val();
     				var qtd = parseInt($(this).attr('count'));
-    				dados.push([valor, qtd]);
+    				
+    				if(qtd != 0){
+    					dados.push([valor, qtd]);
+    				}
   				});
   				
 				chart = new Highcharts.Chart({
@@ -24,7 +27,7 @@ var chart2;
 					},
 					tooltip: {
 						formatter: function() {
-							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 						}
 					},
 					plotOptions: {
@@ -36,7 +39,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 								}
 							}
 						}
@@ -53,6 +56,7 @@ var chart2;
 				///////////////
 				////////////////
 				dados = []
+
 				$('.browsers').each(function(index) {
     				var valor = $(this).val();
     				var qtd = parseInt($(this).attr('count'));
@@ -71,7 +75,7 @@ var chart2;
 					},
 					tooltip: {
 						formatter: function() {
-							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 						}
 					},
 					plotOptions: {
@@ -83,7 +87,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 								}
 							}
 						}
@@ -102,9 +106,12 @@ var chart2;
 				////////////////////
 				
 				dados = []
+				var qtd_total = 0;
+
 				$('.plataformas').each(function(index) {
     				var valor = $(this).val();
     				var qtd = parseInt($(this).attr('count'));
+
     				dados.push([valor, qtd]);
   				});
   				
@@ -120,7 +127,7 @@ var chart2;
 					},
 					tooltip: {
 						formatter: function() {
-							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 						}
 					},
 					plotOptions: {
@@ -132,7 +139,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 								}
 							}
 						}
@@ -168,7 +175,7 @@ var chart2;
 					},
 					tooltip: {
 						formatter: function() {
-							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 						}
 					},
 					plotOptions: {
@@ -180,7 +187,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 								}
 							}
 						}
@@ -215,7 +222,7 @@ var chart2;
 					},
 					tooltip: {
 						formatter: function() {
-							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 						}
 					},
 					plotOptions: {
@@ -227,7 +234,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 								}
 							}
 						}
@@ -262,7 +269,7 @@ var chart2;
 					},
 					tooltip: {
 						formatter: function() {
-							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 						}
 					},
 					plotOptions: {
@@ -274,7 +281,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 								}
 							}
 						}
@@ -311,7 +318,7 @@ var chart2;
 					},
 					tooltip: {
 						formatter: function() {
-							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 						}
 					},
 					plotOptions: {
@@ -323,7 +330,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 								}
 							}
 						}
@@ -359,7 +366,7 @@ var chart2;
 					},
 					tooltip: {
 						formatter: function() {
-							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 						}
 					},
 					plotOptions: {
@@ -371,7 +378,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 								}
 							}
 						}
@@ -407,7 +414,7 @@ var chart2;
 					},
 					tooltip: {
 						formatter: function() {
-							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 						}
 					},
 					plotOptions: {
@@ -419,7 +426,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 								}
 							}
 						}
@@ -454,7 +461,7 @@ var chart2;
 					},
 					tooltip: {
 						formatter: function() {
-							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 						}
 					},
 					plotOptions: {
@@ -466,7 +473,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 								}
 							}
 						}
@@ -503,7 +510,7 @@ var chart2;
 					},
 					tooltip: {
 						formatter: function() {
-							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 						}
 					},
 					plotOptions: {
@@ -515,7 +522,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 								}
 							}
 						}
@@ -551,7 +558,7 @@ var chart2;
 					},
 					tooltip: {
 						formatter: function() {
-							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 						}
 					},
 					plotOptions: {
@@ -563,7 +570,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 								}
 							}
 						}
@@ -599,7 +606,7 @@ var chart2;
 					},
 					tooltip: {
 						formatter: function() {
-							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 						}
 					},
 					plotOptions: {
@@ -611,7 +618,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 								}
 							}
 						}
@@ -646,7 +653,7 @@ var chart2;
 					},
 					tooltip: {
 						formatter: function() {
-							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 						}
 					},
 					plotOptions: {
@@ -658,7 +665,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 								}
 							}
 						}
@@ -695,7 +702,7 @@ var chart2;
 					},
 					tooltip: {
 						formatter: function() {
-							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 						}
 					},
 					plotOptions: {
@@ -707,7 +714,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 								}
 							}
 						}
@@ -743,7 +750,7 @@ var chart2;
 					},
 					tooltip: {
 						formatter: function() {
-							return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+							return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 						}
 					},
 					plotOptions: {
@@ -755,7 +762,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +' visita (s)';
 								}
 							}
 						}

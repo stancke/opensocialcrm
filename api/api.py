@@ -78,23 +78,22 @@ class Twitter(object):
         
 class Facebook(object):
     
-    FACEBOOK_API_KEY = ''
-    FACEBOOK_APP_ID = '205578726165733'
-    FACEBOOK_APP_SECRET = '75f2b8ef906d1a3cc99beec92c65430c'
-    
-    def __init__(self, request): 
-        
-        cookie = facebook.get_user_from_cookie(
-            request.COOKIES, self.FACEBOOK_APP_ID, self.FACEBOOK_APP_SECRET)
-                    
-        self.oauth_access_token = cookie["access_token"]
+    def __init__(self, facebook): 
+        self.facebook = facebook
     
     
-    def postaMensagem(self):
+    def postaMensagem(self, mensagem):
+
+        from facebook import Facebook
         
-        graph = facebook.GraphAPI(self.oauth_access_token)
-        graph.put_wall_post("Testando")
-        
+        for config in self.facebook:
+            facebook = Facebook(config.facebook_app_id, config.facebook_app_secret)
+            coisa = facebook.auth.createToken()
+            graph = facebook.auth.getSession()
+            graph.put_object("me", "feed", message=mensagem)
+	
+	#facebook = Facebook('205578726165733', '75f2b8ef906d1a3cc99beec92c65430c')
+        #coisa = facebook.auth.createToken()
 
         
 class Linkedin(object):

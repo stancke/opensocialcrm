@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*- 
 from campanhas.models import Campanha
 from django.contrib import admin
-from redes_sociais.models import Twitter as Config_twitter
+from redes_sociais.models import Twitter as Config_twitter, Facebook as Config_facebook
 from api.api import Twitter, Facebook
 from django.http import HttpResponse
 import datetime
@@ -30,15 +30,16 @@ def publicar(self, request, queryset):
  
     if camp.facebook == True:
         
-        f = Facebook()
-        f.postaMensagem()
+        configs = Config_facebook.objects.all()
+        f = Facebook(configs)
+        f.postaMensagem(camp.descricao + " " + camp.url_reduzida)
         
     self.message_user(request, "Campanha " + titulo + " " + mensagem )
             
 
 class CampanhaAdmin(admin.ModelAdmin):    
     
-    list_display = ('titulo','descricao','twitter','facebook', 'linkedin','criada_em','enviado_em', 'status')
+    list_display = ('titulo','descricao','url','twitter','facebook', 'linkedin','criada_em','enviado_em', 'status')
     search_fields = ['titulo', 'descricao']
     
     fieldsets = (

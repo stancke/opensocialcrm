@@ -1,27 +1,128 @@
-{% extends "base_site.html" %}
-{% load url from future %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br" >
 
-{% block content %}
+<head>
+    <title>Painel - OpenSocialCRM</title>
+    
+        <meta name="robots" content="NONE,NOARCHIVE" />
+    
+    <!-- STYLESHEETS -->
+    
+        <link href="/static/grappelli/css/base.css" rel="stylesheet" type="text/css" />
+        
+        <link href="/static/grappelli/jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link href="/static/grappelli/css/jquery-ui-grappelli-extensions.css" rel="stylesheet" type="text/css"  />
 
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+    
+    <!-- EXTRASTYLES -->
+    
+    <!-- JAVASCRIPTS -->
+    
+        <script type="text/javascript">
+            // GLOBALS
+            var grappelli = {},
+                // TODO: klemens: drop ADMIN_URL
+                ADMIN_URL = "/sistema/painel/",
+                MODEL_URL_ARRAY = {'4e7a6e72e28a361b6b000000': {pk: '4e7a6e72e28a361b6b000000', app: 'admin', model: 'logentry'},'4e7a6e72e28a361b6b000004': {pk: '4e7a6e72e28a361b6b000004', app: 'auth', model: 'permission'},'4e7a6e72e28a361b6b000005': {pk: '4e7a6e72e28a361b6b000005', app: 'auth', model: 'group'},'4e7a6e72e28a361b6b000006': {pk: '4e7a6e72e28a361b6b000006', app: 'auth', model: 'user'},'4e7a6e72e28a361b6b000007': {pk: '4e7a6e72e28a361b6b000007', app: 'auth', model: 'message'},'4e7a6ea9e28a361b6b000015': {pk: '4e7a6ea9e28a361b6b000015', app: 'contenttypes', model: 'contenttype'},'4e7a6ea9e28a361b6b000019': {pk: '4e7a6ea9e28a361b6b000019', app: 'sessions', model: 'session'},'4e7a6ea9e28a361b6b00001d': {pk: '4e7a6ea9e28a361b6b00001d', app: 'redes_sociais', model: 'twitter'},'4e7a6ea9e28a361b6b00001e': {pk: '4e7a6ea9e28a361b6b00001e', app: 'redes_sociais', model: 'facebook'},'4e7a6ea9e28a361b6b00001f': {pk: '4e7a6ea9e28a361b6b00001f', app: 'redes_sociais', model: 'linkedin'},'4e7a6ea9e28a361b6b000029': {pk: '4e7a6ea9e28a361b6b000029', app: 'campanhas', model: 'campanha'},'4e7a6ea9e28a361b6b00002d': {pk: '4e7a6ea9e28a361b6b00002d', app: 'crm', model: 'lead'},'4e7a6ea9e28a361b6b00002e': {pk: '4e7a6ea9e28a361b6b00002e', app: 'crm', model: 'relacionamento'}},
+                DATE_FORMAT = "%Y-%m-%d",
+                TIME_FORMAT = "%H:%M:%S",
+                DATETIME_FORMAT = "%d/%m/%Y %H:%M:%S";
+        </script>
+        
+        <!-- NOTE klemens: put this in admin/includes_grappelli/header_js.html -->
+        
+        <!-- jQuery, jQuery-UI -->
+        <script src="/static/grappelli/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
+        <script src="/static/grappelli/jquery/ui/js/jquery-ui-1.8.5.custom.min.js" type="text/javascript"></script>
 
-<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
+        <!-- Grappelli Main JS -->
+        <script src="/static/grappelli/js/grappelli/grappelli.js" type="text/javascript"></script>
+        <!-- Grappelli jQuery Plugins, Widgets -->
+        <script src="/static/grappelli/js/grappelli/jquery.grp_collapsible.js"type="text/javascript" ></script>
+        <script src="/static/grappelli/js/grappelli/jquery.grp_collapsible_group.js" type="text/javascript"></script>
+        <script src="/static/grappelli/js/grappelli/jquery.grp_timepicker.js" type="text/javascript"></script>
+        <script src="/static/grappelli/js/grappelli/jquery.grp_related_fk.js" type="text/javascript"></script>
 
-<input type="submit" value="login" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
+        <script src="/static/grappelli/js/grappelli/jquery.grp_related_m2m.js" type="text/javascript"></script>
+        <script src="/static/grappelli/js/grappelli/jquery.grp_related_generic.js" type="text/javascript"></script>
+        
+    
+    <!-- EXTRAHEAD -->
+    
+    <script type="text/javascript">
+        (function($) {
+            $(window).load(function(){ $('#id_username').focus(); });
+        })(django.jQuery);
+    </script>
 
-{% endblock %}
+</head>
+<body class="login">
+    <div id="container">
+        <!-- HEADER -->
+
+        
+            
+
+<div id="header">
+    <div class="branding">&nbsp;</div>
+    <!-- Title -->
+    <div class="admin-title">OpenSocialCRM</div>
+    
+    
+    
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    (function($) {
+        $(document).ready(function() {
+            $("div#header .collapse").grp_collapsible();
+        });
+    })(django.jQuery);
+</script>
+
+            <!-- BREADCRUMBS -->
+
+            
+        
+        <!-- MESSAGES -->
+        
+        <!-- CONTENT -->
+        <div id="content" class="content-flexible">
+           
+    <div class="container-flexible login">
+        <div class="column span-10 centered">
+            
+            <form action="{% url django.contrib.auth.views.login %}" method="post" id="login-form"><div style='display:none'>{% csrf_token %}</div>
+                <fieldset class="module">
+                    <div class="row">
+                        <div class="column span-4"><label for="id_username" class="required">Usuário:</label></div>
+
+                        <div class="column span-6 last"><input type="text" name="username" id="id_username" /></div>
+                    </div>
+                    <div class="row">
+                        <div class="column span-4"><label for="id_password" class="required">Senha:</label></div>
+                        <div class="column span-6 last">
+                                <input type="password" name="password" id="id_password" />
+                                <input type="hidden" name="this_is_the_login_form" value="1" />
+                                <input type="hidden" name="next" value="/sistema/painel/" />
+
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="module submit-row">
+                    <ul class="submit-row">
+                        <li class="submit-button-container"><input type="submit" class="default" value="Acessar" /></li>
+                    </ul>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+            <br class="clear" />
+        </div>
+        <!-- FOOTER -->
+        <div id="footer"></div>
+    </div>
+</body>
+</html>

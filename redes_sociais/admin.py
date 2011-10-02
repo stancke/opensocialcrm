@@ -8,13 +8,13 @@ class TwitterAdmin(admin.ModelAdmin):
 admin.site.register(Twitter, TwitterAdmin)
 
 class FacebookAdmin(admin.ModelAdmin):
-    list_display = ('usuario','facebook_app_id', 'facebook_app_secret', 'access_token')
+    list_display = ('usuario','facebook_app_id', 'facebook_app_secret')
     
 admin.site.register(Facebook, FacebookAdmin)
 
 
 class LinkedinAdmin(admin.ModelAdmin):
-    list_display = ('usuario','linkedin_app_id', 'linkedin_app_secret', 'access_token')
+    list_display = ('usuario','linkedin_app_id', 'linkedin_app_secret')
     
 admin.site.register(Linkedin, LinkedinAdmin)
 
