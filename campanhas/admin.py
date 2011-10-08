@@ -6,8 +6,11 @@ from api.api import Twitter, Facebook
 from django.http import HttpResponse
 import datetime
 from api.google import Google
+import facebook
 
 def publicar(self, request, queryset):
+    
+
     string = request.REQUEST
     camp = Campanha.objects.get(id=string.get('_selected_action'))
     camp.url_reduzida = Google().encurtaUrl(camp.url)
@@ -30,6 +33,8 @@ def publicar(self, request, queryset):
  
     if camp.facebook == True:
         
+        
+        return HttpResponse(request.COOKIES)
         configs = Config_facebook.objects.all()
         f = Facebook(configs)
         f.postaMensagem(camp.descricao + " " + camp.url_reduzida)

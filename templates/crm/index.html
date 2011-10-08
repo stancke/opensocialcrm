@@ -8,19 +8,30 @@
 <script language="javascript" type="text/javascript" src="/media/campanhas/js/scripts.js"></script>
 <link href="/static/grappelli/jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8">
 <script src="/static/grappelli/jquery/ui/js/jquery-ui-1.8.5.custom.min.js" type="text/javascript"></script>
+<script src="/media/crm/js/jquery.slider.crm.js" type="text/javascript"></script>
+<link href="/media/css/slider.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8">
+
 <div id="content-main">
                 <div id="breadcrumbs">
              <a href="../../">Início</a> &rsaquo;
              <a href="../">Dashboard</a> &rsaquo;
              Leads
         </div>
-    <h1>Prospecção de Leads</h1>
 {% include "default/header.html" %}
 
-<div class="module changelist-filters">
+<div id="conteudo" class="contentslider">
+            
+
+			<div class="cs_wrapper">
+				<div class="cs_slider">
+
+					<div class="cs_article" id="div_1">
+						<h1>Prospecção de Leads</h1>
+					
+					<div class="module changelist-filters">
             <!-- PAGINATION TOP -->
             
-<form action="/sistema/leads/prospeccao/">
+<form id="form" action="/sistema/leads/prospeccao/">
 <div class="module pagination">
 	<ul class="pagination">
 		<li class="results">
@@ -35,33 +46,42 @@
 	</ul>
 	<br clear="all" /></div>
             
-                <!-- FILTERS -->
-                
-                <!-- SEARCH -->
-                
-                    <div id="search" class="module search span-6">
-                        
 
-    <button style="float: right" type="submit" class="search"></button>
-    <!-- Search Form -->
-   
-                    </div>
-                
+              
             
             <br clear="all" />
         </div>
-        <!-- DATE HIERARCHY -->
+
 </form>
         
-    
-    <form id="changelist-form" action="/sistema/campanhas/resultados/" method="post"><div style='display:none'></div>
-    	<input type="hidden" name="campanha" id="campanha" value="" />
-        <div id="changelist" class="container-full" style="">
+					</div><!-- End cs_article -->
 
-        </div><br clear="all" />
-        <!-- SUBMIT ROW -->
-            </div>
-    </form>
+					<div class="cs_article" id="div_2">
+
+						
+						
+					</div><!-- End cs_article -->
+
+				
+					
+
+				</div><!-- End cs_slider -->
+			</div><!-- End cs_wrapper -->
+
+		</div><!-- End contentslider -->
+
+    <script type="text/javascript">
+			$(function() {
+				$('#conteudo').ContentSlider({
+					width : '1300px',
+					height : '850px',
+					speed : 400,
+					easing : 'easeOutQuad',
+					textResize : true
+				});
+			});
+
+		</script>
 
             <br class="clear" />
         </div>

@@ -23,7 +23,7 @@ def index(request):
 @login_required
 def resultados(request):
 
-    if request.method == 'POST':
+    if request.method == 'POST' or request.method == 'GET':
             
         string = request.REQUEST
         id_campanha = string.get('campanha')

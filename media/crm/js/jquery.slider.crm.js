@@ -122,9 +122,9 @@
     	  o.ajax;
     	 
     	  $.ajax({
-   		   type: "POST",
-   		   url: "/sistema/campanhas/resultados/",
-   		   data: "campanha=" + '4e87d24fe28a3632a3000010',
+   		   type: "GET",
+   		   url: "/sistema/leads/prospeccao/",
+   		   data: $("#form").serialize(),
    		   dataType: "html",
    		   async: false,
    		   success: function(html){

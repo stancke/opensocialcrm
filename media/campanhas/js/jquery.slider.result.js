@@ -111,6 +111,7 @@
         if(inuse===false) {
           inuse = true;
           moveSlider('right', leftBtn);
+          $("#conteudo").css("height","500px");
         }
         return false; // Keep the link from firing
       });
@@ -124,7 +125,7 @@
     	  $.ajax({
    		   type: "POST",
    		   url: "/sistema/campanhas/resultados/",
-   		   data: "campanha=" + '4e87d24fe28a3632a3000010',
+   		   data: $("form").serialize(),
    		   dataType: "html",
    		   async: false,
    		   success: function(html){
@@ -134,7 +135,9 @@
 	   			if(inuse===false) {
 	   	          inuse=true;
 	   	          moveSlider('left', rightBtn);
+	   	          $("#conteudo").css("height","1700px");
 	   	        }
+	   		
    		   }
    		 });
     	

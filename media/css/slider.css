@@ -2,7 +2,7 @@
  * Color, Border, and Button Rules
  */
 .contentslider {
-  padding:10px; /* This acts as a border for the content slider */
+  padding:0px; /* This acts as a border for the content slider */
   background:#333; /* This is the color of said border */
 }
 .cs_wrapper, .cs_article {
@@ -22,7 +22,7 @@
  */
 .cs_article h2 {
   font-size:200%;
-  line-height:1.125em;
+
 }
   .cs_article h2 a {
     color:#333;
@@ -100,10 +100,22 @@
 }
 .cs_leftBtn, .cs_rightBtn {
   position:absolute;
-  top:0;
-  height:400px;
+  top:400px;
+  height:80px;
   padding:10px 0;
   z-index:10000;
+  -moz-border-radius: 15px;
+   border-radius: 15px;
+}
+
+.cs_rightBtn img{
+	margin-top: 30px;
+	margin-left: 6px;
+}
+
+.cs_leftBtn img{
+	margin-top: 30px;
+	margin-left: 6px;
 }
 .cs_leftBtn {
   left:0;
