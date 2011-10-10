@@ -436,7 +436,7 @@ var chart2;
 								color: '#000000',
 								connectorColor: '#000000',
 								formatter: function() {
-									return '<b>'+ this.point.name +'</b>: '+ this.y +'& visita (s)';
+									return '<b>'+ this.point.name +'</b>: '+ this.y +'% visita (s)';
 								}
 							}
 						}

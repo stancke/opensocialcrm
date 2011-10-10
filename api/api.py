@@ -99,4 +99,4 @@ class Facebook(object):
 class Linkedin(object):
     
     def __init__(self):
-        print "sas"
+        pass

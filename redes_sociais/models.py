@@ -21,4 +21,4 @@ class Linkedin(models.Model):
     usuario = models.CharField(max_length = 20)
     linkedin_app_id = models.CharField(max_length = 100)
     linkedin_app_secret = models.CharField(max_length = 100)
-    access_token= models.CharField(max_length = 100)
+    access_token= models.CharField(max_length = 100, blank=True, null=True)

@@ -1,0 +1,46 @@
+{% extends "admin/base_site.html" %}
+{% block title %}LinkedIn - OpenSocialCRM{% endblock %}
+{% block content %}
+<script src="/static/grappelli/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript" src="/media/js/highcharts/highcharts.js"></script>
+<script language="javascript" type="text/javascript" src="/media/campanhas/js/scripts.js"></script>
+<link href="/static/grappelli/jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8">
+<script src="/static/grappelli/jquery/ui/js/jquery-ui-1.8.5.custom.min.js" type="text/javascript"></script>
+<script src="/media/campanhas/js/jquery.slider.result.js" type="text/javascript"></script>
+<link href="/media/css/slider.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8">
+<div id="content-main">
+
+{% include "default/header.html" %}
+
+        <script type="text/javascript">
+        window.open ("{{ url }}","LinkedIn","menubar=0,resizable=1,width=650,height=250");
+		</script>
+        
+        <div id="conteudo" class="contentslider">
+
+			<div class="cs_wrapper">
+				<div class="cs_slider">
+
+					<div class="cs_article" id="div_1">
+						<h1>Liberação LinkedIn</h1>
+					<form action="/sistema/campanhas/confirma_linkedin/" method="post">
+						<label>Insira o código de ativação:</label> 
+						<input name="codigo_confirmacao" type="text" value="" /> 
+						<button>Enviar</button>
+			        </form>
+					</div><!-- End cs_article -->
+
+					<div class="cs_article" id="div_2">
+					</div><!-- End cs_article -->
+				</div><!-- End cs_slider -->
+			</div><!-- End cs_wrapper -->
+
+		</div><!-- End contentslider -->
+        
+        <!-- SUBMIT ROW -->
+            </div>
+    </form>
+
+            <br class="clear" />
+</div>
+{% endblock %}
