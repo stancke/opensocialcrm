@@ -15,6 +15,7 @@ class Facebook(models.Model):
     usuario = models.CharField(max_length = 20)
     facebook_app_id = models.CharField(max_length = 100)
     facebook_app_secret = models.CharField(max_length = 100)
+    access_token= models.CharField(max_length = 100, blank=True, null=True)
 
 class Linkedin(models.Model):
     
@@ -22,3 +23,4 @@ class Linkedin(models.Model):
     linkedin_app_id = models.CharField(max_length = 100)
     linkedin_app_secret = models.CharField(max_length = 100)
     access_token= models.CharField(max_length = 100, blank=True, null=True)
+    oauth_token_secret = models.CharField(max_length = 100, blank=True, null=True)

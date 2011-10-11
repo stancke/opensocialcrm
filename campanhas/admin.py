@@ -49,36 +49,26 @@ def publicar(self, request, queryset):
  
     if camp.facebook == True:
         
-        import oauth2 as oauth
-        import urlparse
-
-        consumer_key           = '205578726165733'
-        consumer_secret        = '75f2b8ef906d1a3cc99beec92c65430c'
-        
-        graph = facebook.GraphAPI(acces_token=12)
-        cookie = facebook.get_user_from_cookie(request.COOKIES, consumer_key,consumer_secret )
-        return HttpResponse(cookie)
-        graph = facebook.GraphAPI()
-        
+        import urllib
+        import urllib2
+        import json
         configs = Config_facebook.objects.all()
-        f = Facebook(configs)
-        f.postaMensagem(camp.descricao)
+        gurl = 'https://graph.facebook.com/me/friends?access_token=' + configs[0].access_token
+        req = urllib2.Request(gurl)
+        req.add_header('User-Agent', 'toolbar')
+        results = json.load(urllib2.urlopen(req))
+        
+        return HttpResponse(results['data'])
+        
         
     if camp.linkedin == True:
         
         from liclient import LinkedInAPI
         configs = Config_linkedin.objects.all()
-        #return HttpResponse(configs[0].linkedin_app_secret)
+        
         APIClient = LinkedInAPI(str(configs[0].linkedin_app_id), str(configs[0].linkedin_app_secret))
-        request_token = APIClient.get_request_token()
-        
-        
-        authorization_url = APIClient.base_url + APIClient.authorize_path
-        url = "%s?oauth_token=%s" % (authorization_url, request_token['oauth_token'])
-        
-        request.session['request_token'] = request_token
-        
-        return HttpResponseRedirect('/sistema/campanhas/autoriza_linkedin/?url=' + url)
+        tokens = {'oauth_token_secret': str(configs[0].oauth_token_secret),'oauth_token': str(configs[0].access_token)}
+        APIClient.set_status_update(tokens, camp.descricao)
         
         
     self.message_user(request, "Campanha " + titulo + " " + mensagem )
