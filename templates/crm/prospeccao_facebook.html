@@ -1,0 +1,96 @@
+<script language="javascript" type="text/javascript" src="/media/js/highcharts/highcharts.js"></script>
+<script language="javascript" type="text/javascript" src="/media/crm/js/script.js"></script>
+<link href="/static/grappelli/jquery/ui/css/custom-theme/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" media="screen" title="no title" charset="utf-8">
+<div id="content-main">
+                <div id="breadcrumbs">
+             <a href="../../">Início</a> &rsaquo;
+             <a href="../">Dashboad</a> &rsaquo;
+             <a href="">Leads</a> &rsaquo;
+             Prospecção
+        </div>
+    <h1>Prospecção de Leads - Facebook</h1>
+
+	<div id="tabs">
+	<ul>
+	<li><a href="#tabs-1">Comentários</a></li>
+	<li><a href="#tabs-2">Likes</a></li>
+	</ul>
+	<div id="tabs-1">
+	<div class="module changelist-results">
+	<table>
+	<thead>
+		<tr>
+			<th class="sortable">Campanha</th>
+			<th class="sortable">Nome</th>
+			<th class="sortable">Comentário</th>
+			<th class="sortable">Dia do Comentário</th>
+			<th class="sortable">Adicionar Lead</th>
+			<th class="sortable">Adicionado</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for dado in dados %}
+		 {% for comentario in dado.comments.data %}
+			<tr class="row1">
+			<td>{{ dado.message }}</td>
+			<td>{{ comentario.from.name }}</td>
+			<td>{{ comentario.message }}</td>
+			<td>{{ comentario.created_time}}</td> 
+			
+			{% if mencao.user.adicionado == "True" %}
+				<td style="text-align: center!important"></td>
+				<td style="text-align: center!important"><img id="adicionado{{ forloop.counter }}" src="/media/images/icons/accept.png" /></td>
+			{% else %}
+				<td style="text-align: center!important"><img id="adicionar{{ forloop.counter }}" rel="{{ forloop.counter }}"nome="{{ comentario.from.name }}" twitter="" linkedin="" facebook="{{ comentario.from.id }}" class="lead" src="/media/images/icons/user_add.png" style="cursor: pointer;" /></td>
+				<td style="text-align: center!important"><img id="adicionado{{ forloop.counter }}" src="/media/images/icons/delete.png" /></td>
+			{% endif %}
+			</tr>
+		  {% endfor %}
+		{% endfor %}
+		</tbody>
+	</table>
+	</div>
+	</div>
+	<div id="tabs-2">
+	<div class="module changelist-results">
+	<table>
+	<thead>
+		<tr>
+			<th class="sortable">Campanha</th>
+			<th class="sortable">Nome</th>
+			<th class="sortable">Adicionar Lead</th>
+			<th class="sortable">Adicionado</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for dado in dados %}
+		 {% for like in dado.likes.data %}
+			<tr class="row1">
+			<td>{{ dado.message }}</td>
+			<td>{{ like.name }}</td>
+			
+			{% if mencao.user.adicionado == "True" %}
+				<td style="text-align: center!important"></td>
+				<td style="text-align: center!important"><img id="adicionado{{ forloop.counter }}" src="/media/images/icons/accept.png" /></td>
+			{% else %}
+				<td style="text-align: center!important"><img id="adicionar{{ forloop.counter }}" rel="{{ forloop.counter }}"nome="{{ like.name }}"  twitter="" linkedin="" facebook="{{ like.id }}" class="lead" src="/media/images/icons/user_add.png" style="cursor: pointer;" /></td>
+				<td style="text-align: center!important"><img id="adicionado{{ forloop.counter }}" src="/media/images/icons/delete.png" /></td>
+			{% endif %}
+			</tr>
+		  {% endfor %}
+		{% endfor %}
+		</tbody>
+	</table>
+	</div>
+	</div>
+	</div>
+
+        
+    </form>
+
+            <br class="clear" />
+        </div>
+    </div>
+
+
+</div>

@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from redes_sociais.models import Twitter as Config_twitter
+from redes_sociais.models import Twitter as Config_twitter, Facebook as Config_facebook, Linkedin as Config_linkedin
 from api.api import Twitter
 from crm.models import Lead
 from django.contrib.auth.decorators import login_required
@@ -18,11 +18,8 @@ def prospeccao(request):
     retweets = None
     
     if request.method == 'GET':
-            
-        string = request.REQUEST
-        twitter = string.get('twitter')
         
-        if twitter == 'on':
+        if request.REQUEST.get('rede_social') == 'twitter':
     
             configs = Config_twitter.objects.all()
             a = Twitter(configs)
@@ -48,19 +45,61 @@ def prospeccao(request):
                         
                 aux = aux + 1
                 
-        else:
-            erro = True
-
-    return render_to_response('crm/prospeccao.html', {
+            return render_to_response('crm/prospeccao_twitter.html', {
                                                      'mencoes':array_mencao,
                                                      'retweets':retweets
                                                      }
                                   )
+        elif request.REQUEST.get('rede_social') == 'facebook':
+            
+            import urllib
+            import urllib2
+            import json
+            configs = Config_facebook.objects.all()
+            gurl = 'https://graph.facebook.com/me/feed?access_token=' + configs[0].access_token
+            req = urllib2.Request(gurl)
+            req.add_header('User-Agent', 'toolbar')
+            results = json.load(urllib2.urlopen(req))
+                
+            return render_to_response('crm/prospeccao_facebook.html', {
+                                                     'dados':results['data'],
+                                                     }
+                                    )
+        elif request.REQUEST.get('rede_social') == 'linkedin':
+             
+            from liclient import LinkedInAPI
+            configs = Config_linkedin.objects.all()
+            
+            APIClient = LinkedInAPI(str(configs[0].linkedin_app_id), str(configs[0].linkedin_app_secret))
+            token = {'oauth_token_secret': str(configs[0].oauth_token_secret),'oauth_token': str(configs[0].access_token)}
+            key = APIClient.get_network_updates(token, scope="self")
+            
+            chaves = []
+            for a in key['results']:
+                chaves.append(a.update_key)
+                
+            key = []
+
+            for chave in chaves:
+                
+                result = APIClient.get_comment_feed(token, chave)
+                import pprint
+
+                return HttpResponse(pprint.pprint(result))
+                          
+            
+            return HttpResponse(vars(result))
+                
+
+   
 @login_required   
 def adicionar_lead(request):
     
-    string = request.REQUEST
-    l = Lead(nome=string.get('nome'), twitter=string.get('twitter'))
+    l = Lead(nome=request.REQUEST.get('nome'), 
+             twitter=request.REQUEST.get('twitter'), 
+             facebook=request.REQUEST.get('facebook'), 
+             linkedin=request.REQUEST.get('linkedin')
+             )
     l.save()
 
     return HttpResponse('{"adicionado": true}')

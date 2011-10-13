@@ -76,12 +76,12 @@ def publicar(self, request, queryset):
 
 class CampanhaAdmin(admin.ModelAdmin):    
     
-    list_display = ('titulo','descricao','url','twitter','facebook', 'linkedin','criada_em','enviado_em', 'status')
+    list_display = ('titulo','descricao','twitter','facebook', 'linkedin','criada_em','enviado_em', 'status')
     search_fields = ['titulo', 'descricao']
     
     fieldsets = (
         (None, {
-            'fields': ('twitter','facebook', 'linkedin','titulo', 'descricao', 'url')
+            'fields': ('twitter','facebook', 'linkedin','titulo', 'descricao')
         }),
     )
 
