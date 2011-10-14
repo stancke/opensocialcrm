@@ -4,7 +4,7 @@ from redes_sociais.models import Twitter as Config_twitter, Facebook as Config_f
 from api.api import Twitter
 from crm.models import Lead
 from django.contrib.auth.decorators import login_required
-
+  
 @login_required
 def index(request):
 
@@ -60,6 +60,8 @@ def prospeccao(request):
             req = urllib2.Request(gurl)
             req.add_header('User-Agent', 'toolbar')
             results = json.load(urllib2.urlopen(req))
+            
+            print (results)
                 
             return render_to_response('crm/prospeccao_facebook.html', {
                                                      'dados':results['data'],
@@ -73,22 +75,45 @@ def prospeccao(request):
             APIClient = LinkedInAPI(str(configs[0].linkedin_app_id), str(configs[0].linkedin_app_secret))
             token = {'oauth_token_secret': str(configs[0].oauth_token_secret),'oauth_token': str(configs[0].access_token)}
             key = APIClient.get_network_updates(token, scope="self")
-            
+           
             chaves = []
-            for a in key['results']:
-                chaves.append(a.update_key)
-                
-            key = []
-
+            try:
+                for a in key['results']:
+                    chaves.append(a.update_key)
+            except:
+                erro =1
+    
+            resultado = []
             for chave in chaves:
                 
                 result = APIClient.get_comment_feed(token, chave)
-                import pprint
-
-                return HttpResponse(pprint.pprint(result))
-                          
-            
-            return HttpResponse(vars(result))
+                
+                if result != 'LinkedInError':
+                    resultado.append(result)
+                    
+            resultados_finais = []
+            auxiliar = 0
+            for aux in resultado:
+                try:
+                    for a in aux:
+                        jsons = {}
+                        jsons['titulo'] = a._NetworkUpdateComment__content.headline
+                        jsons['update_content'] = a.update_content
+                        jsons['first_name'] = a.first_name
+                        jsons['last_name'] = a.last_name
+                        jsons['profile_url'] = a._NetworkUpdateComment__content.profile_url
+                        jsons['id'] = a._NetworkUpdateComment__content.id
+                        contador = int(auxiliar)
+                        jsons['campanha'] = key['results'][contador].update_content
+                        resultados_finais.append(jsons)
+                except:
+                    erro = 12
+                auxiliar = auxiliar +1
+                    
+            return render_to_response('crm/prospeccao_linkedin.html', {
+                                                     'dados':resultados_finais,
+                                                     }
+                                    )
                 
 
    

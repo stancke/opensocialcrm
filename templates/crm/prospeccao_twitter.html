@@ -34,7 +34,7 @@
 		{% for mencao in mencoes %}
 			<tr class="row1">
 			<td><img src="{{ mencao.author.profile_image_url}}" /></td>
-			<td><strong>{{ mencao.user.screen_name }}</strong></td>
+			<td><strong><a href="http://twitter.com/{{mencao.user.screen_name}}">{{ mencao.user.screen_name }}</a></strong></td>
 			<td>{{ mencao.text }}</td>
 			<td style="text-align: center!important">{{ mencao.user.followers_count }}</td>
 			<td style="text-align: center!important">{{ mencao.user.friends_count }}</td>
