@@ -1,9 +1,0 @@
-syntax: glob
-build
-*.orig
-*.rej
-*~
-*.o
-*.pyo
-*.pyc
-.svn
