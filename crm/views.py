@@ -60,8 +60,7 @@ def prospeccao(request):
             req = urllib2.Request(gurl)
             req.add_header('User-Agent', 'toolbar')
             results = json.load(urllib2.urlopen(req))
-            
-            print (results)
+
                 
             return render_to_response('crm/prospeccao_facebook.html', {
                                                      'dados':results['data'],

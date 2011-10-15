@@ -1,0 +1,3 @@
+recursive-include keyedcache/templates *
+recursive-include keyedcache/locale *
+recursive-include keyedcache/templatetags *

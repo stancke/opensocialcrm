@@ -1,0 +1,18 @@
+Metadata-Version: 1.0
+Name: django-threaded-multihost
+Version: 1.4-1
+Summary: Django Threaded Multihost
+Home-page: http://bitbucket.org/bkroeze/django-threaded-multihost/
+Author: Bruce Kroeze
+Author-email: brucek@solidsitesolutions.com
+License: New BSD License
+Description: django-threaded multihost provides support utilities to
+            enable easy multi-site awareness in Django apps.
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Framework :: Django

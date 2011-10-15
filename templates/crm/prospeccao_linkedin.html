@@ -41,7 +41,7 @@
 				<td style="text-align: center!important"></td>
 				<td style="text-align: center!important"><img id="adicionado{{ forloop.counter }}" src="/media/images/icons/accept.png" /></td>
 			{% else %}
-				<td style="text-align: center!important"><img id="adicionar{{ forloop.counter }}" rel="{{ forloop.counter }}"nome="{{ comentario.from.name }}" twitter="" linkedin="" facebook="{{ comentario.from.id }}" class="lead" src="/media/images/icons/user_add.png" style="cursor: pointer;" /></td>
+				<td style="text-align: center!important"><img id="adicionar{{ forloop.counter }}" rel="{{ forloop.counter }}"nome="{{ dado.first_name }} {{ dado.last_name }}" twitter="" linkedin="{{ dado.id }}" facebook="" class="lead" src="/media/images/icons/user_add.png" style="cursor: pointer;" /></td>
 				<td style="text-align: center!important"><img id="adicionado{{ forloop.counter }}" src="/media/images/icons/delete.png" /></td>
 			{% endif %}
 			</tr>

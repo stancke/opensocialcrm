@@ -45,6 +45,10 @@ def resultados(request):
             elif re['id'] == 'www.facebook.com':
             
                 result['analytics']['allTime']['referrers'][aux]['id'] = 'Facebook'
+            
+            elif re['id'] == 'www.linkedin.com':
+            
+                result['analytics']['allTime']['referrers'][aux]['id'] = 'LinkedIn'
 
             aux = aux + 1
         

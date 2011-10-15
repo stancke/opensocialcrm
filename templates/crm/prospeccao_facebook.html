@@ -33,7 +33,7 @@
 		 {% for comentario in dado.comments.data %}
 			<tr class="row1">
 			<td>{{ dado.message }}</td>
-			<td>{{ comentario.from.name }}</td>
+			<td><a href="http://www.facebook.com/profile.php?id={{ comentario.from.id }}">{{ comentario.from.name }}</a></td>
 			<td>{{ comentario.message }}</td>
 			<td>{{ comentario.created_time}}</td> 
 			

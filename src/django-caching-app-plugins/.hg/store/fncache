@@ -1,0 +1,17 @@
+data/app_plugins/templates/app_plugins/app_plugin.html.i
+data/app_plugins/templatetags/app_plugins.py.i
+data/app_plugins/models.py.i
+data/app_plugins/management/__init__.py.i
+data/app_plugins/locale/fr/LC_MESSAGES/django.po.i
+data/LICENSE.rst.i
+data/app_plugins/templatetags/__init__.py.i
+data/app_plugins/forms.py.i
+data/.hgignore.i
+data/setup.py.i
+data/MANIFEST.in.i
+data/app_plugins/admin.py.i
+data/app_plugins/management/commands/sync_plugins.py.i
+data/app_plugins/library.py.i
+data/app_plugins/templates/app_plugins/plugin_point.html.i
+data/app_plugins/__init__.py.i
+data/app_plugins/management/commands/__init__.py.i

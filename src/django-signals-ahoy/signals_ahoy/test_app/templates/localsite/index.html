@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Tests for Signals Ahoy</h1>
+<ul>
+    <li><a href="collect_urls/">collect_urls</a></li>
+    <li><a href="async_note/">asynchronous listener</a></li>
+    <li><a href="sigview/">Signalled view</a></li>
+    <li><a href="form/">Forms</a></li>
+</ul>
+<p>
+    Search
+    <form action="search/" method="get">
+        <input name="keywords" />
+        <input type="submit" />
+    </form>
+</p>
+{% endblock %}

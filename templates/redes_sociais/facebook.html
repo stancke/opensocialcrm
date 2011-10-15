@@ -25,6 +25,7 @@
           var path = 'https://www.facebook.com/dialog/oauth?';
       var queryParams = ['client_id=' + appID,
         'redirect_uri=' + "http://blog.stancke.com.br",
+        'scope=' + "publish_stream",
         'response_type=token'];
       var query = queryParams.join('&');
       var url = path + query;

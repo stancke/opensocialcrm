@@ -1,0 +1,12 @@
+syntax: glob
+build
+*.orig
+*.rej
+*~
+*.o
+*.pyo
+*.pyc
+_private
+dist
+build
+*.egg-info

@@ -1,0 +1,15 @@
+syntax: glob
+build
+*.orig
+*.rej
+*~
+*.o
+*.pyo
+*.pyc
+_private
+*_local.py
+_temp
+test.db
+dist
+django_signals_ahoy.egg-info
+

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Search Test</h1>
+<p>
+    {% for pkg, result in results.items %}
+    {{ pkg }}: {{ result }}<br/>
+    {% endfor %}
+</p>
+<p><a href="{% url test_index %}">Back to index</a></p>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Form Example</h1>
+{% if formdata %}
+<p>Form Data:<br/>
+<i>(Should say what you entered, plus &quot;presave=presave&quot;, &quot;postsave=postsave&quot;)</i><br/>
+<table>
+{% for key, val in formdata.items %}
+{{key}}={{val}}<br/>
+{% endfor %}
+</table>
+</p>
+{% endif %}
+<p>
+    <form name="exampleform" action="." method="POST">
+    {{ form.as_p }}
+    <br/><input type="submit" />
+    </form>
+    
+</p>
+<p><a href="{% url test_index %}">Back to index</a></p>
+{% endblock %}

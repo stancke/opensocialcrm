@@ -10,7 +10,6 @@ import facebook
 
 def publicar(self, request, queryset):
     
-
     string = request.REQUEST
     camp = Campanha.objects.get(id=string.get('_selected_action'))
     request.session['campanha'] = camp
@@ -53,12 +52,15 @@ def publicar(self, request, queryset):
         import urllib2
         import json
         configs = Config_facebook.objects.all()
-        gurl = 'https://graph.facebook.com/me/friends?access_token=' + configs[0].access_token
-        req = urllib2.Request(gurl)
+        values = {"access_token" : configs[0].access_token,
+                  "message": camp.descricao
+                 }
+        gurl = 'https://graph.facebook.com/me/feed'
+        
+        data = urllib.urlencode(values)
+        req = urllib2.Request(gurl, data)
         req.add_header('User-Agent', 'toolbar')
         results = json.load(urllib2.urlopen(req))
-        
-        return HttpResponse(results['data'])
         
         
     if camp.linkedin == True:

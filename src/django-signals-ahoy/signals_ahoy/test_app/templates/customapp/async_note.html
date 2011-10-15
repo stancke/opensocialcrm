@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Tests for Signals Ahoy</h1>
+<h2>AsynchronousListeners</h2>
+<p>The counts below should be equal, but should go up by 1 five seconds after the last page load.</p>
+<p>Start count: {{ startct }}<br>
+    End count: {{ endct }}<br>
+    latest: {{ latest.note }}
+</p>
+<p><a href="{% url test_index %}">Back to index</a></p>
+{% endblock %}

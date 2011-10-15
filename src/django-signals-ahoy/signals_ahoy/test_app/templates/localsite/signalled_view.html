@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Signalled View</h1>
+<p>
+    The following line should say: &quot;modified&quot;<br/>
+    {{ data }}
+</p>
+<p><a href="{% url test_index %}">Back to index</a></p>
+{% endblock %}
