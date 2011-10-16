@@ -137,7 +137,6 @@
 	   	          moveSlider('left', rightBtn);
 	   	          $("#conteudo").css("height","1700px");
 	   	        }
-	   		
    		   }
    		 });
     	

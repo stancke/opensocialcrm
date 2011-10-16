@@ -127,6 +127,9 @@
    		   data: $("#form").serialize(),
    		   dataType: "html",
    		   async: false,
+   		   beforeSend: function(html){
+   			 $("#div_1").append('<img id="loader" style="margin-top: 100px; margin-left: 500px" alt="loader" src="/media/images/loader.gif">');  
+   		   },
    		   success: function(html){
    			   $("#div_2").html(html);
    		   },
@@ -135,6 +138,7 @@
 	   	          inuse=true;
 	   	          moveSlider('left', rightBtn);
 	   	        }
+	   			$("#loader").remove();
    		   }
    		 });
     	

@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from redes_sociais.models import Twitter as Config_twitter, Linkedin as Config_linkedin, Facebook as Config_facebook
+from redes_sociais.models import Linkedin as Config_linkedin, Facebook as Config_facebook
 
 
 def autoriza_linkedin(request):

@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*- 
 from campanhas.models import Campanha
 from django.contrib import admin
-from redes_sociais.models import Twitter as Config_twitter, Facebook as Config_facebook, Linkedin as Config_linkedin
-from api.api import Twitter, Facebook
+from api.api import Twitter, Facebook, Linkedin
 from django.http import HttpResponse, HttpResponseRedirect
 import datetime
 from api.google import Google
-import facebook
 
 def publicar(self, request, queryset):
     
@@ -30,50 +28,30 @@ def publicar(self, request, queryset):
     camp.descricao = camp.descricao.replace(url_real, url_reduzida)
     camp.save()
     '''
-    titulo = ''
-    mensagem = ''
-    queryset.update(status=True, enviado_em=datetime.datetime.now())
     
-    if camp.twitter == True:
-
-        configs = Config_twitter.objects.all()
-        a = Twitter(configs)
-        try:
-            a.enviaTweet(camp.descricao)
-            titulo = camp.titulo
-            mensagem = 'publicada com sucesso!'
-        except:
-            titulo = camp.titulo
-            mensagem = 'obteve falha ao publicar!'
- 
-    if camp.facebook == True:
+    enviado = True
+    
+    try:
+        if camp.twitter == True:
+    
+            Twitter().enviaTweet(camp.descricao)
+     
+        if camp.facebook == True:
+            
+            Facebook().enviaMensagem(camp.descricao)
+            
+        if camp.linkedin == True:
+            
+            Linkedin().enviaMensagem(camp.descricao)
+    except:
+        enviado = False
+    
+    if(enviado):
+        queryset.update(status=True, enviado_em=datetime.datetime.now())    
+        self.message_user(request, "Campanha enviada")
         
-        import urllib
-        import urllib2
-        import json
-        configs = Config_facebook.objects.all()
-        values = {"access_token" : configs[0].access_token,
-                  "message": camp.descricao
-                 }
-        gurl = 'https://graph.facebook.com/me/feed'
-        
-        data = urllib.urlencode(values)
-        req = urllib2.Request(gurl, data)
-        req.add_header('User-Agent', 'toolbar')
-        results = json.load(urllib2.urlopen(req))
-        
-        
-    if camp.linkedin == True:
-        
-        from liclient import LinkedInAPI
-        configs = Config_linkedin.objects.all()
-        
-        APIClient = LinkedInAPI(str(configs[0].linkedin_app_id), str(configs[0].linkedin_app_secret))
-        tokens = {'oauth_token_secret': str(configs[0].oauth_token_secret),'oauth_token': str(configs[0].access_token)}
-        APIClient.set_status_update(tokens, camp.descricao)
-        
-        
-    self.message_user(request, "Campanha " + titulo + " " + mensagem )
+    else:
+        self.message_user(request, "Erro em envio de campanha")
             
 
 class CampanhaAdmin(admin.ModelAdmin):    

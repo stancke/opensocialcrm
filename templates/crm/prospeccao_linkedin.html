@@ -37,7 +37,7 @@
 			<td>{{ dado.titulo }}</td>
 			<td>{{ dado.update_content }}</td>
 			
-			{% if mencao.user.adicionado == "True" %}
+			{% if dado.lead == "True" %}
 				<td style="text-align: center!important"></td>
 				<td style="text-align: center!important"><img id="adicionado{{ forloop.counter }}" src="/media/images/icons/accept.png" /></td>
 			{% else %}
