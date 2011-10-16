@@ -28,7 +28,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		{% for dado in dados %}
+		{% for dado in dados.dados_comments %}
 			<tr class="row1">
 			<td>{{ dado.campanha }}</td>
 			<td><a href="http://www.facebook.com/profile.php?id={{ comentario.from.id }}">{{ dado.name }}</a></td>
@@ -59,21 +59,19 @@
 		</tr>
 	</thead>
 	<tbody>
-		{% for dado in dados %}
-		 {% for like in dado.likes.data %}
+		{% for dado in dados.dados_likes %}
 			<tr class="row1">
-			<td>{{ dado.message }}</td>
-			<td>{{ like.name }}</td>
+			<td>{{ dado.campanha }}</td>
+			<td><a href="http://www.facebook.com/profile.php?id={{ dado.id }}">{{ dado.name }}</a></td>
 			
-			{% if mencao.user.adicionado == "True" %}
+			{% if dado.lead == "True" %}
 				<td style="text-align: center!important"></td>
 				<td style="text-align: center!important"><img id="adicionado{{ forloop.counter }}" src="/media/images/icons/accept.png" /></td>
 			{% else %}
-				<td style="text-align: center!important"><img id="adicionar{{ forloop.counter }}" rel="{{ forloop.counter }}"nome="{{ like.name }}"  twitter="" linkedin="" facebook="{{ like.id }}" class="lead" src="/media/images/icons/user_add.png" style="cursor: pointer;" /></td>
+				<td style="text-align: center!important"><img id="adicionar{{ forloop.counter }}" rel="{{ forloop.counter }}"nome="{{ dado.name }}"  twitter="" linkedin="" facebook="{{ dado.id }}" class="lead" src="/media/images/icons/user_add.png" style="cursor: pointer;" /></td>
 				<td style="text-align: center!important"><img id="adicionado{{ forloop.counter }}" src="/media/images/icons/delete.png" /></td>
 			{% endif %}
 			</tr>
-		  {% endfor %}
 		{% endfor %}
 		</tbody>
 	</table>

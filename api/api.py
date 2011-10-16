@@ -120,33 +120,57 @@ class Facebook(object):
         req.add_header('User-Agent', 'toolbar')
         
         retorno = json.load(urllib2.urlopen(req))
-        
-        dados_tratados =  []
-        
+        retorno2 = retorno
+        dados_comments_final =  []
+        dados_likes_final =  []
         for dado in retorno['data']:
-            
-            #print (retorno['data'])
+             
             try:
+                
                 for aux in dado['comments']['data']:
                     
-                    dados = {}
-                    dados['name'] = aux['from']['name']
-                    dados['id'] = aux['from']['id']
-                    dados['message'] = aux['message']
-                    #dados['campanha'] = dado['message']
+                    dados_comment = {}
+                    dados_comment['name'] = aux['from']['name']
+                    dados_comment['id'] = aux['from']['id']
+                    dados_comment['message'] = aux['message']
+                    dados_comment['campanha'] = dado['message']
                     
                     if Lead.objects.filter(facebook = int(aux['from']['id'])).count() > 0:
-                        dados['lead'] = "True"
+                        dados_comment['lead'] = "True"
                     else:
-                        dados['lead'] = "False"
+                        dados_comment['lead'] = "False"
                     
-                    print(dados)
-                    dados_tratados.append(dados)
+                    dados_comments_final.append(dados_comment)
+
             except:
                 erro = 1
                 
-        return dados_tratados
+        for dado in retorno2['data']:
+             
+            try:
+                
+                for aux_like in dado['likes']['data']:
+                    
+                    dados_likes = {}
+                    dados_likes['name'] = aux_like['name']
+                    dados_likes['id'] = aux_like['id']
+                    dados_likes['campanha'] = dado['message']
+                    
+                    if Lead.objects.filter(facebook = int(aux_like['id'])).count() > 0:
+                        dados_likes['lead'] = "True"
+                    else:
+                        dados_likes['lead'] = "False"
+                    
+                    dados_likes_final.append(dados_likes)
+  
 
+            except:
+                erro = 1
+                
+                
+                
+        dados_tratados = {"dados_comments": dados_comments_final, "dados_likes":dados_likes_final}
+        return dados_tratados
         
 class Linkedin(object):
     
