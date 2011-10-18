@@ -19,7 +19,7 @@
     <h1>Resultados da Campanha</h1>
             
     
-    <form id="changelist-form" action="" method="post"><div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='f0e73daffbc1a8935a641fbb0ee7d5a0' /></div>
+    <form id="changelist-form" action="" method="post"><div style='display:none'></div>
         <div id="changelist" class="container-full" style="">
 
 
@@ -68,15 +68,20 @@
 	</div>
 	<div id="tabs-2">
 		
-			<div id="div_locais_mes" style="width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_paises_mes" style="width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_browsers_mes" style="width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_plataformas_mes" style="width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			
-			<input type="hidden" id="total_mes" value="{{ result.analytics.month.shortUrlClicks}}" />
-			
+			{% if result.analytics.month %}
+
+			<div id="div_locais_mes" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_locais_barra_mes" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_paises_mes" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_paises_barra_mes" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_browsers_mes" style="padding-left: 50px;width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_browsers_barra_mes" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_plataformas_mes" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_plataformas_barra_mes" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<input type="hidden" id="total" value="{{ dados.total}}" />
+	
 			{% for local in result.analytics.month.referrers %}
-			<input type="hidden" class="locais_mes" count="{{ local.count}}" value="{{ local.id}}" />
+			<input type="hidden" class="locais_mes" count="{{ local.count}}" value="{{ local.id }}" />
 			{% endfor %}
 			
 			{% for browser in result.analytics.month.browsers %}
@@ -91,19 +96,29 @@
 			<input type="hidden" class="plataformas_mes" count="{{ plataforma.count}}" value="{{ plataforma.id}}" />
 			{% endfor %}
 		
+		{% else %}
+		
+		<h1 style="margin: 10px 10px;">Não possui nenhum dado</h1>
+		
+		{% endif %}
+		
 	</div>
 	<div id="tabs-3">
 		
 		{% if result.analytics.day %}
-			<div id="div_locais_dia" style="width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_paises_dia" style="width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_browsers_dia" style="width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_plataformas_dia" style="width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-	
-			<input type="hidden" id="total" value="{{ result.analytics.day.shortUrlClicks}}" />
+
+			<div id="div_locais_dia" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_locais_barra_dia" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_paises_dia" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_paises_barra_dia" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_browsers_dia" style="padding-left: 50px;width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_browsers_barra_dia" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_plataformas_dia" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_plataformas_barra_dia" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<input type="hidden" id="total" value="{{ dados.total}}" />
 	
 			{% for local in result.analytics.day.referrers %}
-			<input type="hidden" class="locais_dia" count="{{ local.count}}" value="{{ local.id}}" />
+			<input type="hidden" class="locais_dia" count="{{ local.count}}" value="{{ local.id }}" />
 			{% endfor %}
 			
 			{% for browser in result.analytics.day.browsers %}
@@ -117,51 +132,52 @@
 			{% for plataforma in result.analytics.day.platforms %}
 			<input type="hidden" class="plataformas_dia" count="{{ plataforma.count}}" value="{{ plataforma.id}}" />
 			{% endfor %}
+		
 		{% else %}
-			<h1 style="margin: 10px 10px;">Não possui dados de hoje </h1>
+		
+		<h1 style="margin: 10px 10px;">Não possui nenhum dado</h1>
+		
 		{% endif %}
+		
 	</div>
 	
 	<div id="tabs-4">
 		
 		{% if result.analytics.twoHours %}
-		
-			<div id="div_locais_horas" style="width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_paises_horas" style="width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_browsers_horas" style="width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_plataformas_horas" style="width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-	
-			<input type="hidden" id="total_horas" value="{{ result.analytics.twoHours.shortUrlClicks}}" />
+
+			<div id="div_locais_hora" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_locais_barra_hora" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_paises_hora" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_paises_barra_hora" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_browsers_hora" style="padding-left: 50px;width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_browsers_barra_hora" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_plataformas_hora" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_plataformas_barra_hora" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<input type="hidden" id="total" value="{{ dados.total}}" />
 	
 			{% for local in result.analytics.twoHours.referrers %}
-			<input type="hidden" class="locais_horas" count="{{ local.count}}" value="{{ local.id}}" />
+			<input type="hidden" class="locais_hora" count="{{ local.count}}" value="{{ local.id }}" />
 			{% endfor %}
 			
 			{% for browser in result.analytics.twoHours.browsers %}
-			<input type="hidden" class="browsers_horas" count="{{ browser.count}}" value="{{ browser.id}}" />
+			<input type="hidden" class="browsers_hora" count="{{ browser.count}}" value="{{ browser.id}}" />
 			{% endfor %}
 			
 			{% for pais in result.analytics.twoHours.countries %}
-			<input type="hidden" class="paises_horas" count="{{ pais.count}}" value="{{ pais.id}}" />
+			<input type="hidden" class="paises_hora" count="{{ pais.count}}" value="{{ pais.id}}" />
 			{% endfor %}
 			
 			{% for plataforma in result.analytics.twoHours.platforms %}
-			<input type="hidden" class="plataformas_horas" count="{{ plataforma.count}}" value="{{ plataforma.id}}" />
+			<input type="hidden" class="plataformas_hora" count="{{ plataforma.count}}" value="{{ plataforma.id}}" />
 			{% endfor %}
 		
 		{% else %}
-			<h1 style="margin: 10px 10px;">Não possui dados nas últimas 2 horas</h1>
+		
+		<h1 style="margin: 10px 10px;">Não possui nenhum dado</h1>
+		
 		{% endif %}
 	</div>
 </div>
-
-
-
-<!--
-<div id="div_container3" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div>
-<div id="div_container4" style="width: 650px; height: 400px; margin: 0 auto; float:left;"></div> -->
-		
-
 
 <br clear="all" />
         

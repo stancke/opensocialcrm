@@ -31,32 +31,112 @@ def resultados(request):
         result = Google().analisar_dados(camp.url_reduzida)
         aux = 0
         quantidade_twitter = 0
+        quantidade_twitter_mes = 0
+        quantidade_twitter_dia = 0
+        quantidade_twitter_hora = 0
         
-        for re in result['analytics']['allTime']['referrers']:
-          
-            if (re['id'] == 'twitter.com') or (re['id'] == 't.co'):
-                quantidade_twitter += int(re['count'])
-                result['analytics']['allTime']['referrers'][aux]['count'] = 0
-
-            elif re['id'] == 'Unknown/empty':
-            
-                result['analytics']['allTime']['referrers'][aux]['id'] = 'Acesso Direto'
+        try:
+            for re in result['analytics']['allTime']['referrers']:
+              
+                if (re['id'] == 'twitter.com') or (re['id'] == 't.co'):
+                    quantidade_twitter += int(re['count'])
+                    result['analytics']['allTime']['referrers'][aux]['count'] = 0
+    
+                elif re['id'] == 'Unknown/empty':
                 
-            elif re['id'] == 'www.facebook.com':
+                    result['analytics']['allTime']['referrers'][aux]['id'] = 'Acesso Direto'
+                    
+                elif re['id'] == 'www.facebook.com':
+                
+                    result['analytics']['allTime']['referrers'][aux]['id'] = 'Facebook'
+                
+                elif re['id'] == 'www.linkedin.com':
+                
+                    result['analytics']['allTime']['referrers'][aux]['id'] = 'LinkedIn'
+    
+                aux = aux + 1
+                
+            aux = 0
+            for re in result['analytics']['month']['referrers']:
+              
+                if (re['id'] == 'twitter.com') or (re['id'] == 't.co'):
+                    quantidade_twitter_mes += int(re['count'])
+                    result['analytics']['month']['referrers'][aux]['count'] = 0
+    
+                elif re['id'] == 'Unknown/empty':
+                
+                    result['analytics']['month']['referrers'][aux]['id'] = 'Acesso Direto'
+                    
+                elif re['id'] == 'www.facebook.com':
+                
+                    result['analytics']['month']['referrers'][aux]['id'] = 'Facebook'
+                
+                elif re['id'] == 'www.linkedin.com':
+                
+                    result['analytics']['month']['referrers'][aux]['id'] = 'LinkedIn'
+    
+                aux = aux + 1
             
-                result['analytics']['allTime']['referrers'][aux]['id'] = 'Facebook'
+            aux = 0
+            for re in result['analytics']['day']['referrers']:
+              
+                if (re['id'] == 'twitter.com') or (re['id'] == 't.co'):
+                    quantidade_twitter_dia += int(re['count'])
+                    result['analytics']['day']['referrers'][aux]['count'] = 0
+    
+                elif re['id'] == 'Unknown/empty':
+                
+                    result['analytics']['day']['referrers'][aux]['id'] = 'Acesso Direto'
+                    
+                elif re['id'] == 'www.facebook.com':
+                
+                    result['analytics']['day']['referrers'][aux]['id'] = 'Facebook'
+                
+                elif re['id'] == 'www.linkedin.com':
+                
+                    result['analytics']['day']['referrers'][aux]['id'] = 'LinkedIn'
+    
+                aux = aux + 1
+                
+            aux = 0
+            for re in result['analytics']['twoHours']['referrers']:
+              
+                if (re['id'] == 'twitter.com') or (re['id'] == 't.co'):
+                    quantidade_twitter_hora += int(re['count'])
+                    result['analytics']['twoHours']['referrers'][aux]['count'] = 0
+    
+                elif re['id'] == 'Unknown/empty':
+                
+                    result['analytics']['twoHours']['referrers'][aux]['id'] = 'Acesso Direto'
+                    
+                elif re['id'] == 'www.facebook.com':
+                
+                    result['analytics']['twoHours']['referrers'][aux]['id'] = 'Facebook'
+                
+                elif re['id'] == 'www.linkedin.com':
+                
+                    result['analytics']['twoHours']['referrers'][aux]['id'] = 'LinkedIn'
+    
+                aux = aux + 1
+        except:
+            erro = 1
+        try:
+            objeto = {"count" : quantidade_twitter, "id": "Twitter"}
+            result['analytics']['allTime']['referrers'].append(objeto)
             
-            elif re['id'] == 'www.linkedin.com':
+            objeto = {"count" : quantidade_twitter_mes, "id": "Twitter"}
+            result['analytics']['month']['referrers'].append(objeto)  
             
-                result['analytics']['allTime']['referrers'][aux]['id'] = 'LinkedIn'
-
-            aux = aux + 1
+            objeto = {"count" : quantidade_twitter_dia, "id": "Twitter"}
+            result['analytics']['day']['referrers'].append(objeto)   
+            
+            objeto = {"count" : quantidade_twitter_hora, "id": "Twitter"}
+            result['analytics']['twoHours']['referrers'].append(objeto)
         
-        objeto = {"count" : quantidade_twitter, "id": "Twitter"}
-        
-        result['analytics']['allTime']['referrers'].append(objeto)    
+        except:
+            erro =1
 
-        return render_to_response('campanhas/resultados.html', {"campanha": camp, 
+        return render_to_response('campanhas/resultados.html', { 
                                                                 "result": result
                                                                }
                                   )
