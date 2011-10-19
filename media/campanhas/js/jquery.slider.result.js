@@ -1,3 +1,4 @@
+contador = 0;
 (function($) {
   $.fn.ContentSlider = function(options)
   {
@@ -111,7 +112,9 @@
         if(inuse===false) {
           inuse = true;
           moveSlider('right', leftBtn);
-          $("#conteudo").css("height","500px");
+          if(contador == 0){
+        	  $("#conteudo").css("height","500px");
+          }
         }
         return false; // Keep the link from firing
       });
@@ -120,26 +123,53 @@
       var rightBtn = $(this).children('.cs_rightBtn');
       rightBtn.bind('click', function() {
     	  
-    	  o.ajax;
-    	 
-    	  $.ajax({
-   		   type: "POST",
-   		   url: "/sistema/campanhas/resultados/",
-   		   data: $("form").serialize(),
-   		   dataType: "html",
-   		   async: false,
-   		   success: function(html){
-   			   $("#div_2").html(html);
-   		   },
-   		   complete: function(){
-	   			if(inuse===false) {
-	   	          inuse=true;
-	   	          moveSlider('left', rightBtn);
-	   	          $("#conteudo").css("height","1700px");
-	   	        }
-   		   }
-   		 });
-    	
+    	  
+    	  if(contador == 0){
+    		  
+    	  
+	    	  o.ajax;
+	    	 
+	    	  $.ajax({
+	   		   type: "POST",
+	   		   url: "/sistema/campanhas/resultados/",
+	   		   data: $("form").serialize(),
+	   		   dataType: "html",
+	   		   async: false,
+	   		   success: function(html){
+	   			   $("#div_2").html(html);
+	   		   },
+	   		   complete: function(){
+		   			if(inuse===false) {
+		   	          inuse=true;
+		   	          moveSlider('left', rightBtn);
+		   	          $("#conteudo").css("height","1700px");
+		   	        }
+	   		   }
+	   		 });
+    	  
+    	  }else{
+    		  o.ajax;
+ 	    	 
+	    	  $.ajax({
+	   		   type: "POST",
+	   		   url: "/sistema/campanhas/resultados_redes/",
+	   		   data: $("form").serialize(),
+	   		   dataType: "html",
+	   		   async: false,
+	   		   success: function(html){
+	   			   $("#div_3").html(html);
+	   		   },
+	   		   complete: function(){
+		   			if(inuse===false) {
+		   	          inuse=true;
+		   	          moveSlider('left', rightBtn);
+		   	          $("#conteudo").css("height","1700px");
+		   	        }
+	   		   }
+	   		 });
+    		  
+    	  }
+    	  contador++;
         
         return false; // Keep the link from firing
       });

@@ -76,6 +76,9 @@ class Twitter(object):
             
             return tweepy.Cursor(api.user_timeline).items(limite)
         
+    def getResultadoCampanha(self, campanha):
+        pass
+        
         
 class Facebook(object):
     
@@ -171,6 +174,48 @@ class Facebook(object):
                 
         dados_tratados = {"dados_comments": dados_comments_final, "dados_likes":dados_likes_final}
         return dados_tratados
+    
+    def getResultadoCampanha(self, campanha):
+        import urllib
+        import urllib2
+        import json
+        configs = Config_facebook.objects.all()
+        gurl = 'https://graph.facebook.com/me/feed?access_token=' + configs[0].access_token
+        req = urllib2.Request(gurl)
+        req.add_header('User-Agent', 'toolbar')
+        
+        retorno = json.load(urllib2.urlopen(req))
+        retorno2 = retorno
+        
+        qtd_comentarios = 0
+        qtd_likes = 0
+        
+        for dado in retorno['data']:
+             
+            try:
+                
+                for aux in dado['comments']['data']:
+                    
+                    if(str(dado['message']) == campanha):
+                        qtd_comentarios = qtd_comentarios + 1
+            except:
+                erro = 1
+                
+        for dado in retorno2['data']:
+             
+            try:
+                
+                for aux_like in dado['likes']['data']:
+                    
+                    if(dado['message'] == campanha):
+                    
+                        qtd_likes = qtd_likes +1
+
+            except:
+                erro = 1
+                
+        dados_tratados = {"qtd_comentarios": qtd_comentarios, "qtd_likes":qtd_likes}
+        return dados_tratados
         
 class Linkedin(object):
     
@@ -181,6 +226,7 @@ class Linkedin(object):
         
         APIClient = LinkedInAPI(str(configs[0].linkedin_app_id), str(configs[0].linkedin_app_secret))
         tokens = {'oauth_token_secret': str(configs[0].oauth_token_secret),'oauth_token': str(configs[0].access_token)}
+        
         APIClient.set_status_update(tokens, mensagem)
         
     def enviaMensagemDireta(self,lead, assunto, mensagem):
@@ -243,3 +289,48 @@ class Linkedin(object):
             auxiliar = auxiliar +1
             
         return resultados_finais
+
+    def getResultadoCampanha(self, campanha):
+        
+        from liclient import LinkedInAPI
+        configs = Config_linkedin.objects.all()
+        
+        APIClient = LinkedInAPI(str(configs[0].linkedin_app_id), str(configs[0].linkedin_app_secret))
+        token = {'oauth_token_secret': str(configs[0].oauth_token_secret),'oauth_token': str(configs[0].access_token)}
+        key = APIClient.get_network_updates(token, scope="self")
+       
+        chaves = []
+        try:
+            for a in key['results']:
+                chaves.append(a.update_key)
+        except:
+            erro =1
+
+        resultado = []
+        for chave in chaves:
+            
+            result = APIClient.get_comment_feed(token, chave)
+            
+            if result != 'LinkedInError':
+                resultado.append(result)
+                
+        quantidade_comentarios = 0
+        contador = 0 
+        auxiliar = 0
+        
+        for aux in resultado:
+            try:
+                for a in aux:
+                    jsons = {}
+                    
+                    if (campanha == key['results'][contador].update_content):
+                                                                             
+                        contador = int(auxiliar)
+                        jsons['campanha'] = key['results'][contador].update_content
+                        quantidade_comentarios = quantidade_comentarios + 1
+            
+            except:
+                erro = 12
+            auxiliar = auxiliar +1
+            
+        return quantidade_comentarios

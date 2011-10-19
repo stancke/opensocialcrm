@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*- 
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from campanhas.models import Campanha
 from redes_sociais.models import Twitter as Config_twitter, Linkedin as Config_linkedin
-from api.api import Twitter
+from api.api import Twitter, Linkedin, Facebook
 from api.google import Google
 
 @login_required
@@ -138,5 +139,25 @@ def resultados(request):
 
         return render_to_response('campanhas/resultados.html', { 
                                                                 "result": result
+                                                               }
+                                  )
+        
+
+@login_required
+def resultados_redes(request):
+
+    if request.method == 'POST' or request.method == 'GET':
+            
+        string = request.REQUEST
+        id_campanha = string.get('campanha')
+        camp = Campanha.objects.get(pk=id_campanha)
+        
+        linkedin = Linkedin().getResultadoCampanha(camp.descricao)
+        facebook = Facebook().getResultadoCampanha(camp.descricao)
+        twitter = Twitter().getResultadoCampanha(camp.descricao)
+
+        return HttpResponse(facebook.qtd_comentarios)
+        return render_to_response('campanhas/resultados_redes.html', { 
+                                                                "result": None
                                                                }
                                   )

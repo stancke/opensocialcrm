@@ -20,8 +20,10 @@ def confirma_linkedin(request):
     
     access_token = APIClient.get_access_token(request.session['request_token'], request.REQUEST.get('codigo_confirmacao'))
     
-    configs.access_token = access_token.oauth_token
-    configs.oauth_token_secret = access_token.oauth_token_secret
+    print access_token
+    
+    configs.access_token = access_token['oauth_token']
+    configs.oauth_token_secret = access_token['oauth_token_secret']
     
     configs.save()
 
