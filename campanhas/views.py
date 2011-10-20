@@ -154,10 +154,11 @@ def resultados_redes(request):
         
         linkedin = Linkedin().getResultadoCampanha(camp.descricao)
         facebook = Facebook().getResultadoCampanha(camp.descricao)
-        twitter = Twitter().getResultadoCampanha(camp.descricao)
-
-        return HttpResponse(facebook.qtd_comentarios)
+        #twitter = Twitter().getResultadoCampanha(camp.descricao)
+        
         return render_to_response('campanhas/resultados_redes.html', { 
-                                                                "result": None
+                                                                "linkedin": linkedin,
+                                                                "facebook": facebook['qtd_comentarios'],
+                                                                "twitter" : 0
                                                                }
                                   )

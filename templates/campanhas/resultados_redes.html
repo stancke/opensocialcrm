@@ -26,152 +26,16 @@
 		<li><a href="#tabs-1">Todos</a></li>
 	</ul>
 	<div id="tabs-1">
-		
-		{% if result.analytics.allTime %}
 
-			<div id="div_locais" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_locais_barra" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_paises" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_paises_barra" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_browsers" style="padding-left: 50px;width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_browsers_barra" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_plataformas" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_plataformas_barra" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<input type="hidden" id="total" value="{{ dados.total}}" />
+			<div id="div_redes" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
+			<div id="div_redes_barra" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
 	
-			{% for local in result.analytics.allTime.referrers %}
-			<input type="hidden" class="locais" count="{{ local.count}}" value="{{ local.id }}" />
-			{% endfor %}
 			
-			{% for browser in result.analytics.allTime.browsers %}
-			<input type="hidden" class="browsers" count="{{ browser.count}}" value="{{ browser.id}}" />
-			{% endfor %}
-			
-			{% for pais in result.analytics.allTime.countries %}
-			<input type="hidden" class="paises" count="{{ pais.count}}" value="{{ pais.id}}" />
-			{% endfor %}
-			
-			{% for plataforma in result.analytics.allTime.platforms %}
-			<input type="hidden" class="plataformas" count="{{ plataforma.count}}" value="{{ plataforma.id}}" />
-			{% endfor %}
-		
-		{% else %}
-		
-		<h1 style="margin: 10px 10px;">Não possui nenhum dado</h1>
-		
-		{% endif %}
-	</div>
-	<div id="tabs-2">
-		
-			{% if result.analytics.month %}
-
-			<div id="div_locais_mes" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_locais_barra_mes" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_paises_mes" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_paises_barra_mes" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_browsers_mes" style="padding-left: 50px;width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_browsers_barra_mes" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_plataformas_mes" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_plataformas_barra_mes" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<input type="hidden" id="total" value="{{ dados.total}}" />
-	
-			{% for local in result.analytics.month.referrers %}
-			<input type="hidden" class="locais_mes" count="{{ local.count}}" value="{{ local.id }}" />
-			{% endfor %}
-			
-			{% for browser in result.analytics.month.browsers %}
-			<input type="hidden" class="browsers_mes" count="{{ browser.count}}" value="{{ browser.id}}" />
-			{% endfor %}
-			
-			{% for pais in result.analytics.month.countries %}
-			<input type="hidden" class="paises_mes" count="{{ pais.count}}" value="{{ pais.id}}" />
-			{% endfor %}
-			
-			{% for plataforma in result.analytics.month.platforms %}
-			<input type="hidden" class="plataformas_mes" count="{{ plataforma.count}}" value="{{ plataforma.id}}" />
-			{% endfor %}
-		
-		{% else %}
-		
-		<h1 style="margin: 10px 10px;">Não possui nenhum dado</h1>
-		
-		{% endif %}
-		
-	</div>
-	<div id="tabs-3">
-		
-		{% if result.analytics.day %}
-
-			<div id="div_locais_dia" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_locais_barra_dia" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_paises_dia" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_paises_barra_dia" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_browsers_dia" style="padding-left: 50px;width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_browsers_barra_dia" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_plataformas_dia" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_plataformas_barra_dia" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<input type="hidden" id="total" value="{{ dados.total}}" />
-	
-			{% for local in result.analytics.day.referrers %}
-			<input type="hidden" class="locais_dia" count="{{ local.count}}" value="{{ local.id }}" />
-			{% endfor %}
-			
-			{% for browser in result.analytics.day.browsers %}
-			<input type="hidden" class="browsers_dia" count="{{ browser.count}}" value="{{ browser.id}}" />
-			{% endfor %}
-			
-			{% for pais in result.analytics.day.countries %}
-			<input type="hidden" class="paises_dia" count="{{ pais.count}}" value="{{ pais.id}}" />
-			{% endfor %}
-			
-			{% for plataforma in result.analytics.day.platforms %}
-			<input type="hidden" class="plataformas_dia" count="{{ plataforma.count}}" value="{{ plataforma.id}}" />
-			{% endfor %}
-		
-		{% else %}
-		
-		<h1 style="margin: 10px 10px;">Não possui nenhum dado</h1>
-		
-		{% endif %}
-		
+			<input type="hidden" class="redes" count="{{ facebook }}" value="Facebook" />
+			<input type="hidden" class="redes" count="{{ twitter }}" value="Twitter" />
+			<input type="hidden" class="redes" count="{{ linkedin }}" value="LinkedIn" />
 	</div>
 	
-	<div id="tabs-4">
-		
-		{% if result.analytics.twoHours %}
-
-			<div id="div_locais_hora" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_locais_barra_hora" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_paises_hora" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_paises_barra_hora" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_browsers_hora" style="padding-left: 50px;width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_browsers_barra_hora" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_plataformas_hora" style="padding-left: 50px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<div id="div_plataformas_barra_hora" style="padding-left: 100px; width: 550px; height: 400px; margin: 0 auto; float:left;"></div>
-			<input type="hidden" id="total" value="{{ dados.total}}" />
-	
-			{% for local in result.analytics.twoHours.referrers %}
-			<input type="hidden" class="locais_hora" count="{{ local.count}}" value="{{ local.id }}" />
-			{% endfor %}
-			
-			{% for browser in result.analytics.twoHours.browsers %}
-			<input type="hidden" class="browsers_hora" count="{{ browser.count}}" value="{{ browser.id}}" />
-			{% endfor %}
-			
-			{% for pais in result.analytics.twoHours.countries %}
-			<input type="hidden" class="paises_hora" count="{{ pais.count}}" value="{{ pais.id}}" />
-			{% endfor %}
-			
-			{% for plataforma in result.analytics.twoHours.platforms %}
-			<input type="hidden" class="plataformas_hora" count="{{ plataforma.count}}" value="{{ plataforma.id}}" />
-			{% endfor %}
-		
-		{% else %}
-		
-		<h1 style="margin: 10px 10px;">Não possui nenhum dado</h1>
-		
-		{% endif %}
-	</div>
 </div>
 
 <br clear="all" />
