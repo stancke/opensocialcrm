@@ -77,7 +77,22 @@ class Twitter(object):
             return tweepy.Cursor(api.user_timeline).items(limite)
         
     def getResultadoCampanha(self, campanha):
-        pass
+        
+        count = 0
+        
+        for config in self.twitter:
+            auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
+            auth.set_access_token(config.access_key, config.access_secret)
+            api = tweepy.API(auth)
+
+            busca = api.search(campanha, rpp=25)
+    
+            for a in busca:
+                count = count + 1
+                
+        count = count - 1 
+        
+        return count
         
         
 class Facebook(object):

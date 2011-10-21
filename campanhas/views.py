@@ -152,13 +152,31 @@ def resultados_redes(request):
         id_campanha = string.get('campanha')
         camp = Campanha.objects.get(pk=id_campanha)
         
-        linkedin = Linkedin().getResultadoCampanha(camp.descricao)
-        facebook = Facebook().getResultadoCampanha(camp.descricao)
-        #twitter = Twitter().getResultadoCampanha(camp.descricao)
+        linkedin = 0
+        facebook = {}
+        facebook['qtd_comentarios'] = 0
+        twitter = 0
+        
+        try:
+            linkedin = Linkedin().getResultadoCampanha(camp.descricao)
+        except:
+            erro = 1
+        try:
+            twitter = Twitter().getResultadoCampanha(camp.descricao)
+        except:
+            erro =1
+        try:
+            facebook = Facebook().getResultadoCampanha(camp.descricao)
+        except:
+            erro = 1
+            
+        
+        #for a in Twitter().getBusca(camp.descricao):
+         #   print a.text
         
         return render_to_response('campanhas/resultados_redes.html', { 
                                                                 "linkedin": linkedin,
                                                                 "facebook": facebook['qtd_comentarios'],
-                                                                "twitter" : 0
+                                                                "twitter" : twitter
                                                                }
                                   )
