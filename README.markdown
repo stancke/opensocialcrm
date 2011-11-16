@@ -2,7 +2,7 @@
 
 Projeto de TCC desenvolvido para o curso de Análise e Desenvolvimento de Sistemas da Universidade Tuiuti do Paraná.
 Desenvolvido por:
-		Evandro Balmant
+		Evandro Balmant e
 		Wilian Stancke
 
 ## FAQ
